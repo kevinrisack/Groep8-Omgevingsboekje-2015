@@ -210,10 +210,17 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Activiteit.cs" />
     <Compile Include="Models\Doelgroep.cs" />
+    <Compile Include="Models\Foto_Activiteit.cs" />
+    <Compile Include="Models\Foto_POI.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\POI.cs" />
+    <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Route.cs" />
+    <Compile Include="Models\Thema.cs" />
+    <Compile Include="Models\Uitstap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -304,7 +311,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>41983</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
