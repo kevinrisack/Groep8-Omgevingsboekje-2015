@@ -1,4 +1,4 @@
-namespace Models
+namespace DigitaalOmgevingsboek
 {
     using System;
     using System.Collections.Generic;
@@ -6,12 +6,11 @@ namespace Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Doelgroep")]
-    public partial class Doelgroep
+    [Table("Thema")]
+    public partial class Thema
     {
-        public Doelgroep()
+        public Thema()
         {
-            Activiteit = new HashSet<Activiteit>();
             POI = new HashSet<POI>();
         }
 
@@ -19,9 +18,9 @@ namespace Models
 
         [Required]
         [StringLength(50)]
-        public string DoelgroepNaam { get; set; }
+        public string ThemaNaam { get; set; }
 
-        public virtual ICollection<Activiteit> Activiteit { get; set; }
+        public bool IsDeleted { get; set; }
 
         public virtual ICollection<POI> POI { get; set; }
     }

@@ -80,9 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericRepository.cs" />
-    <Compile Include="IGenericRepository.cs" />
-    <Compile Include="ModelGenerated.cs" />
+    <Compile Include="OmgevingsboekContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,9 +88,9 @@
       <Project>{72043c65-c246-464a-865e-253ebe22bdb5}</Project>
       <Name>DigitaalOmgevingsboek</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\DigitaalOmgevingsboek.Models.csproj">
+    <ProjectReference Include="..\Models\DigitaalOmgevingsboek_Models.csproj">
       <Project>{0cf2a2ea-8c8f-4c3b-9393-070ce88036d8}</Project>
-      <Name>DigitaalOmgevingsboek.Models</Name>
+      <Name>DigitaalOmgevingsboek_Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-namespace Models
+namespace DigitaalOmgevingsboek
 {
     using System;
     using System.Collections.Generic;
@@ -6,16 +6,16 @@ namespace Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Foto_POI
+    public partial class Foto_Activiteit
     {
         public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string FotoURL { get; set; }
+        public string URL { get; set; }
 
-        public int POI_Id { get; set; }
+        public int Activiteit_Id { get; set; }
 
-        public virtual POI POI { get; set; }
+        public virtual Activiteit Activiteit { get; set; }
     }
 }
