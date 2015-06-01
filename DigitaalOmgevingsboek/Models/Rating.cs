@@ -13,7 +13,7 @@ namespace DigitaalOmgevingsboek
 
         public int? Score { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="U moeten een score geven")]
         [StringLength(50)]
         public string Comment { get; set; }
 

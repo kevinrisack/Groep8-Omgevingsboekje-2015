@@ -21,11 +21,11 @@ namespace DigitaalOmgevingsboek
 
         public int Doelgroep_Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Beschrijving is verplicht in te vullen")]
         public string Beschrijving { get; set; }
 
         public int Leerdoel_Id { get; set; }
-
+        [StringLength(50,ErrorMessage="Duur mag maar 50 karakters bevatten")]
         public string Duur { get; set; }
 
         public string Terugkoppeling { get; set; }
@@ -36,8 +36,8 @@ namespace DigitaalOmgevingsboek
 
         public string Materiaal { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage="Naam is verplicht in te vullen")]
+        [StringLength(50,ErrorMessage="Naam mag maar 50 karakters bevatten")]
         public string Naam { get; set; }
 
         public virtual POI POI { get; set; }
