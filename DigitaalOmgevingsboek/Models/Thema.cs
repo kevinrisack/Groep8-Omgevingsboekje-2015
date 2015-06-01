@@ -16,7 +16,7 @@ namespace DigitaalOmgevingsboek
 
         public int Id { get; set; }
 
-        [Required(ErrorMessage="Geef een themanaam in"]
+        [Required]
         [StringLength(50)]
         public string ThemaNaam { get; set; }
 

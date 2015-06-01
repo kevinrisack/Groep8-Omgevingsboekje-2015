@@ -2,7 +2,6 @@ namespace DigitaalOmgevingsboek
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -27,7 +26,6 @@ namespace DigitaalOmgevingsboek
         public string Naam { get; set; }
 
         [Required]
-        [DisplayName("Adres(Straat + nummer)")]
         public string Adres { get; set; }
 
         public string Gemeente { get; set; }
@@ -36,23 +34,21 @@ namespace DigitaalOmgevingsboek
         public string Telefoon { get; set; }
 
         [StringLength(50)]
-        [EmailAddress(ErrorMessage="U heeft een onjuist emailadres ingevoerd")]
         public string Email { get; set; }
-        [DisplayName("Website")]
+
         [StringLength(50)]
         public string WebsiteUrl { get; set; }
 
         [StringLength(50)]
         public string Openingsuur { get; set; }
 
-        [DataType(DataType.Currency,ErrorMessage="Geef een geldige waarde in, bv: 1,05")]
+        [Column(TypeName = "numeric")]
         public decimal? Toegangsprijs { get; set; }
 
         public string Beschrijving { get; set; }
 
         public string Contactpersoon_Naam { get; set; }
 
-        [EmailAddress(ErrorMessage="Geef een geldig emailadres in")]
         public string Contactpersoon_Email { get; set; }
 
         [Required]
