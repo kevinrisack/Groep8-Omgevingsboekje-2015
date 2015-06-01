@@ -198,7 +198,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PoiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -272,7 +271,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Poi\ListPOI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -288,16 +286,6 @@
     <EmbeddedResource Include="Migrations\201505290933382_InitDatabase.resx">
       <DependentUpon>201505290933382_InitDatabase.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DigitaalOmgevingsboek.BusinessLayer\DigitaalOmgevingsboek.BusinessLayer.csproj">
-      <Project>{cde6a41f-eb5c-4ce3-a2fe-459fd7d7133f}</Project>
-      <Name>DigitaalOmgevingsboek.BusinessLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\DigitaalOmgevingsboek.Models.csproj">
-      <Project>{0cf2a2ea-8c8f-4c3b-9393-070ce88036d8}</Project>
-      <Name>DigitaalOmgevingsboek.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
