@@ -172,12 +172,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Businesslayer\Repositories\GenericRepository.cs" />
     <Compile Include="Businesslayer\Repositories\IGenericRepository.cs" />
     <Compile Include="Businesslayer\Services\IPOIService.cs" />
     <Compile Include="Businesslayer\Services\POIService.cs" />
     <Compile Include="Controllers\POIController.cs" />
+=======
+    <Compile Include="Businesslayer\GenericRepository.cs" />
+    <Compile Include="Businesslayer\IGenericRepository.cs" />
+    <Compile Include="Controllers\POIController.cs" />
+    <Compile Include="Controllers\UitstappenController.cs" />
+>>>>>>> Layout
     <Compile Include="Models\Activiteit.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -237,7 +244,11 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+<<<<<<< HEAD
     <Compile Include="Businesslayer\Context\OmgevingsboekContext.cs" />
+=======
+    <Compile Include="Businesslayer\OmgevingsboekContext.cs" />
+>>>>>>> Layout
     <Compile Include="Models\POI.cs" />
     <Compile Include="Models\POI_Log.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -313,6 +324,11 @@
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\dashboard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -372,11 +388,27 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+<<<<<<< HEAD
     <Content Include="Views\POI\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
+=======
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\POI\POIActivity.cshtml" />
+    <Content Include="Views\POI\POINewModify.cshtml" />
+    <Content Include="Views\POI\POIOverzicht.cshtml" />
+    <Content Include="Views\POI\POIStart.cshtml" />
+    <Content Include="Views\POI\POIView.cshtml" />
+    <Content Include="Views\Uitstappen\Uitstappen.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Gebruikers\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Management\" />
+>>>>>>> Layout
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
