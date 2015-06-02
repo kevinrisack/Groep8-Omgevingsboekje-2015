@@ -15,10 +15,34 @@ namespace DigitaalOmgevingsboek.Controllers
         {
             this.ps = ps;
         }
-        public ActionResult Index()
+
+        // GET: POI
+        public ActionResult POIStart()
+        {
+            return View();
+        }
+
+        public ActionResult POIOverzicht()
         {
             List<POI> pois = ps.GetPOIs();
             return View(pois);
+        }
+
+        public ActionResult POINewModify()
+        {
+            return View();
+        }
+
+
+        public ActionResult POIActivity()
+        {
+            return View();
+        }
+
+
+        public ActionResult POIView()
+        {
+            return View();
         }
     }
 }
