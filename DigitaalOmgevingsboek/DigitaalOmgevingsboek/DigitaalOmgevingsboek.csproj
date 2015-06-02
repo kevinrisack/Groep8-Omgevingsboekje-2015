@@ -163,6 +163,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Businesslayer\Repositories\GenericRepository.cs" />
+    <Compile Include="Businesslayer\Repositories\IGenericRepository.cs" />
+    <Compile Include="Businesslayer\Services\IPOIService.cs" />
+    <Compile Include="Businesslayer\Services\POIService.cs" />
+    <Compile Include="Controllers\POIController.cs" />
     <Compile Include="Models\Activiteit.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -221,10 +226,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\GenericRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IGenericRepository.cs" />
-    <Compile Include="Businesslayer\OmgevingsboekContext.cs" />
+    <Compile Include="Businesslayer\Context\OmgevingsboekContext.cs" />
     <Compile Include="Models\POI.cs" />
     <Compile Include="Models\POI_Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -293,6 +296,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\POI\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
