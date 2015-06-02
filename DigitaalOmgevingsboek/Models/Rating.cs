@@ -1,4 +1,4 @@
-namespace DigitaalOmgevingsboek
+namespace Models
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace DigitaalOmgevingsboek
 
         public int? Score { get; set; }
 
-        [Required(ErrorMessage="U moeten een score geven")]
+        [Required]
         [StringLength(50)]
         public string Comment { get; set; }
 

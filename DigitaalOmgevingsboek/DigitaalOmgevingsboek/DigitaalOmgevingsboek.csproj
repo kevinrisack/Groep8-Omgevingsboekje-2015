@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -162,6 +163,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Activiteit.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -196,13 +198,22 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Models\AspNetRoles.cs" />
+    <Compile Include="Models\AspNetUserClaims.cs" />
+    <Compile Include="Models\AspNetUserLogins.cs" />
+    <Compile Include="Models\AspNetUsers.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Models\Doelgroep.cs" />
+    <Compile Include="Models\Foto_Activiteit.cs" />
+    <Compile Include="Models\Foto_POI.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\Database.cs" />
+    <Compile Include="Models\Leerdoel.cs" />
+    <Compile Include="Models\Link.cs" />
     <Compile Include="Migrations\201505290933382_InitDatabase.cs" />
     <Compile Include="Migrations\201505290933382_InitDatabase.Designer.cs">
       <DependentUpon>201505290933382_InitDatabase.cs</DependentUpon>
@@ -210,11 +221,20 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GenericRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IGenericRepository.cs" />
+    <Compile Include="Businesslayer\OmgevingsboekContext.cs" />
+    <Compile Include="Models\POI.cs" />
+    <Compile Include="Models\POI_Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Models\Rating.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Models\Route.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Models\Thema.cs" />
+    <Compile Include="Models\Uitstap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -255,7 +275,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

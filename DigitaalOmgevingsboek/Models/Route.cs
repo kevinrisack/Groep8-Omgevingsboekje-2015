@@ -1,4 +1,4 @@
-namespace DigitaalOmgevingsboek
+namespace Models
 {
     using System;
     using System.Collections.Generic;

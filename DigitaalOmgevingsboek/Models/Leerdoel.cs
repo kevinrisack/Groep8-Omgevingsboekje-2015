@@ -1,4 +1,4 @@
-namespace DigitaalOmgevingsboek
+namespace Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,6 @@ namespace DigitaalOmgevingsboek
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
         public string LeerdoelNaam { get; set; }
 
         public virtual ICollection<Activiteit> Activiteit { get; set; }
