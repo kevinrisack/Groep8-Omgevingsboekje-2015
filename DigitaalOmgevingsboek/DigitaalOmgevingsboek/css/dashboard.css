@@ -258,14 +258,56 @@ html{
 .POINewLeft{
     position:relative;
     float:left;
-    
+      width:45%;
+    margin-right:5%;
+}
+
+.POINewLeft label{
+    padding:5px;
+       margin:5px;
+}
+
+.POINewLeft input[type="text"]{
+        position:relative;
+    float:right;
+    margin:5px;
+    width:68.5%;
+}
+
+.POINewLeft textarea{
+        position:relative;
+    float:right;
+    margin:5px;
+    width:68.5%;
 }
 
 .POINewRight{
     position:relative;
     float:right;
+    margin-left:2%;
+    margin-right:3%;
+       width:45%;
+}
+
+.POINewRight label{
+    padding:5px;
+       margin:5px;
+}
+
+.POINewRight input[type="text"]{
+    position:relative;
+    float:right;
+    margin:5px;
+    width:68.5%;
+}
+
+.POINewRight fieldset input[type='checkbox']{
+ 
+
+
 }
 
 .POINewBody{
 
 }
+
