@@ -28,9 +28,38 @@ namespace DigitaalOmgevingsboek.Controllers
             return View(pois);
         }
 
+        [HttpGet]
         public ActionResult POINewModify()
         {
-            return View();
+            POI poi = new POI();
+            //poi.Auteur_Id = User.Identity.GetUserId();
+
+            return View(poi);
+        }
+
+        [HttpPost]
+        public ActionResult POINewModify(POI poi)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    poi.Auteur_Id = "da65898a-accc-4d09-b1ef-2ebcdbd35eb8";
+                    //if (ModelState.IsValid)
+                    //{
+                    ps.AddPOI(poi);
+                    //}
+                    return RedirectToAction("Index");
+                }
+                catch (Exception e)
+                {
+                    return View("Error: " + e);
+                }
+            }
+            else
+            {
+                return RedirectToAction("POINewModify", poi);
+            }
         }
 
 
@@ -40,10 +69,16 @@ namespace DigitaalOmgevingsboek.Controllers
         }
 
 
-        public ActionResult POIView(int id)
+        public ActionResult POIView(int? id)
         {
-            
-            return View();
+            if (!id.HasValue)
+            {
+                return RedirectToAction("POIOverzicht");
+            }
+
+            POI poi = ps.GetPOI(id.Value);
+
+            return View(poi);
         }
     }
 }
