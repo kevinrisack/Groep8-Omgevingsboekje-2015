@@ -40,8 +40,9 @@ namespace DigitaalOmgevingsboek.Controllers
         }
 
 
-        public ActionResult POIView()
+        public ActionResult POIView(int id)
         {
+            
             return View();
         }
     }
