@@ -31,7 +31,7 @@ html{
 
   .sidebar {
     position: fixed;
-    top: 0.01px;
+    top: 50px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -265,12 +265,14 @@ html{
 .POINewLeft label{
     padding:5px;
        margin:5px;
+           margin-top:15px;
 }
 
 .POINewLeft input[type="text"]{
         position:relative;
     float:right;
     margin:5px;
+    margin-top:15px;
     width:68.5%;
 }
 
@@ -278,6 +280,7 @@ html{
         position:relative;
     float:right;
     margin:5px;
+    margin-top:15px;
     width:68.5%;
 }
 
@@ -289,9 +292,22 @@ html{
        width:45%;
 }
 
+.content2{
+        height:66%;
+        margin-top:2%;
+}
+
+
+
 .POINewRight label{
     padding:5px;
        margin:5px;
+         margin-top:15px;
+}
+
+.POINewRight label #openingsuren {
+    padding:5px;
+       margin:55px;
 }
 
 .POINewRight input[type="text"]{
@@ -299,15 +315,68 @@ html{
     float:right;
     margin:5px;
     width:68.5%;
+      margin-top:15px;
 }
 
-.POINewRight fieldset input[type='checkbox']{
+.POINewRight textarea{
+        position:relative;
+    float:right;
+    margin:5px;
+    margin-top:15px;
+    width:68.5%;
+}
+
+.POINewRight fieldset{
  
+    margin-left:15%;
+    margin-right:15%;
 
 
 }
 
 .POINewBody{
+    clear:both;
+    width:90%;
+    margin-top:5%;
+    margin-left:5%;
+    margin-right:5%;
+    height:95%;
+}
+
+.POINewAfbeeldingen{
+    margin-top:1%;
+      background-color: #b200ff;
+      width:50%;
+}
+
+.POINewActivity{
+        margin-top:1%;
+      background-color: #b200ff;
+      width:50%;
+}
+
+#NewActivity{
+    float:right;
+    position:relative;
+    margin-right:50%;
+}
+
+
+.Menu{
+    width:100%;
+    height:60px;
+      background-color: #b200ff;
+      position:fixed;
+      z-index: 2;
+}
+
+
+
+.container{
+   
+}
+
+.Menu h1{
 
 }
 
