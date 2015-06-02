@@ -1,8 +1,10 @@
 ﻿using System;
-namespace DigitaalOmgevingsboek.Businesslayer.Services
+namespace OmgevingsboekMVC.Businesslayer.Services
 {
     public interface IPOIService
     {
-        System.Collections.Generic.List<DigitaalOmgevingsboek.POI> GetPOIs();
+        global::DigitaalOmgevingsboek.POI AddPOI(global::DigitaalOmgevingsboek.POI poi);
+        global::DigitaalOmgevingsboek.POI GetPOI(int id);
+        global::System.Collections.Generic.List<global::DigitaalOmgevingsboek.POI> GetPOIs();
     }
 }
