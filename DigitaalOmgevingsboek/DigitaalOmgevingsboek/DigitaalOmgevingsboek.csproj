@@ -313,6 +313,11 @@
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\dashboard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -372,7 +377,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\POI\Index.cshtml" />
+    <Content Include="Views\POI\POIActivity.cshtml" />
+    <Content Include="Views\POI\POINewModify.cshtml" />
+    <Content Include="Views\POI\POIOverzicht.cshtml" />
+    <Content Include="Views\POI\POIStart.cshtml" />
+    <Content Include="Views\POI\POIView.cshtml" />
+    <Content Include="Views\Uitstappen\Uitstappen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
