@@ -1,4 +1,5 @@
 ﻿using OmgevingsboekMVC.Businesslayer.Services;
+using DigitaalOmgevingsboek.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace DigitaalOmgevingsboek.Controllers
     public class POIController : Controller
     {
         private IPOIService ps;
+        private GenericRepository<Doelgroep> psDoelgroep;
 
-        public POIController(IPOIService ps)
+        public POIController(IPOIService ps, GenericRepository<Doelgroep> psDoelgroep)
         {
             this.ps = ps;
+            this.psDoelgroep = psDoelgroep;
         }
 
         // GET: POI
@@ -25,6 +28,7 @@ namespace DigitaalOmgevingsboek.Controllers
         public ActionResult POIOverzicht()
         {
             List<POI> pois = ps.GetPOIs();
+            ViewBag.Doelgroepen = psDoelgroep.All();
             return View(pois);
         }
 
@@ -32,7 +36,10 @@ namespace DigitaalOmgevingsboek.Controllers
         public ActionResult POINewModify()
         {
             POI poi = new POI();
+            IEnumerable<Doelgroep> doelgroepen = psDoelgroep.All();
             //poi.Auteur_Id = User.Identity.GetUserId();
+
+            ViewBag.Doelgroepen = doelgroepen;
 
             return View(poi);
         }
