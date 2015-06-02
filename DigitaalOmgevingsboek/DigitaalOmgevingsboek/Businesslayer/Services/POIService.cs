@@ -8,9 +8,9 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
 {
     public class POIService : DigitaalOmgevingsboek.Businesslayer.Services.IPOIService
     {
-        private GenericRepository<POI> repoPOI = null;
+        private IGenericRepository<POI> repoPOI = null;
 
-        public POIService(GenericRepository<POI> repoPOI)
+        public POIService(IGenericRepository<POI> repoPOI)
         {
             this.repoPOI = repoPOI;
         }
