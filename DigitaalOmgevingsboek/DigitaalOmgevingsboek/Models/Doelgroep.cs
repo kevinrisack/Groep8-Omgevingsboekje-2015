@@ -21,8 +21,8 @@ namespace DigitaalOmgevingsboek
         [StringLength(50)]
         public string DoelgroepNaam { get; set; }
 
-        public virtual ICollection<Activiteit> Activiteit { get; set; }
+        public ICollection<Activiteit> Activiteit { get; set; }
 
-        public virtual ICollection<POI> POI { get; set; }
+        public ICollection<POI> POI { get; set; }
     }
 }

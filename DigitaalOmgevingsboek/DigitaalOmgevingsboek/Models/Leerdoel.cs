@@ -19,6 +19,6 @@ namespace DigitaalOmgevingsboek
         [Required]
         public string LeerdoelNaam { get; set; }
 
-        public virtual ICollection<Activiteit> Activiteit { get; set; }
+        public ICollection<Activiteit> Activiteit { get; set; }
     }
 }

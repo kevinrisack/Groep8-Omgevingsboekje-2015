@@ -51,16 +51,16 @@ namespace DigitaalOmgevingsboek
 
         public bool IsDeleted { get; set; }
 
-        public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
 
-        public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
 
-        public virtual ICollection<POI> POI { get; set; }
+        public ICollection<POI> POI { get; set; }
 
-        public virtual ICollection<Uitstap> Uitstap { get; set; }
+        public ICollection<Uitstap> Uitstap { get; set; }
 
-        public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
+        public ICollection<AspNetRoles> AspNetRoles { get; set; }
 
-        public virtual ICollection<Uitstap> Uitstap1 { get; set; }
+        public ICollection<Uitstap> Uitstap1 { get; set; }
     }
 }

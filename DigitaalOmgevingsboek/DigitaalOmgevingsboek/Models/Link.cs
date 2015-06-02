@@ -17,6 +17,6 @@ namespace DigitaalOmgevingsboek
 
         public int Activiteit_Id { get; set; }
 
-        public virtual Activiteit Activiteit { get; set; }
+        public  Activiteit Activiteit { get; set; }
     }
 }

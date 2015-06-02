@@ -29,12 +29,12 @@ namespace DigitaalOmgevingsboek
         [StringLength(128)]
         public string Auteur_Id { get; set; }
 
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        public  AspNetUsers AspNetUsers { get; set; }
 
-        public virtual Route Route { get; set; }
+        public Route Route { get; set; }
 
-        public virtual ICollection<AspNetUsers> AspNetUsers1 { get; set; }
+        public ICollection<AspNetUsers> AspNetUsers1 { get; set; }
 
-        public virtual ICollection<POI> POI { get; set; }
+        public ICollection<POI> POI { get; set; }
     }
 }

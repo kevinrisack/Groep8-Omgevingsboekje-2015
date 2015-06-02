@@ -22,6 +22,6 @@ namespace DigitaalOmgevingsboek
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int POI_Id { get; set; }
 
-        public virtual POI POI { get; set; }
+        public POI POI { get; set; }
     }
 }

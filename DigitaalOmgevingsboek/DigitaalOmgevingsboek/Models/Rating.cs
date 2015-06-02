@@ -11,16 +11,17 @@ namespace DigitaalOmgevingsboek
     {
         public int Id { get; set; }
 
+        [Required]
         public int? Score { get; set; }
 
         [Required]
-        [StringLength(50)]
+       [StringLength(512)]
         public string Comment { get; set; }
 
         public int? POI_Id { get; set; }
 
         public int Gebruiker_Id { get; set; }
 
-        public virtual POI POI { get; set; }
+        public POI POI { get; set; }
     }
 }

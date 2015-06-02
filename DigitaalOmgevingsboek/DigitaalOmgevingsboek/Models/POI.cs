@@ -1,7 +1,9 @@
 namespace DigitaalOmgevingsboek
 {
+    using DataAnnotationsExtensions;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -22,10 +24,12 @@ namespace DigitaalOmgevingsboek
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(50,MinimumLength=6,ErrorMessage="De naam moet minimum 6 karakters bevatten en maximum 50")]
         public string Naam { get; set; }
 
         [Required]
+        [DisplayName("Adres(Straat + nummer)")]
+        [StringLength(50,MinimumLength=6,ErrorMessage="Het adres moet minimum 6 karakters bevatten en maximum 50")]
         public string Adres { get; set; }
 
         public string Gemeente { get; set; }
@@ -34,21 +38,24 @@ namespace DigitaalOmgevingsboek
         public string Telefoon { get; set; }
 
         [StringLength(50)]
+        [EmailAddress(ErrorMessage="U heeft een onjuist emailadres ingevoerd")]
         public string Email { get; set; }
 
         [StringLength(50)]
+        [DisplayName("Website")]
         public string WebsiteUrl { get; set; }
 
         [StringLength(50)]
         public string Openingsuur { get; set; }
 
-        [Column(TypeName = "numeric")]
+       [Numeric(ErrorMessage="Geef een geldige waarde op, bv: 1.08")]
         public decimal? Toegangsprijs { get; set; }
-
+        [MinLength(6,ErrorMessage="De beschrijving moet minimum 6 karakters bevatten")]
         public string Beschrijving { get; set; }
 
         public string Contactpersoon_Naam { get; set; }
 
+        [EmailAddress(ErrorMessage="U heeft een onjuist emailadres ingevoerd")]
         public string Contactpersoon_Email { get; set; }
 
         [Required]
@@ -65,20 +72,20 @@ namespace DigitaalOmgevingsboek
 
         public bool IsDeleted { get; set; }
 
-        public virtual Activiteit Activiteit { get; set; }
+        public Activiteit Activiteit { get; set; }
 
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        public  AspNetUsers AspNetUsers { get; set; }
 
-        public virtual ICollection<Foto_POI> Foto_POI { get; set; }
+        public  ICollection<Foto_POI> Foto_POI { get; set; }
 
-        public virtual ICollection<POI_Log> POI_Log { get; set; }
+        public  ICollection<POI_Log> POI_Log { get; set; }
 
-        public virtual ICollection<Rating> Rating { get; set; }
+        public  ICollection<Rating> Rating { get; set; }
 
-        public virtual ICollection<Doelgroep> Doelgroep { get; set; }
+        public ICollection<Doelgroep> Doelgroep { get; set; }
 
-        public virtual ICollection<Thema> Thema { get; set; }
+        public  ICollection<Thema> Thema { get; set; }
 
-        public virtual ICollection<Uitstap> Uitstap { get; set; }
+        public ICollection<Uitstap> Uitstap { get; set; }
     }
 }

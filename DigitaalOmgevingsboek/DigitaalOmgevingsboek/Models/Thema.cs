@@ -22,6 +22,6 @@ namespace DigitaalOmgevingsboek
 
         public bool IsDeleted { get; set; }
 
-        public virtual ICollection<POI> POI { get; set; }
+        public  ICollection<POI> POI { get; set; }
     }
 }
