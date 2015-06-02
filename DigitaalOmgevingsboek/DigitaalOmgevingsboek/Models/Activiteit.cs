@@ -41,7 +41,7 @@ namespace DigitaalOmgevingsboek
         [StringLength(50,ErrorMessage="Naam mag maar 50 karakters bevatten")]
         public string Naam { get; set; }
 
-        public virtual POI POI { get; set; }
+        public  POI POI { get; set; }
 
         public ICollection<Foto_Activiteit> Foto_Activiteit { get; set; }
 

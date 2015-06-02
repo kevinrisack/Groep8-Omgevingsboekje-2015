@@ -19,6 +19,6 @@ namespace DigitaalOmgevingsboek
         [StringLength(50)]
         public string Points { get; set; }
 
-        public virtual ICollection<Uitstap> Uitstap { get; set; }
+        public ICollection<Uitstap> Uitstap { get; set; }
     }
 }
