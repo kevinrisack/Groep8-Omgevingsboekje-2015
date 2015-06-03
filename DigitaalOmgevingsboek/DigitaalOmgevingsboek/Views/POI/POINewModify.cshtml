@@ -4,12 +4,12 @@
 }
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h2 class="page-header">POI Bewerken</h2>
+    <h1 class="page-header">POI Bewerken</h1>
 
 
 
 
-    <div class="content2">
+    <div class="content">
         <form action="">
         <div class="POINewTop">
             <div class="POINewLeft">
@@ -35,13 +35,8 @@
                 <textarea id="beschrijving" rows="10"></textarea>
             </div>
             <div class="POINewRight">
-                <label id="openingsuren" for="openingsuren">Openingsuren: </label>
-                <textarea id="openingsuren" rows="5"></textarea>
-                <br />
-                <br />
-                <br />
-                <br />
-       
+                <label for="openingsuren">Openingsuren: </label>
+                <input type="text" name="openingsuren" id="openingsuren" value="">
                 <br />
                 <label for="tijdsduur">Tijdsduur: </label>
                 <input type="text" name="tijdsduur" id="tijdsduur" value="">
@@ -49,17 +44,17 @@
                 <label for="toegangsprijs">Toegangsprijs: </label>
                 <input type="text" name="toegangsprijs" id="toegangsprijs" value="">
                 <br />
-                <label>Doelgroep:</label> <br />
+               
                 <fieldset>
-                   
-                   <input type="checkbox" name="blah1" id="blah1" /><label for="blah1"> Doelgroep 1</label>
-                    <input type="checkbox" name="blah2" id="blah2" /><label for="blah2"> Doelgroep 2</label>
-                    <input type="checkbox" name="blah3" id="blah3" /><label for="blah3"> Doelgroep 3</label>
-                    <input type="checkbox" name="blah4" id="blah4" /><label for="blah4"> Doelgroep 4</label>
-                    <input type="checkbox" name="blah5" id="blah5" /><label for="blah5"> Doelgroep 5</label>
-                    <input type="checkbox" name="blah6" id="blah6" /><label for="blah6"> Doelgroep 6</label>
-                    <input type="checkbox" name="blah7" id="blah7" /><label for="blah7"> Doelgroep 7</label>
-                    <input type="checkbox" name="blah8" id="blah8" /><label for="blah8"> Doelgroep 8</label>
+                    <label>Doelgroep:</label> <br />
+                   <input type="checkbox" name="blah" id="blah" /><label for="blah"> Doelgroep 1</label>
+                    <label for="blah2"><checkbox id="blah2" name="whatever">Doelgroep 2</label>
+                    <label for="blah3"><checkbox id="blah3" name="whatever">Doelgroep 3</label>
+                    <label for="blah4"><checkbox id="blah4" name="whatever">Doelgroep 4</label>
+                    <label for="blah5"><checkbox id="blah5" name="whatever">Doelgroep 5</label>
+                    <label for="blah6"><checkbox id="blah6" name="whatever">Doelgroep 6</label>
+                    <label for="blah7"><checkbox id="blah7" name="whatever">Doelgroep 7</label>
+                    <label for="blah8"><checkbox id="blah8" name="whatever">Doelgroep 8</label>
                 </fieldset>
                    
 
@@ -68,23 +63,6 @@
         </div>
       
         <div class="POINewBody">
-            <br/>
-            <label>Afbeeldingen</label>
-            <br />
-            <input type="text" name="url" id="url" /><input type="button" name="btnBrowse" value="..." /><input type="button" name="btnUploaden" value="Uploaden" />
-            <br />
-
-            <div class="POINewAfbeeldingen">
-                <!-- Voeg hier code voor het beheren van afbeeldingen-->
-                Afbeelding
-            </div>
-            <br />
-            <label>Activiteiten</label><label id="NewActivity"><a href="@Url.Action("POIActivity", "POI")">Nieuwe Activiteit</a></label>
-            <br />
-            <div class="POINewActivity">
-                <!-- Voeg hier code voor het beheren van activiteiten-->
-                Activity
-            </div>
 
 
         </div>
