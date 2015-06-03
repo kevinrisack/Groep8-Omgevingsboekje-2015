@@ -1,5 +1,4 @@
 ﻿using DigitaalOmgevingsboek.BusinessLayer;
-using OmgevingsboekMVC.Businesslayer.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +8,11 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
 {
     public class POIService : OmgevingsboekMVC.Businesslayer.Services.IPOIService
     {
-        private IPOIRepository repoPOI = null;
-        private IGenericRepository<Foto_POI> repoFotoPOI = null;
+        private IGenericRepository<POI> repoPOI = null;
 
-        public POIService(IPOIRepository repoPOI, IGenericRepository<Foto_POI> repoFotoPOI)
+        public POIService(IGenericRepository<POI> repoPOI)
         {
             this.repoPOI = repoPOI;
-            this.repoFotoPOI = repoFotoPOI;
         }
 
         public List<POI> GetPOIs()
@@ -28,26 +25,9 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             return repoPOI.GetByID(id);
         }
 
-        public void AddPOI(POI poi)
+        public POI AddPOI(POI poi)
         {
-            repoPOI.Insert(poi);
-            repoPOI.SaveChanges();
-        }
-
-        public void UploadPicture(POI poi, HttpPostedFileBase picture)
-        {
-            Foto_POI fotoPOI = new Foto_POI()
-            {
-                POI = poi,
-                POI_Id = poi.Id,
-                FotoURL = Guid.NewGuid().ToString()
-            };
-
-            //repoFotoPOI.Insert(fotoPOI);
-            poi.Foto_POI.Add(fotoPOI);
-            repoPOI.UploadPicture(fotoPOI, picture);
-
-            repoPOI.SaveChanges();   
+            return repoPOI.Insert(poi);
         }
     }
 }

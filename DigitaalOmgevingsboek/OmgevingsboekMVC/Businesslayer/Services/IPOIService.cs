@@ -3,9 +3,8 @@ namespace OmgevingsboekMVC.Businesslayer.Services
 {
     public interface IPOIService
     {
-        void AddPOI(DigitaalOmgevingsboek.POI poi);
-        DigitaalOmgevingsboek.POI GetPOI(int id);
-        System.Collections.Generic.List<DigitaalOmgevingsboek.POI> GetPOIs();
-        void UploadPicture(DigitaalOmgevingsboek.POI poi, System.Web.HttpPostedFileBase picture);
+        global::DigitaalOmgevingsboek.POI AddPOI(global::DigitaalOmgevingsboek.POI poi);
+        global::DigitaalOmgevingsboek.POI GetPOI(int id);
+        global::System.Collections.Generic.List<global::DigitaalOmgevingsboek.POI> GetPOIs();
     }
 }
