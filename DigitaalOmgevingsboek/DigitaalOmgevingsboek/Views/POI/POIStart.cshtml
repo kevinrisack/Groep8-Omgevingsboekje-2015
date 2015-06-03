@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "POIStart";
+}
+
+
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">POI Overzicht</h1>
+
+
+    <div class="content">
+
+        <div class="searchPOI">
+
+           
+            <input type="button" name="btnSearch" value="Bekijk alle POI's'" onclick="location.href='@Url.Action("POIOverzicht", "POI")'" />
+            <input type="button" name="btnSearch" value="Nieuwe POI" onclick="location.href='@Url.Action("POINewModify", "POI")'" />
+
+        </div>
+        <div class="themaPOI">
+            Thema: <br />
+            <ul class="themaPOI">
+                <li>Thema 1</li>
+                <li>Thema 2</li>
+                <li>Thema 3</li>
+                <li>Thema 4</li>
+                <li>Thema 5</li>
+                <li>Thema 6</li>
+                <li>Thema 7</li>
+                <li>Thema 8</li>
+                <li>Thema 9</li>
+                <li>Thema 10</li>
+
+            </ul>
+        </div>
+        <div class="doelgroepPOI">
+            Doelgroep: <br />
+            <ul class="doelgroepPOI">
+                <li>Doelgroep 1</li>
+                <li>Doelgroep 2</li>
+                <li>Doelgroep 3</li>
+                <li>Doelgroep 4</li>
+                <li>Doelgroep 5</li>
+                <li>Doelgroep 6</li>
+                <li>Doelgroep 7</li>
+                <li>Doelgroep 8</li>
+                <li>Doelgroep 9</li>
+                <li>Doelgroep 10</li>
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+<!--
+    Script voor controle Textbox content changed
+
+    <script type="text/javascript">
+    $(function () {
+        var content = $('#search').val();
+
+        $('#search').keyup(function () {
+            if ($('#search').val() != content) {
+                content = $('#search').val();
+                alert('Content has been changed');
+            }
+        });
+    });
+</script>
+
+
+-->
+
