@@ -1,13 +1,21 @@
-﻿using System;
+﻿using DigitaalOmgevingsboek.Businesslayer.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BootstrapSite1.Controllers
+namespace DigitaalOmgevingsboek.Controllers
 {
     public class POIController : Controller
     {
+        private IPOIService ps;
+
+        public POIController(IPOIService ps)
+        {
+            this.ps = ps;
+        }
+
         // GET: POI
         public ActionResult POIStart()
         {
@@ -16,7 +24,8 @@ namespace BootstrapSite1.Controllers
 
         public ActionResult POIOverzicht()
         {
-            return View();
+            List<POI> pois = ps.GetPOIs();
+            return View(pois);
         }
 
         public ActionResult POINewModify()
@@ -31,8 +40,9 @@ namespace BootstrapSite1.Controllers
         }
 
 
-        public ActionResult POIView()
+        public ActionResult POIView(int id)
         {
+            
             return View();
         }
     }

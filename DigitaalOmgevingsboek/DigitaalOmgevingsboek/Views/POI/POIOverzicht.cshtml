@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<DigitaalOmgevingsboek.POI>
+
 @{
     ViewBag.Title = "POIOverzicht";
 }
@@ -22,7 +23,40 @@
         </div>
 
         <div class="lijstPOI">
-            Test
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Naam)
+                    </th>
+                    <th>
+                         Adres
+                             @*@Html.DisplayTextFor(model => model.Adres)*@
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gemeente)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr >
+                        <td>
+                            @Html.ActionLink(item.Naam, "POIView", new { id = item.Id })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adres)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gemeente)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
         </div>
 
 
@@ -30,7 +64,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(function () {
         var content = $('#search').val();
 
@@ -41,4 +75,4 @@
             }
         });
     });
-</script>
+</script>*@
