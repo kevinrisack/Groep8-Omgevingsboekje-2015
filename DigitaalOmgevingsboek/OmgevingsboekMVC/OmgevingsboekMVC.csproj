@@ -221,12 +221,15 @@
     <Compile Include="Businesslayer\Repositories\IGenericRepository.cs" />
     <Compile Include="Businesslayer\Repositories\IPOIRepository.cs" />
     <Compile Include="Businesslayer\Repositories\POIRepository.cs" />
+    <Compile Include="Businesslayer\Repositories\UitstapRepository.cs" />
     <Compile Include="Businesslayer\Services\IPOIService.cs" />
     <Compile Include="Businesslayer\Services\POIService.cs" />
+    <Compile Include="Businesslayer\Services\UitstapService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\POIController.cs" />
+    <Compile Include="Controllers\UitstapController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -337,7 +340,7 @@
     <Content Include="Views\POI\POIOverzicht.cshtml" />
     <Content Include="Views\POI\POIStart.cshtml" />
     <Content Include="Views\POI\POIView.cshtml" />
-    <Content Include="Views\Uitstappen\Uitstappen.cshtml" />
+    <Content Include="Views\Uitstap\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
