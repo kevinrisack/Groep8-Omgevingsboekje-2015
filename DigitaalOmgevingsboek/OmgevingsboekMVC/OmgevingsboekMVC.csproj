@@ -340,10 +340,14 @@
     <Content Include="Views\POI\POIOverzicht.cshtml" />
     <Content Include="Views\POI\POIStart.cshtml" />
     <Content Include="Views\POI\POIView.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Uitstap\Index.cshtml" />
     <Content Include="Views\Uitstap\Edit.cshtml" />
     <Content Include="Views\Uitstap\Details.cshtml" />
     <Content Include="Views\Uitstap\Delete.cshtml" />
+=======
+    <Content Include="Views\Uitstappen\Uitstappen.cshtml" />
+>>>>>>> Layout
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
