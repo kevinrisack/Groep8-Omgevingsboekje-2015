@@ -1,7 +1,94 @@
-﻿
+﻿@model POI
 @{
     ViewBag.Title = "POIView";
 }
 
-<h2>POIView</h2>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">POI Naam</h1>
+
+
+
+
+    <div class="content">
+        <form action="">
+            <div class="POIViewTop">
+                <div class="POIViewLeft">
+                    <div class="DivViewClear"> <label for="naam">Naam: </label> <p>@Html.DisplayFor(model => model.Naam)</p></div>
+              
+                    <div class="DivViewClear"><label for="adres">Adres: </label><p> @Html.DisplayFor(model => model.Adres)</p></div>
+                  
+                    <div class="DivViewClear"><label for="gemeente">Gemeente: </label><p> @Html.DisplayFor(model => model.Gemeente)</p></div>
+             
+                    <div class="DivViewClear"><label for="telefoon">Tel.: </label> <p>@Html.DisplayFor(model => model.Telefoon)</p></div>
+                
+                    <div class="DivViewClear"><label for="email">E-mail: </label> <p>@Html.DisplayFor(model => model.Email)</p></div>
+                 
+                    <div class="DivViewClear"><label for="website">Website: </label> <p>@Html.DisplayFor(model => model.WebsiteUrl)</p></div>
+              
+                    <div class="DivViewClear"><label for="beschrijving">Beschrijving: </label> <p> @Html.DisplayFor(model => model.Beschrijving)</p></div>
+
+                    <div class="DivViewClear">
+                        <label for="openingsuren">Openingsuren: </label><p> @Html.DisplayFor(model => model.Openingsuur)</p>
+                    </div>
+                    <div>
+                     
+                        <div class="DivViewClear"> <label id="Tijdsduur" for="tijdsduur">Tijdsduur: </label> <p>@Html.DisplayFor(model => model.Duurtijd)</p></div>
+                    
+                        <div class="DivViewClear"><label for="toegangsprijs">Toegangsprijs: </label> <p>@Html.DisplayFor(model => model.Toegangsprijs)</p></div>
+                   
+                        <div class="DivViewClear"><label id="Doelgroep">Doelgroep:</label> <p>Jaja een zeer mooie doelgroep dat is zeker , je weet wat ze zeggen liever een aap in de hand dan 10 aan je banaan.</p> <br /> </div>
+                    </div>
+                </div>
+                <div class="POIViewRight">
+
+                    <br />
+                    <label>Afbeeldingen</label>
+                    <br />
+                    <div class="POIViewAfbeeldingen">
+                        <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                        Afbeelding
+                    </div>
+
+                    <br />
+                    <label>Google Maps</label>
+                    <br />
+                    <div class="POIViewGoogleMaps">
+                        <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                        Google Maps
+                    </div>
+
+                </div>
+                
+
+          
+
+                </div>
+
+            <div class="POIViewBody">
+                <br/>
+                <label>Activiteiten</label>
+                <br />
+                <div class="POIViewActivity">
+                    <!-- Voeg hier code voor het weergeven van activities-->
+                    Activity
+                </div>
+                <br />
+                <label>Plaats Reactie:</label>
+                <div class="POIViewPlaatsReactie">
+                    <!-- Voeg hier code voor het weergeven van het plaatsreactie venster-->
+                  Plaats Reactie
+                </div>
+                <br />
+                <label>Reacties:</label>
+                <div class="POIViewReacties">
+                    <!-- Voeg hier code voor het weergeven van reacties-->
+                    Reacties
+                </div>
+                <br />
+
+            </div>
+          
+</form>
+    </div>
+</div>
 

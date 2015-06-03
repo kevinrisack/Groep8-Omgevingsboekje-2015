@@ -252,7 +252,7 @@ html{
 
 .POINewTop{
     width:90%;
-    margin-top:5%;
+    margin-top:3%;
     margin-left:5%;
     margin-right:5%;
     height:95%;
@@ -269,14 +269,14 @@ html{
 .POINewLeft label{
     padding:5px;
        margin:5px;
-           margin-top:15px;
+           margin-top:5px;
 }
 
 .POINewLeft input[type="text"]{
         position:relative;
     float:right;
     margin:5px;
-    margin-top:15px;
+    margin-top:5px;
     width:68.5%;
 }
 
@@ -383,4 +383,133 @@ html{
 .Menu h1{
 
 }
+
+/* POI VIEW */
+.POIViewTop{
+        width:90%;
+
+    margin-left:5%;
+    margin-right:5%;
+    height:90%;
+}
+
+.POIViewLeft{
+        position:relative;
+    float:left;
+      width:45%;
+    margin-right:5%;
+      
+}
+
+.POIViewLeft label{
+    padding:5px;
+       margin:5px;
+           margin-top:5px;
+           position:relative;
+           float:left;
+
+}
+
+
+.POIViewLeft input[type="text"],#Email{
+        position:relative;
+    float:right;
+    margin:5px;
+    margin-top:5px;
+    width:68.5%;
+}
+
+.POIViewLeft #Beschrijving{
+        position:relative;
+    float:right;
+    margin:5px;
+    margin-top:15px;
+    width:68.5%;
+    height:200px;
+    resize:none;
+}
+
+.POIViewLeft #Openingsuur{
+    position:relative;
+    float:right;
+    margin:5px;
+    margin-top:15px;
+    width:68.5%;
+    height:140px;
+    resize:none;
+}
+
+.POIViewRight{
+        position:relative;
+    float:left;
+      width:45%;
+    margin-right:5%;
+
+}
+.POIViewAfbeeldingen{
+    width:100%;
+    height:180px;
+      background-color: #b200ff;
+}
+
+.POIViewGoogleMaps{
+    width:100%;
+    height:180px;
+    background-color: #b200ff;
+}
+
+.POIViewBody{
+
+    clear:both;
+    width:90%;
+    margin-left:6%;
+    margin-right:5%;
+    height:95%;
+    position:relative;
+    float:left;
+    margin-top:30px;
+    margin-bottom:100px;
+
+}
+
+.POIViewLeerdoelen{
+      background-color: #b200ff;
+      width:65%;
+      
+}
+
+.POIViewActivity{
+      background-color: #ff0000;
+      width:65%;
+}
+
+.POIViewPlaatsReactie{
+      background-color: #ff6a00;
+      width:65%;
+}
+
+.POIViewReacties{
+      background-color: #00ff00;
+      width:65%;
+
+}
+
+.POIViewTop p{
+    position:relative;
+    float:right;
+    margin-top:10px;
+    margin-left:25px;
+    text-align:left;
+    width:70%;
+ 
+
+}
+
+.DivViewClear{
+   clear:both;
+
+
+}
+
+
 
