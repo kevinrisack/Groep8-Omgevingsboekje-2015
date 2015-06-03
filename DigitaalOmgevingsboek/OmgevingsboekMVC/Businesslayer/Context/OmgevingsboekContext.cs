@@ -93,7 +93,7 @@ namespace DigitaalOmgevingsboek
 
             modelBuilder.Entity<POI>()
                 .Property(e => e.Toegangsprijs)
-                .HasPrecision(2, 0);
+                .HasPrecision(8, 2);
 
             modelBuilder.Entity<POI>()
                 .HasOptional(e => e.Activiteit)
