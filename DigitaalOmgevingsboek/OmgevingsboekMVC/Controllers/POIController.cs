@@ -12,11 +12,13 @@ namespace DigitaalOmgevingsboek.Controllers
     {
         private IPOIService ps;
         private GenericRepository<Doelgroep> psDoelgroep;
+        private GenericRepository<Leerdoel> psLeerdoel;
 
-        public POIController(IPOIService ps, GenericRepository<Doelgroep> psDoelgroep)
+        public POIController(IPOIService ps, GenericRepository<Doelgroep> psDoelgroep, GenericRepository<Leerdoel> psLeerdoel)
         {
             this.ps = ps;
             this.psDoelgroep = psDoelgroep;
+            this.psLeerdoel = psLeerdoel;
         }
 
         // GET: POI
@@ -29,6 +31,7 @@ namespace DigitaalOmgevingsboek.Controllers
         {
             List<POI> pois = ps.GetPOIs();
             ViewBag.Doelgroepen = psDoelgroep.All();
+            ViewBag.Leerdoelen = psLeerdoel.All();
             return View(pois);
         }
 

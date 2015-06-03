@@ -15,8 +15,20 @@
                 <label for="search">Zoek: </label>
                 <input type="text" name="search" id="search" value=""><br>
                 Doelgroep: 
+                    <select id="doelgroep" name="Doelgroep">
+                        @foreach(Doelgroep dg in ViewBag.Doelgroepen)
+                        {
+                            <option>@dg.DoelgroepNaam</option>
+                        }
+                    </select>
                 <br/>
                 Leerdoel:
+                    <select id="leerdoel" name="Leerdoel">
+                        @foreach(Leerdoel ld in ViewBag.Leerdoelen)
+                        {
+                            <option>@ld.LeerdoelNaam</option>
+                        }
+                    </select>
                 <br/>
 
             </form>
