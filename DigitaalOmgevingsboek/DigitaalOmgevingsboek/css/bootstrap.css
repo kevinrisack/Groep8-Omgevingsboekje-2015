@@ -319,11 +319,6 @@ img {
 .img-rounded {
   border-radius: 6px;
 }
-.nav-sidebar li{
-    font-size:1.3vw;
-}
-
-
 .img-thumbnail {
   padding: 4px;
   line-height: 1.42857143;
@@ -569,7 +564,7 @@ a.bg-danger:hover {
 }
 .page-header {
   padding-bottom: 9px;
-  margin: 60px 0 20px;
+  margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee;
 }
 ul,
@@ -3754,11 +3749,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   line-height: 20px;
   height: 50px;
 }
-
-.navbar-brand h2{
-    margin-top:-8px;
-}
-
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
