@@ -272,12 +272,7 @@ html{
            margin-top:15px;
 }
 
-<<<<<<< HEAD
 .POINewLeft input[type="text"]{
-=======
-
-.POINewLeft input[type="text"],#Email{
->>>>>>> Layout
         position:relative;
     float:right;
     margin:5px;
@@ -285,21 +280,12 @@ html{
     width:68.5%;
 }
 
-<<<<<<< HEAD
 .POINewLeft textarea{
-=======
-.POINewLeft #Beschrijving{
->>>>>>> Layout
         position:relative;
     float:right;
     margin:5px;
     margin-top:15px;
     width:68.5%;
-<<<<<<< HEAD
-=======
-    height:200px;
-    resize:none;
->>>>>>> Layout
 }
 
 .POINewRight{
@@ -319,30 +305,13 @@ html{
 
 .POINewRight label{
     padding:5px;
-<<<<<<< HEAD
        margin:5px;
          margin-top:15px;
-=======
-
-         margin-top:15px;
-             position:relative;
-    float:left;
-}
-
-.POINewRight #Tijdsduur{
-    margin-top:125px;
-
->>>>>>> Layout
 }
 
 .POINewRight label #openingsuren {
     padding:5px;
-<<<<<<< HEAD
        margin:55px;
-=======
-       margin-top:55px;
-
->>>>>>> Layout
 }
 
 .POINewRight input[type="text"]{
@@ -350,25 +319,15 @@ html{
     float:right;
     margin:5px;
     width:68.5%;
-<<<<<<< HEAD
       margin-top:15px;
 }
 
 .POINewRight textarea{
         position:relative;
-=======
-    margin-top:20px;
-
-}
-
-.POINewRight #Openingsuur{
-    position:relative;
->>>>>>> Layout
     float:right;
     margin:5px;
     margin-top:15px;
     width:68.5%;
-<<<<<<< HEAD
 }
 
 .POINewRight fieldset{
@@ -377,39 +336,6 @@ html{
     margin-right:15%;
 
 
-=======
-    height:140px;
-    resize:none;
-}
-
-.POINewRight #Doelgroep{
-        position:relative;
-    float:left;
-    margin-top:50px;
-}
-
-.POINewRight fieldset{
-            position:relative;
-    float:left;
-    margin-left:15%;
-    margin-right:15%;
-}
-
-.checkDoelgroep{
-   position:relative;
-   float:left;
-
-}
-
-.POINewRight fieldset label{
-margin-top:0.0001px;
-padding-top:0.0001px;
-}
-
-.POINewRight input[type="checkbox"]{
-    position:relative;
-    float:left;
->>>>>>> Layout
 }
 
 .POINewBody{
@@ -421,63 +347,22 @@ padding-top:0.0001px;
     height:95%;
 }
 
-<<<<<<< HEAD
 .POINewAfbeeldingen{
     margin-top:1%;
       background-color: #b200ff;
       width:50%;
-=======
-.POINewBody fieldset{
-    position:relative;
-    float:left;
-    margin-left:5%;
-    margin-right:25%;
-}
-
-.POINewBody fieldset label{
-margin-right:20px;
-}
-
-.POINewBody input[type="button"]{
-
-}
-
-#btnSubmitPOINew{
-    margin-top:50px;
-    margin-left:80%;
-}
-
-#url{
-    width:40%;
-}
-
-
-
-.POINewAfbeeldingen{
-    margin-top:1%;
-      background-color: #b200ff;
-      width:75%;
->>>>>>> Layout
 }
 
 .POINewActivity{
         margin-top:1%;
       background-color: #b200ff;
-<<<<<<< HEAD
       width:50%;
-=======
-      width:75%;
->>>>>>> Layout
 }
 
 #NewActivity{
     float:right;
     position:relative;
-<<<<<<< HEAD
     margin-right:50%;
-=======
-    margin-right:25%;
->>>>>>> Layout
 }
 
 
@@ -489,13 +374,6 @@ margin-right:20px;
       z-index: 2;
 }
 
-<<<<<<< HEAD
-=======
-#POINewFooter{
-    margin-top:50px;
-}
-
->>>>>>> Layout
 
 
 .container{
