@@ -3,7 +3,8 @@ namespace OmgevingsboekMVC.Businesslayer.Services
 {
     public interface IPOIService
     {
-        void AddOrUpdatePOI(DigitaalOmgevingsboek.POI poi);
+        void AddPOI(DigitaalOmgevingsboek.POI poi);
+        void UpdatePOI(DigitaalOmgevingsboek.POI poi);
         System.Collections.Generic.List<DigitaalOmgevingsboek.Doelgroep> GetDoelgroepen();
         System.Collections.Generic.List<DigitaalOmgevingsboek.Leerdoel> GetLeerdoelen();
         DigitaalOmgevingsboek.POI GetPOI(int id);

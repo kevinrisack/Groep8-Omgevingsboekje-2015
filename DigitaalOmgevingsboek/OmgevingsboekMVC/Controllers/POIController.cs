@@ -32,31 +32,29 @@ namespace DigitaalOmgevingsboek.Controllers
         }
 
         [HttpGet]
-        public ActionResult POINewModify(int? id)
+        public ActionResult POINew(POI poi)
         {
-            POI poi = new POI();
-            if (id.HasValue)
+            POI poiNew = new POI();
+            if (poi != null)
             {
-                poi = ps.GetPOI(id.Value);
-            }
-            else
-            {
-                poi.Auteur_Id = User.Identity.GetUserId();
+                poiNew = poi;
             }
             
+            poiNew.Auteur_Id = User.Identity.GetUserId();
+             
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
 
-            return View(poi);
+            return View(poiNew);
         }
 
         [HttpPost]
-        public ActionResult POINewModify(POI poi, HttpPostedFileBase picture)
+        public ActionResult POINew(POI poi, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    ps.AddOrUpdatePOI(poi);
+                    ps.AddPOI(poi);
                     if (picture != null)
                     {
                         ps.UploadPicture(poi, picture);
@@ -70,7 +68,49 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             else
             {
-                return RedirectToAction("POINewModify", poi);
+                return RedirectToAction("POINew", poi);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult POIModify(int? id)
+        {
+            if (id.HasValue)
+            {
+                POI poi = ps.GetPOI(id.Value);
+
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+
+                return View(poi);
+            }
+            else
+            {
+                return View("POIOverzicht");
+            } 
+        }
+
+        [HttpPost]
+        public ActionResult POIModify(POI poi, HttpPostedFileBase picture)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    ps.UpdatePOI(poi);
+                    if (picture != null)
+                    {
+                        ps.UploadPicture(poi, picture);
+                    }
+                    return RedirectToAction("POIOverzicht");
+                }
+                catch (Exception e)
+                {
+                    return View("Error: " + e);
+                }
+            }
+            else
+            {
+                return RedirectToAction("POIModify", poi);
             }
         }
 
