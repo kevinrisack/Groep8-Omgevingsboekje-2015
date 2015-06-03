@@ -11,13 +11,20 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
     {
         private IPOIRepository repoPOI = null;
         private IGenericRepository<Foto_POI> repoFotoPOI = null;
+        private IGenericRepository<Doelgroep> repoDoelgroep = null;
+        private IGenericRepository<Leerdoel> repoLeerdoel = null;
 
-        public POIService(IPOIRepository repoPOI, IGenericRepository<Foto_POI> repoFotoPOI)
+        public POIService(IPOIRepository repoPOI, IGenericRepository<Foto_POI> repoFotoPOI, IGenericRepository<Doelgroep> repoDoelgroep, IGenericRepository<Leerdoel> repoLeerdoel)
         {
             this.repoPOI = repoPOI;
             this.repoFotoPOI = repoFotoPOI;
+            this.repoDoelgroep = repoDoelgroep;
+            this.repoLeerdoel = repoLeerdoel;
         }
 
+        /*
+        GET
+        */
         public List<POI> GetPOIs()
         {
             return repoPOI.All().ToList<POI>();
@@ -28,9 +35,22 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             return repoPOI.GetByID(id);
         }
 
-        public void AddPOI(POI poi)
+        public List<Doelgroep> GetDoelgroepen()
         {
-            repoPOI.Insert(poi);
+            return repoDoelgroep.All().ToList<Doelgroep>();
+        }
+
+        public List<Leerdoel> GetLeerdoelen()
+        {
+            return repoLeerdoel.All().ToList<Leerdoel>();
+        }
+
+        /*
+        ADD
+        */
+        public void AddOrUpdatePOI(POI poi)
+        {
+            repoPOI.Update(poi);
             repoPOI.SaveChanges();
         }
 
