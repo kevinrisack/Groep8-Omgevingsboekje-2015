@@ -68,12 +68,12 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             return repoDoelgroep.GetByID(doelgroepId);
         }
 
-        public void UpdateDoelgroep(Doelgroep dg)
-        {
-            repoDoelgroep.Update(dg);
-            //context.Entry(dg.POI).State = EntityState.Unchanged;
-            repoDoelgroep.SaveChanges();
-        }
+        //public void UpdateDoelgroep(Doelgroep dg)
+        //{
+        //    repoDoelgroep.Update(dg);
+        //    //context.Entry(dg.POI).State = EntityState.Unchanged;
+        //    repoDoelgroep.SaveChanges();
+        //}
 
         /*
         ADD

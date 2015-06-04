@@ -74,16 +74,16 @@ namespace DigitaalOmgevingsboek.Controllers
             {
                 try
                 {
-                    if (doelgroepIds != null)
-                    {
-                        foreach (int doelgroepId in doelgroepIds)
-                        {
-                            Doelgroep dg = ps.GetDoelgroep(doelgroepId);
-                            dg.POI.Add(poi);
-                            poi.Doelgroep.Add(dg);
-                            ps.UpdateDoelgroep(dg);
-                        }
-                    }
+                    //if (doelgroepIds != null)
+                    //{
+                    //    foreach (int doelgroepId in doelgroepIds)
+                    //    {
+                    //        Doelgroep dg = ps.GetDoelgroep(doelgroepId);
+                    //        //dg.POI.Add(poi);
+                    //        poi.Doelgroep.Add(dg);
+                    //        //ps.UpdateDoelgroep(dg);
+                    //    }
+                    //}
 
                     
                     ps.UpdatePOI(poi);
