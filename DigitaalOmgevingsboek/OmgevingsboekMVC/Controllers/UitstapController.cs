@@ -24,10 +24,15 @@ namespace OmgevingsboekMVC.Controllers
         {
             List<Uitstap> uitstappen;
             
-            if (filter == "")
+            if (filter == null)
             {
-                uitstappen = us.GetUitstappen();
-                return View(uitstappen);
+                if (User.IsInRole("Administrator"))
+                {
+                    uitstappen = us.GetUitstappen();
+                    return View(uitstappen);
+                }
+                else
+                    return RedirectToAction("Index", "Uitstap", new { filter = "my" });
             }
             
             switch(filter)
@@ -45,9 +50,13 @@ namespace OmgevingsboekMVC.Controllers
                                         uitstappenMetRechten.Add(u);
                                 }
                             }
+                            List<Uitstap> uitstappenEigen = us.GetUitstappen(User.Identity.GetUserId());
+                            foreach (Uitstap u in uitstappenEigen)
+                                uitstappenMetRechten.Add(u);
+
                             return View(uitstappenMetRechten);
 
-                default: return RedirectToAction("Index", "my");
+                default: return RedirectToAction("Index", "Uitstap", new { filter = "my"});
             }
         }
 

@@ -8,14 +8,16 @@
 
     <div class="row placeholders">
         <div class="col-sm-3 placeholder Option1">
-
-            <h4>Uitstappen</h4>
-            <div class="Aantal">Mijn Uitstappen</div>
+            <a class="fill-div" href="@Url.Action("Index", "Uitstap", new {filter = "my"})">
+                <h4>Uitstappen</h4>
+                <div class="Aantal">Mijn Uitstappen</div>
+            </a>
         </div>
         <div class="col-sm-3 placeholder Option2">
-
-            <h4>POI's</h4>
-            <div class="Aantal">Alle Uitstappen</div>
+            <a class="fill-div" href="@Url.Action("Index", "Uitstap", new { filter = "all" })">
+                <h4>POI's</h4>
+                <div class="Aantal">Alle Uitstappen</div>
+            </a>
         </div>
         <div class="col-sm-3 placeholder Option3">
             <a class="fill-div" href="@Url.Action("New", "Uitstap")">
