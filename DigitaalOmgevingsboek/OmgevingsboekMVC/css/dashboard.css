@@ -218,14 +218,14 @@ overflow: auto;
       margin-left:5%;
       margin-right:5%;
       margin-bottom:3%;
-      background-color: #ff0000;
+    
 }
 
 .themaPOI{
       margin-left:5%;
       margin-right:5%;
       margin-bottom:3%;
-      background-color: #00ff00;
+    
      
 }
 
@@ -239,7 +239,7 @@ overflow: auto;
       margin-left:5%;
       margin-right:5%;
       margin-bottom:3%;
-      background-color: #ff6a00;
+
 }
 
 .doelgroepPOI ul li{
@@ -251,13 +251,15 @@ overflow: auto;
 /* POI Overzichtscherm */
 
 .zoekPOI{
-     background-color: #ff6a00;
+         border-style: solid;
+    border-width: 2px;
      margin-bottom:2%;
      height:20%;
 }
 
 .lijstPOI{
-     background-color: #b200ff;
+          border-style: solid;
+    border-width: 2px;
      height:80%;
 }
 
@@ -423,13 +425,15 @@ margin-right:20px;
 
 .POINewAfbeeldingen{
     margin-top:1%;
-      background-color: #b200ff;
+     border-style: solid;
+    border-width: 2px;
       width:75%;
 }
 
 .POINewActivity{
         margin-top:1%;
-      background-color: #b200ff;
+      border-style: solid;
+    border-width: 2px;
       width:75%;
 }
 
@@ -443,7 +447,8 @@ margin-right:20px;
 .Menu{
     width:100%;
     height:60px;
-      background-color: #b200ff;
+       border-style: solid;
+    border-width: 2px;
       position:fixed;
       z-index: 2;
 }
@@ -527,13 +532,15 @@ margin-right:20px;
 .POIViewAfbeeldingen{
     width:100%;
     height:180px;
-      background-color: #b200ff;
+     border-style: solid;
+    border-width: 2px;
 }
 
 .POIViewGoogleMaps{
     width:100%;
     height:180px;
-    background-color: #b200ff;
+     border-style: solid;
+    border-width: 2px;
 }
 
 .POIViewBody{
@@ -551,23 +558,27 @@ margin-right:20px;
 }
 
 .POIViewLeerdoelen{
-      background-color: #b200ff;
+         border-style: solid;
+    border-width: 2px;
       width:65%;
       
 }
 
 .POIViewActivity{
-      background-color: #ff0000;
+        border-style: solid;
+    border-width: 2px;
       width:65%;
 }
 
 .POIViewPlaatsReactie{
-      background-color: #ff6a00;
+          border-style: solid;
+    border-width: 2px;
       width:65%;
 }
 
 .POIViewReacties{
-      background-color: #00ff00;
+        border-style: solid;
+    border-width: 2px;
       width:65%;
 
 }
