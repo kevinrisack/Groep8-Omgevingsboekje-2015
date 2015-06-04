@@ -3,43 +3,66 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Index</h1>
 
-<h2>Index</h2>
+    <div class="row placeholders">
+        <div class="col-sm-3 placeholder Option1">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Naam)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Route_Id)
-        </th>
-        <th>
-            Auteur
-        </th>
-        <th></th>
-    </tr>
+            <h4>Uitstappen</h4>
+            <div class="Aantal">Mijn Uitstappen</div>
+        </div>
+        <div class="col-sm-3 placeholder Option2">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Naam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Route_Id)
-        </td>
-        <td>
-            @item.AspNetUsers.Name @item.AspNetUsers.Firstname
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <h4>POI's</h4>
+            <div class="Aantal">Alle Uitstappen</div>
+        </div>
+        <div class="col-sm-3 placeholder Option3">
+            <a class="fill-div" href="@Url.Action("New", "Uitstap")">
+                <h4>Gebruikers</h4>
+                <div class="Aantal">Nieuwe Uitstap
+            </div>
+            </a>
+        </div>
 
-</table>
+    </div>
+
+    <div class="content">
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naam)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Route_Id)
+                </th>
+                <th>
+                    Auteur
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Naam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Route_Id)
+                    </td>
+                    <td>
+                        @item.AspNetUsers.Name @item.AspNetUsers.Firstname
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
