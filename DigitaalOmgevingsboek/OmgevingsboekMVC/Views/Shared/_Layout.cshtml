@@ -1,7 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="~/js/jquery-2.1.4.min.js"></script>
+    @*<script src="~/js/jquery-2.1.4.min.js"></script>*@
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    
+   
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -15,8 +18,10 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        @RenderSection("Scripts", false)
+       
     <![endif]-->
+    
+    @RenderSection("Scripts", false)
 </head>
 
 <body>
@@ -62,7 +67,9 @@
 
   
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="@Url.Content("~/js/bootstrap.js")"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
 </body>
 </html>
