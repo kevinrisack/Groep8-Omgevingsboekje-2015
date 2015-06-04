@@ -83,14 +83,10 @@
                     <br />
                     <div class="POIViewAfbeeldingen">
                         <!-- Voeg hier code voor het beheren van afbeeldingen-->
-
-                        @*
-                        @foreach(Foto_POI foto in Model.Foto_POI){
-                            <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.FotoURL" alt="Foto POI" />
-                        }
-                        *@
                         
-                        Afbeelding
+                        @foreach(Foto_POI foto in Model.Foto_POI){
+                            <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.FotoURL" alt="Foto POI" height="90px" />
+                        }
                     </div>
 
                     <br />
