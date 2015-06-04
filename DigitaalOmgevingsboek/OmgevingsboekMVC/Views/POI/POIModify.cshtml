@@ -38,12 +38,23 @@
                     <fieldset>
 
 
-                        @foreach (Doelgroep dg in ViewBag.Doelgroepen)
-                        {
-                            <div class="checkDoelgroep">
-                                <input type="checkbox" id="@dg.Id" name="doelgroepIds" value="@dg.Id" />
-                                <label for="@dg.Id">@dg.DoelgroepNaam</label>
-                            </div>
+                        @{
+                            foreach (Doelgroep dg in ViewBag.Doelgroepen)
+                            {
+                                var i = "";
+
+                            foreach (Doelgroep doelgroep in Model.Doelgroep)
+                            {
+                                
+                                if (dg.Id == doelgroep.Id) {
+                                    i = "checked";
+                                }
+                            }
+                                <div class="checkDoelgroep">
+                                    <input type="checkbox" id="@dg.Id" name="doelgroepIds" value="@dg.Id" @i />
+                                    <label for="@dg.Id">@dg.DoelgroepNaam</label>
+                                </div>
+                            }
                         }
                     </fieldset>
 

@@ -10,7 +10,7 @@ namespace DigitaalOmgevingsboek
         public OmgevingsboekContext()
             : base("name=OmgevingsboekContext")
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public virtual DbSet<Activiteit> Activiteit { get; set; }

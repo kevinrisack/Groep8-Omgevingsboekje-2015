@@ -352,6 +352,7 @@
     <Folder Include="Views\Gebruikers\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Management\" />
+    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -12,6 +12,7 @@ namespace DigitaalOmgevingsboek.Controllers
     public class POIController : Controller
     {
         private IPOIService ps;
+        private OmgevingsboekContext db = new OmgevingsboekContext();
 
         public POIController(IPOIService ps)
         {
@@ -70,23 +71,29 @@ namespace DigitaalOmgevingsboek.Controllers
         [HttpPost]
         public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds)
         {
+           
             if (ModelState.IsValid)
             {
                 try
                 {
-                    //if (doelgroepIds != null)
-                    //{
-                    //    foreach (int doelgroepId in doelgroepIds)
-                    //    {
-                    //        Doelgroep dg = ps.GetDoelgroep(doelgroepId);
-                    //        //dg.POI.Add(poi);
-                    //        poi.Doelgroep.Add(dg);
-                    //        //ps.UpdateDoelgroep(dg);
-                    //    }
-                    //}
+                    if (doelgroepIds != null)
+                    {
+                        List<Doelgroep> lijst = new List<Doelgroep>();
+                        foreach (int doelgroepId in doelgroepIds)
+                        {
+                            Doelgroep dg = ps.GetDoelgroep(doelgroepId);
+                            lijst.Add(dg);
+                            //dg.POI.Add(poi);
 
-                    
+
+                            poi.Doelgroep = lijst;
+                            //ps.UpdateDoelgroep(dg);
+                        }
+                    }
+
+                   
                     ps.UpdatePOI(poi);
+                    
 
                     if (picture != null)
                     {
