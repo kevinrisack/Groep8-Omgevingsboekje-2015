@@ -5,6 +5,7 @@ using OmgevingsboekMVC.Controllers;
 using OmgevingsboekMVC.Businesslayer.Services;
 using DigitaalOmgevingsboek.BusinessLayer;
 using DigitaalOmgevingsboek.Businesslayer.Services;
+using OmgevingsboekMVC.Businesslayer.Repositories;
 
 namespace DigitaalOmgevingsboek
 {
@@ -20,13 +21,8 @@ namespace DigitaalOmgevingsboek
             // e.g. container.RegisterType<ITestService, TestService>();
 
             container.RegisterType<IGenericRepository<POI>, GenericRepository<POI>>();
-<<<<<<< HEAD
-=======
             container.RegisterType<IGenericRepository<Foto_POI>, GenericRepository<Foto_POI>>();
-            container.RegisterType<IGenericRepository<Doelgroep>, GenericRepository<Doelgroep>>();
-            container.RegisterType<IGenericRepository<Leerdoel>, GenericRepository<Leerdoel>>();
             container.RegisterType<IPOIRepository, POIRepository>();
->>>>>>> DataAcces
             container.RegisterType<IPOIService, POIService>();
 
             container.RegisterType<AccountController>(new InjectionConstructor());  //Identity Model
