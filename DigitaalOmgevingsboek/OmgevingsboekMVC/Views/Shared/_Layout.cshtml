@@ -34,8 +34,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">@User.Identity.Name</a></li>
-                    <li><a href="@Url.Action("LogOff", "Account")">Afmelden</a></li>
+                    @*<li><a href="#">@User.Identity.Name</a></li>
+                    <li>@Html.ActionLink("Afmelden","LogOff","Account")></li>*@
+                    @Html.Partial("_LoginPartial")
                 </ul>
             </div>
         </div>
