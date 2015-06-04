@@ -21,21 +21,25 @@ namespace DigitaalOmgevingsboek.Controllers
         public ActionResult POIStart()
         {
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
-            ViewBag.Leerdoelen = ps.GetLeerdoelen();
+            ViewBag.Themas = ps.GetThemas();
             return View();
         }
 
-        public ActionResult POIOverzicht(Thema thema, Doelgroep doelgroep)
+        public ActionResult POIOverzicht(int? themaId, int? doelgroepId)
         {
             List<POI> pois = new List<POI>();
-            if (thema != null) 
+
+            //get POI by thema
+            if (themaId.HasValue) 
             {
-                pois = ps.GetPOIByThema(thema);
+                pois = ps.GetPOIByThema(themaId.Value);
             }
-            else if (doelgroep != null)
+            //get POI by doelgroep
+            else if (doelgroepId.HasValue)
             {
-                pois = ps.GetPOIByDoelgroep(doelgroep);
+                pois = ps.GetPOIByDoelgroep(doelgroepId.Value);
             }
+            //get all POIs
             else
             {
                 pois = ps.GetPOIs();
@@ -59,22 +63,36 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             else
             {
-                return View("POIOverzicht");
+                return RedirectToAction("POIOverzicht");
             }
         }
 
         [HttpPost]
-        public ActionResult POIModify(POI poi, HttpPostedFileBase picture)
+        public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (doelgroepIds != null)
+                    {
+                        foreach (int doelgroepId in doelgroepIds)
+                        {
+                            Doelgroep dg = ps.GetDoelgroep(doelgroepId);
+                            dg.POI.Add(poi);
+                            poi.Doelgroep.Add(dg);
+                            ps.UpdateDoelgroep(dg);
+                        }
+                    }
+
+                    
                     ps.UpdatePOI(poi);
+
                     if (picture != null)
                     {
                         ps.UploadPicture(poi, picture);
                     }
+
                     return RedirectToAction("POIOverzicht");
                 }
                 catch (Exception e)
@@ -105,7 +123,7 @@ namespace DigitaalOmgevingsboek.Controllers
         }
 
         [HttpPost]
-        public ActionResult POINew(POI poi, HttpPostedFileBase picture)
+        public ActionResult POINew(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds)
         {
             if (ModelState.IsValid)
             {

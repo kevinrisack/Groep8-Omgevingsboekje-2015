@@ -24,6 +24,7 @@ namespace DigitaalOmgevingsboek
             container.RegisterType<IGenericRepository<Foto_POI>, GenericRepository<Foto_POI>>();
             container.RegisterType<IGenericRepository<Doelgroep>, GenericRepository<Doelgroep>>();
             container.RegisterType<IGenericRepository<Leerdoel>, GenericRepository<Leerdoel>>();
+            container.RegisterType<IGenericRepository<Thema>, GenericRepository<Thema>>();
             container.RegisterType<IPOIRepository, POIRepository>();
             container.RegisterType<IPOIService, POIService>();
 

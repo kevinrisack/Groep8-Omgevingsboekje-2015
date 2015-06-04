@@ -49,7 +49,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             }
         }
 
-        public List<POI> GetByThema(Thema thema)
+        public List<POI> GetByThema(int themaId)
         {
             using (OmgevingsboekContext context = new OmgevingsboekContext())
             {
@@ -61,13 +61,13 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
                                                   .Include(p => p.Doelgroep)
                                                   .Include(p => p.Thema)
                                                   .Include(p => p.Uitstap)
-                             where p.IsDeleted == false && p.Thema.Contains(thema)
+                             where p.IsDeleted == false && p.Thema.Any(t => t.Id == themaId)
                              select p);
                 return query.ToList<POI>();
             }
         }
 
-        public List<POI> GetByDoelgroep(Doelgroep doelgroep)
+        public List<POI> GetByDoelgroep(int doelgroepId)
         {
             using (OmgevingsboekContext context = new OmgevingsboekContext())
             {
@@ -79,7 +79,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
                                                   .Include(p => p.Doelgroep)
                                                   .Include(p => p.Thema)
                                                   .Include(p => p.Uitstap)
-                             where p.IsDeleted == false && p.Doelgroep.Contains(doelgroep)
+                             where p.IsDeleted == false && p.Doelgroep.Any(d => d.Id == doelgroepId)
                              select p);
                 return query.ToList<POI>();
             }

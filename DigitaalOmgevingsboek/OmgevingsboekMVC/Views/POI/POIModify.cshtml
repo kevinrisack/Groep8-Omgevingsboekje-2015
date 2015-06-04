@@ -1,6 +1,6 @@
 ﻿@model POI
 @{
-    ViewBag.Title = "POINewModify";
+    ViewBag.Title = "POIModify";
 }
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -10,7 +10,7 @@
 
 
     <div class="content">
-        <form method="post" action="/POI/POINewModify" enctype="multipart/form-data">
+        <form method="post" action="/POI/POIModify" enctype="multipart/form-data">
             <div class="POINewTop">
                 <div class="POINewLeft">
                     <label for="naam">Naam: </label> @Html.EditorFor(model => model.Naam)
@@ -41,7 +41,7 @@
                         @foreach (Doelgroep dg in ViewBag.Doelgroepen)
                         {
                             <div class="checkDoelgroep">
-                                <input type="checkbox" id="@dg.Id" name="@dg.DoelgroepNaam" value="@dg.Id" />
+                                <input type="checkbox" id="@dg.Id" name="doelgroepIds" value="@dg.Id" />
                                 <label for="@dg.Id">@dg.DoelgroepNaam</label>
                             </div>
                         }
@@ -83,7 +83,7 @@
 
                 <br />
                 <br />
-                <input type="button" value="Opslaan Wijzigingen" name="btnSubmit" id="btnSubmitPOINew" />
+                <input type="submit" value="Wijzigingen Opslaan" name="btnSubmit" id="btnSubmitPOINew" />
 
             </div>
             <div id="POINewFooter">

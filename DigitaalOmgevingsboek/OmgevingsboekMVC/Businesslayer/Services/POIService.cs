@@ -2,6 +2,7 @@
 using OmgevingsboekMVC.Businesslayer.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -13,13 +14,15 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         private IGenericRepository<Foto_POI> repoFotoPOI = null;
         private IGenericRepository<Doelgroep> repoDoelgroep = null;
         private IGenericRepository<Leerdoel> repoLeerdoel = null;
+        private IGenericRepository<Thema> repoThema = null;
 
-        public POIService(IPOIRepository repoPOI, IGenericRepository<Foto_POI> repoFotoPOI, IGenericRepository<Doelgroep> repoDoelgroep, IGenericRepository<Leerdoel> repoLeerdoel)
+        public POIService(IPOIRepository repoPOI, IGenericRepository<Foto_POI> repoFotoPOI, IGenericRepository<Doelgroep> repoDoelgroep, IGenericRepository<Leerdoel> repoLeerdoel, IGenericRepository<Thema> repoThema)
         {
             this.repoPOI = repoPOI;
             this.repoFotoPOI = repoFotoPOI;
             this.repoDoelgroep = repoDoelgroep;
             this.repoLeerdoel = repoLeerdoel;
+            this.repoThema = repoThema;
         }
 
         /*
@@ -35,14 +38,14 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             return repoPOI.GetByID(id);
         }
 
-        public List<POI> GetPOIByThema(Thema thema)
+        public List<POI> GetPOIByThema(int themaId)
         {
-            return repoPOI.GetByThema(thema);
+            return repoPOI.GetByThema(themaId);
         }
 
-        public List<POI> GetPOIByDoelgroep(Doelgroep doelgroep)
+        public List<POI> GetPOIByDoelgroep(int doelgroepId)
         {
-            return repoPOI.GetByDoelgroep(doelgroep);
+            return repoPOI.GetByDoelgroep(doelgroepId);
         }
 
         public List<Doelgroep> GetDoelgroepen()
@@ -53,6 +56,23 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         public List<Leerdoel> GetLeerdoelen()
         {
             return repoLeerdoel.All().ToList<Leerdoel>();
+        }
+
+        public List<Thema> GetThemas()
+        {
+            return repoThema.All().ToList<Thema>();
+        }
+
+        public Doelgroep GetDoelgroep(int doelgroepId)
+        {
+            return repoDoelgroep.GetByID(doelgroepId);
+        }
+
+        public void UpdateDoelgroep(Doelgroep dg)
+        {
+            repoDoelgroep.Update(dg);
+            //context.Entry(dg.POI).State = EntityState.Unchanged;
+            repoDoelgroep.SaveChanges();
         }
 
         /*
@@ -79,7 +99,6 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
                 FotoURL = Guid.NewGuid().ToString()
             };
 
-            //repoFotoPOI.Insert(fotoPOI);
             poi.Foto_POI.Add(fotoPOI);
             repoPOI.UploadPicture(fotoPOI, picture);
 
