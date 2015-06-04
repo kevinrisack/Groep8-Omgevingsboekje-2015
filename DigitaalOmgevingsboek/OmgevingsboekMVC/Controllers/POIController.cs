@@ -5,19 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 namespace DigitaalOmgevingsboek.Controllers
 {
     public class POIController : Controller
     {
         private IPOIService ps;
+        private GenericRepository<Doelgroep> psDoelgroep;
+        private GenericRepository<Leerdoel> psLeerdoel;
 
-        public POIController(IPOIService ps)
+        public POIController(IPOIService ps, GenericRepository<Doelgroep> psDoelgroep, GenericRepository<Leerdoel> psLeerdoel)
         {
             this.ps = ps;
+            this.psDoelgroep = psDoelgroep;
+            this.psLeerdoel = psLeerdoel;
         }
 
+        // GET: POI
         public ActionResult POIStart()
         {
             return View();
@@ -26,42 +30,36 @@ namespace DigitaalOmgevingsboek.Controllers
         public ActionResult POIOverzicht()
         {
             List<POI> pois = ps.GetPOIs();
-            ViewBag.Doelgroepen = ps.GetDoelgroepen();
-            ViewBag.Leerdoelen = ps.GetLeerdoelen();
+            ViewBag.Doelgroepen = psDoelgroep.All();
+            ViewBag.Leerdoelen = psLeerdoel.All();
             return View(pois);
         }
 
         [HttpGet]
-        public ActionResult POINewModify(int? id)
+        public ActionResult POINewModify()
         {
             POI poi = new POI();
-            if (id.HasValue)
-            {
-                poi = ps.GetPOI(id.Value);
-            }
-            else
-            {
-                poi.Auteur_Id = User.Identity.GetUserId();
-            }
-            
-            ViewBag.Doelgroepen = ps.GetDoelgroepen();
+            IEnumerable<Doelgroep> doelgroepen = psDoelgroep.All();
+            //poi.Auteur_Id = User.Identity.GetUserId();
+
+            ViewBag.Doelgroepen = doelgroepen;
 
             return View(poi);
         }
 
         [HttpPost]
-        public ActionResult POINewModify(POI poi, HttpPostedFileBase picture)
+        public ActionResult POINewModify(POI poi)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    ps.AddOrUpdatePOI(poi);
-                    if (picture != null)
-                    {
-                        ps.UploadPicture(poi, picture);
-                    }
-                    return RedirectToAction("POIOverzicht");
+                    poi.Auteur_Id = "da65898a-accc-4d09-b1ef-2ebcdbd35eb8";
+                    //if (ModelState.IsValid)
+                    //{
+                    ps.AddPOI(poi);
+                    //}
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
