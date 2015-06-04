@@ -29,39 +29,66 @@
                     <label for="beschrijving">Beschrijving: </label> @Html.TextAreaFor(model => model.Beschrijving)
                 </div>
                 <div class="POINewRight">
-                    <label for="openingsuren">Openingsuren: </label> @Html.EditorFor(model => model.Openingsuur)
+                    <label for="openingsuren">Openingsuren: </label> @Html.TextAreaFor(model => model.Openingsuur)
                     <br />
-                    <label for="tijdsduur">Tijdsduur: </label> @Html.EditorFor(model => model.Duurtijd)
+                    <label for="tijdsduur" id="Tijdsduur">Tijdsduur: </label> @Html.EditorFor(model => model.Duurtijd)
                     <br />
                     <label for="toegangsprijs">Toegangsprijs: </label> @Html.EditorFor(model => model.Toegangsprijs)
-                    <br />
-
+                 
+                    <label id="Doelgroep">Doelgroep:</label> <br />
                     <fieldset>
-                        <label>Doelgroep:</label> <br />
-                        @foreach (Doelgroep dg in ViewBag.Doelgroepen)
-                        {
-                            <input type="checkbox" id="@dg.Id" name="@dg.DoelgroepNaam" value="@dg.Id" />
-                            <label for="@dg.Id">@dg.DoelgroepNaam</label>
-                        }
+                     
+
+                 @foreach (Doelgroep dg in ViewBag.Doelgroepen)
+                {
+                           <div class="checkDoelgroep">
+                               <input type="checkbox" id="@dg.Id" name="@dg.DoelgroepNaam" value="@dg.Id" />
+                               <label for="@dg.Id">@dg.DoelgroepNaam</label>
+                            </div>
+                         }
                     </fieldset>
 
 
-                    <div>
-                        <input type="file" name="picture" />
-                    </div>
-                    <input type="hidden" value="@Model.Id" name="Id" />
-                    <input type="hidden" value="@Model.Auteur_Id" name="Auteur_Id" />
 
-                    <input type="submit" value="Create" />
+                    <div>
+
+                    </div>
+
+
+
 
 
                 </div>
             </div>
 
             <div class="POINewBody">
+                <br />
+                <label>Afbeeldingen</label>
+                <br />
+                <input type="hidden" value="@Model.Id" name="Id" />
+                <input type="hidden" value="@Model.Auteur_Id" name="Auteur_Id" />
+                <input type="file" name="picture" id="url" /><input type="button" name="btnBrowse" value="..." /><input type="submit" name="btnUploaden" value="Uploaden" />
+                <br />
 
+                <div class="POINewAfbeeldingen">
+                    <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                    Afbeelding
+                </div>
+                <br />
+                <label>Activiteiten</label><label id="NewActivity"><a href="@Url.Action("POIActivity", "POI")">Nieuwe Activiteit</a></label>
+                <br />
+                <div class="POINewActivity">
+                    <!-- Voeg hier code voor het beheren van activiteiten-->
+                    Activity
+                </div>
+
+                <br />
+                <br />
+                <input type="button" value="Opslaan Wijzigingen" name="btnSubmit" id="btnSubmitPOINew" />
 
             </div>
+            <div id="POINewFooter">&nbsp;
+</div>
         </form></div>
 </div>
 
