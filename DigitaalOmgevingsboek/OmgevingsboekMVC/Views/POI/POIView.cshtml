@@ -72,15 +72,17 @@
                         <div class="DivViewClear"><label for="toegangsprijs">Toegangsprijs: </label> <p>@Html.DisplayFor(model => model.Toegangsprijs)</p></div>
 
                         <div class="DivViewClear"><label id="Doelgroep">Doelgroep:</label> 
-                            <p>
-                                <ul>
+                            
+                                
                                     @foreach (Doelgroep d in Model.Doelgroep)
                                     {
-                                        <li>@d.DoelgroepNaam</li>
+                                        <p>
+                                            @d.DoelgroepNaam
+                                        </p>
 
                                     }
-                            </ul>
-                        </p> <br /></div>
+
+                                      <br /></div>
                     </div>
                 </div>
                 <div class="POIViewRight">
