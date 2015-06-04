@@ -26,27 +26,19 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Route_Id)
+                Route
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Route_Id)
+                @Html.DisplayFor(model => model.Route.Points)
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.IsDeleted)
+                Auteur
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.IsDeleted)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Auteur_Id)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Auteur_Id)
+                @Model.AspNetUsers.Name @Model.AspNetUsers.Firstname
             </dd>
     
         </dl>

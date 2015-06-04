@@ -1,4 +1,5 @@
 ﻿using DigitaalOmgevingsboek.BusinessLayer;
+using OmgevingsboekMVC.Businesslayer.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,6 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
 {
     public class POIService : OmgevingsboekMVC.Businesslayer.Services.IPOIService
     {
-<<<<<<< HEAD
-        private IGenericRepository<POI> repoPOI = null;
-
-        public POIService(IGenericRepository<POI> repoPOI)
-        {
-            this.repoPOI = repoPOI;
-=======
         private IPOIRepository repoPOI = null;
         private IGenericRepository<Foto_POI> repoFotoPOI = null;
         private IGenericRepository<Doelgroep> repoDoelgroep = null;
@@ -26,7 +20,6 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             this.repoFotoPOI = repoFotoPOI;
             this.repoDoelgroep = repoDoelgroep;
             this.repoLeerdoel = repoLeerdoel;
->>>>>>> DataAcces
         }
 
         /*
@@ -42,11 +35,6 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             return repoPOI.GetByID(id);
         }
 
-<<<<<<< HEAD
-        public POI AddPOI(POI poi)
-        {
-            return repoPOI.Insert(poi);
-=======
         public List<Doelgroep> GetDoelgroepen()
         {
             return repoDoelgroep.All().ToList<Doelgroep>();
@@ -80,7 +68,6 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             repoPOI.UploadPicture(fotoPOI, picture);
 
             repoPOI.SaveChanges();   
->>>>>>> DataAcces
         }
     }
 }
