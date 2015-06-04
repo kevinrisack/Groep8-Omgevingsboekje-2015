@@ -1,5 +1,6 @@
 ﻿using DigitaalOmgevingsboek;
 using OmgevingsboekMVC.Businesslayer.Services;
+using DigitaalOmgevingsboek.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +12,23 @@ namespace OmgevingsboekMVC.Controllers
     public class UitstapController : Controller
     {
         UitstapService us;
+        GenericRepository<AspNetUsers> usUsers;
 
-        public UitstapController(UitstapService us)
+        public UitstapController(UitstapService us, GenericRepository<AspNetUsers> usUsers)
         {
             this.us = us;
+            this.usUsers = usUsers;
         }
         
         // GET: Uitstap
         public ActionResult Index()
         {
             IEnumerable<Uitstap> uitstappen = us.GetUitappen();
+            ViewBag.Users = usUsers.All();
             return View(uitstappen);
         }
 
-        public ActionResult Edit()
+        public ActionResult New()
         {
             Uitstap uitstap = new Uitstap();
             return View(uitstap);

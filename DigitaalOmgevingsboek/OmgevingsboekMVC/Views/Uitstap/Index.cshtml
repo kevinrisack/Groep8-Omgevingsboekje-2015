@@ -18,10 +18,7 @@
             @Html.DisplayNameFor(model => model.Route_Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Auteur_Id)
+            Auteur
         </th>
         <th></th>
     </tr>
@@ -35,10 +32,7 @@
             @Html.DisplayFor(modelItem => item.Route_Id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Auteur_Id)
+            @item.AspNetUsers.Name @item.AspNetUsers.Firstname
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
