@@ -32,71 +32,31 @@ namespace DigitaalOmgevingsboek.Controllers
         }
 
         [HttpGet]
-        public ActionResult POINew(POI poi)
+        public ActionResult POINewModify(int? id)
         {
-            POI poiNew = new POI();
-            if (poi != null)
-            {
-                poiNew = poi;
-            }
-            
-            poiNew.Auteur_Id = User.Identity.GetUserId();
-             
-            ViewBag.Doelgroepen = ps.GetDoelgroepen();
-
-            return View(poiNew);
-        }
-
-        [HttpPost]
-        public ActionResult POINew(POI poi, HttpPostedFileBase picture)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    ps.AddPOI(poi);
-                    if (picture != null)
-                    {
-                        ps.UploadPicture(poi, picture);
-                    }
-                    return RedirectToAction("POIOverzicht");
-                }
-                catch (Exception e)
-                {
-                    return View("Error: " + e);
-                }
-            }
-            else
-            {
-                return RedirectToAction("POINew", poi);
-            }
-        }
-
-        [HttpGet]
-        public ActionResult POIModify(int? id)
-        {
+            POI poi = new POI();
             if (id.HasValue)
             {
-                POI poi = ps.GetPOI(id.Value);
-
-                ViewBag.Doelgroepen = ps.GetDoelgroepen();
-
-                return View(poi);
+                poi = ps.GetPOI(id.Value);
             }
             else
             {
-                return View("POIOverzicht");
-            } 
+                poi.Auteur_Id = User.Identity.GetUserId();
+            }
+            
+            ViewBag.Doelgroepen = ps.GetDoelgroepen();
+
+            return View(poi);
         }
 
         [HttpPost]
-        public ActionResult POIModify(POI poi, HttpPostedFileBase picture)
+        public ActionResult POINewModify(POI poi, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    ps.UpdatePOI(poi);
+                    ps.AddOrUpdatePOI(poi);
                     if (picture != null)
                     {
                         ps.UploadPicture(poi, picture);
@@ -110,7 +70,7 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             else
             {
-                return RedirectToAction("POIModify", poi);
+                return RedirectToAction("POINewModify", poi);
             }
         }
 

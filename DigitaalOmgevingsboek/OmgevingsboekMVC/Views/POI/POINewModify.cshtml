@@ -1,7 +1,7 @@
 ﻿
 @model POI
 @{
-    ViewBag.Title = "POIModify";
+    ViewBag.Title = "POINewModify";
 }
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -11,7 +11,7 @@
 
 
     <div class="content">
-        <form method="post" action="/POI/POIModify" enctype="multipart/form-data">
+        <form method="post" action="/POI/POINewModify" enctype="multipart/form-data">
             <div class="POINewTop">
                 <div class="POINewLeft">
                     <label for="naam">Naam: </label> @Html.EditorFor(model => model.Naam)
@@ -52,7 +52,7 @@
                     <input type="hidden" value="@Model.Id" name="Id" />
                     <input type="hidden" value="@Model.Auteur_Id" name="Auteur_Id" />
 
-                    <input type="submit" value="Bewerken" />
+                    <input type="submit" value="Create" />
 
 
                 </div>

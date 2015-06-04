@@ -48,13 +48,7 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         /*
         ADD
         */
-        public void AddPOI(POI poi)
-        {
-            repoPOI.Insert(poi);
-            repoPOI.SaveChanges();
-        }
-
-        public void UpdatePOI(POI poi)
+        public void AddOrUpdatePOI(POI poi)
         {
             repoPOI.Update(poi);
             repoPOI.SaveChanges();
