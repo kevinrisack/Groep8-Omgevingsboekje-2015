@@ -80,7 +80,7 @@ html{
     
     padding-right: 40px;
     padding-left: 20px;
-    height:100%;
+   
   }
 }
 .main .page-header {
@@ -632,6 +632,33 @@ margin-right:20px;
 
     margin-right:20%;
 }
+
+/* User Management */
+/* Login */
+.Login{
+    margin-left:5%;
+    margin-right:50%;
+}
+
+.Login label{
+    margin-left:5%;
+    position:relative;
+    float:left;
+}
+
+
+
+.Login #Email2,#Password{
+    margin-right:40%;
+    position:relative;
+    float:right;
+    width: 40.7%;
+}
+
+.checkbox label{
+   margin-left:0.1px;
+}
+
 
 
 
