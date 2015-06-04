@@ -16,9 +16,23 @@ namespace OmgevingsboekMVC.Businesslayer.Services
             this.repoUitstap = repoUitstap;
         }
 
-        public List<Uitstap> GetUitappen()
+        public List<Uitstap> GetUitstappen()
         {
             return repoUitstap.All().ToList<Uitstap>();
+        }
+
+        public List<Uitstap> GetUitstappen(string userId)
+        {
+            List<Uitstap> uitstappen = GetUitstappen();
+            List<Uitstap> uitstappenWithOwner = new List<Uitstap>();
+
+            foreach(Uitstap u in uitstappen)
+            {
+                if (u.AspNetUsers.Id == userId)
+                    uitstappenWithOwner.Add(u);
+            }
+
+            return uitstappenWithOwner;
         }
 
         public Uitstap GetUitstap(int id)
