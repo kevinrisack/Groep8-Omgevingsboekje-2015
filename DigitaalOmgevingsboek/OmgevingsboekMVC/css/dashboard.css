@@ -272,7 +272,8 @@ html{
            margin-top:5px;
 }
 
-.POINewLeft input[type="text"]{
+
+.POINewLeft input[type="text"],#Email{
         position:relative;
     float:right;
     margin:5px;
@@ -280,12 +281,14 @@ html{
     width:68.5%;
 }
 
-.POINewLeft textarea{
+.POINewLeft #Beschrijving{
         position:relative;
     float:right;
     margin:5px;
     margin-top:15px;
     width:68.5%;
+    height:200px;
+    resize:none;
 }
 
 .POINewRight{
@@ -305,13 +308,21 @@ html{
 
 .POINewRight label{
     padding:5px;
-       margin:5px;
+
          margin-top:15px;
+             position:relative;
+    float:left;
+}
+
+.POINewRight #Tijdsduur{
+    margin-top:125px;
+
 }
 
 .POINewRight label #openingsuren {
     padding:5px;
-       margin:55px;
+       margin-top:55px;
+
 }
 
 .POINewRight input[type="text"]{
@@ -319,23 +330,47 @@ html{
     float:right;
     margin:5px;
     width:68.5%;
-      margin-top:15px;
+    margin-top:20px;
+
 }
 
-.POINewRight textarea{
-        position:relative;
+.POINewRight #Openingsuur{
+    position:relative;
     float:right;
     margin:5px;
     margin-top:15px;
     width:68.5%;
+    height:140px;
+    resize:none;
+}
+
+.POINewRight #Doelgroep{
+        position:relative;
+    float:left;
+    margin-top:50px;
 }
 
 .POINewRight fieldset{
- 
+            position:relative;
+    float:left;
     margin-left:15%;
     margin-right:15%;
+}
 
+.checkDoelgroep{
+   position:relative;
+   float:left;
 
+}
+
+.POINewRight fieldset label{
+margin-top:0.0001px;
+padding-top:0.0001px;
+}
+
+.POINewRight input[type="checkbox"]{
+    position:relative;
+    float:left;
 }
 
 .POINewBody{
@@ -347,22 +382,48 @@ html{
     height:95%;
 }
 
+.POINewBody fieldset{
+    position:relative;
+    float:left;
+    margin-left:5%;
+    margin-right:25%;
+}
+
+.POINewBody fieldset label{
+margin-right:20px;
+}
+
+.POINewBody input[type="button"]{
+
+}
+
+#btnSubmitPOINew{
+    margin-top:50px;
+    margin-left:80%;
+}
+
+#url{
+    width:40%;
+}
+
+
+
 .POINewAfbeeldingen{
     margin-top:1%;
       background-color: #b200ff;
-      width:50%;
+      width:75%;
 }
 
 .POINewActivity{
         margin-top:1%;
       background-color: #b200ff;
-      width:50%;
+      width:75%;
 }
 
 #NewActivity{
     float:right;
     position:relative;
-    margin-right:50%;
+    margin-right:25%;
 }
 
 
@@ -372,6 +433,10 @@ html{
       background-color: #b200ff;
       position:fixed;
       z-index: 2;
+}
+
+#POINewFooter{
+    margin-top:50px;
 }
 
 
@@ -510,6 +575,7 @@ html{
 
 
 }
+
 
 
 
