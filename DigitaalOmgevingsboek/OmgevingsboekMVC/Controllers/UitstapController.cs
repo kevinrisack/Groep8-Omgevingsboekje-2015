@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace OmgevingsboekMVC.Controllers
 {
+    [Authorize]
     public class UitstapController : Controller
     {
         UitstapService us;

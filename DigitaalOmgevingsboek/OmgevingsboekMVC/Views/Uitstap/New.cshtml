@@ -28,7 +28,25 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.POI, htmlAttributes: new { @class = "UitstapNewLabel" })
                             <div>
-                               <!-- Toevoegen for lus voor weergave gekoppelde POI's-->
+                              <table>
+                                  <thead>
+                                      <tr>
+                                          <td>Naam</td>
+                                          <td>Adres</td>
+                                          <td>Gemeente</td>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                               @foreach(POI poi in Model.POI)
+                               {
+                                   <tr>
+                                       <td>@poi.Naam</td>
+                                       <td>@poi.Adres</td>
+                                       <td>@poi.Gemeente</td>
+                                   </tr>
+                               }
+                                </tbody>
+                              </table>
                             </div>
                         </div>
                         <br />
