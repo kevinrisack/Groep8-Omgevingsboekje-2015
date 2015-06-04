@@ -49,6 +49,42 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             }
         }
 
+        public List<POI> GetByThema(Thema thema)
+        {
+            using (OmgevingsboekContext context = new OmgevingsboekContext())
+            {
+                var query = (from p in context.POI.Include(p => p.Activiteit)
+                                                  .Include(p => p.AspNetUsers)
+                                                  .Include(p => p.Foto_POI)
+                                                  .Include(p => p.POI_Log)
+                                                  .Include(p => p.Rating)
+                                                  .Include(p => p.Doelgroep)
+                                                  .Include(p => p.Thema)
+                                                  .Include(p => p.Uitstap)
+                             where p.IsDeleted == false && p.Thema.Contains(thema)
+                             select p);
+                return query.ToList<POI>();
+            }
+        }
+
+        public List<POI> GetByDoelgroep(Doelgroep doelgroep)
+        {
+            using (OmgevingsboekContext context = new OmgevingsboekContext())
+            {
+                var query = (from p in context.POI.Include(p => p.Activiteit)
+                                                  .Include(p => p.AspNetUsers)
+                                                  .Include(p => p.Foto_POI)
+                                                  .Include(p => p.POI_Log)
+                                                  .Include(p => p.Rating)
+                                                  .Include(p => p.Doelgroep)
+                                                  .Include(p => p.Thema)
+                                                  .Include(p => p.Uitstap)
+                             where p.IsDeleted == false && p.Doelgroep.Contains(doelgroep)
+                             select p);
+                return query.ToList<POI>();
+            }
+        }
+
         public void UploadPicture(Foto_POI fotoPOI, HttpPostedFileBase picture)
         {
             //retrieve storage account from connection string

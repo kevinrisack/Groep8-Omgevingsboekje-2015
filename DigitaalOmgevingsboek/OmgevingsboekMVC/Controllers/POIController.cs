@@ -20,43 +20,57 @@ namespace DigitaalOmgevingsboek.Controllers
 
         public ActionResult POIStart()
         {
+            ViewBag.Doelgroepen = ps.GetDoelgroepen();
+            ViewBag.Leerdoelen = ps.GetLeerdoelen();
             return View();
         }
 
-        public ActionResult POIOverzicht()
+        public ActionResult POIOverzicht(Thema thema, Doelgroep doelgroep)
         {
-            List<POI> pois = ps.GetPOIs();
+            List<POI> pois = new List<POI>();
+            if (thema != null) 
+            {
+                pois = ps.GetPOIByThema(thema);
+            }
+            else if (doelgroep != null)
+            {
+                pois = ps.GetPOIByDoelgroep(doelgroep);
+            }
+            else
+            {
+                pois = ps.GetPOIs();
+            }
+            
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
             ViewBag.Leerdoelen = ps.GetLeerdoelen();
             return View(pois);
         }
 
         [HttpGet]
-        public ActionResult POINewModify(int? id)
+        public ActionResult POIModify(int? id)
         {
-            POI poi = new POI();
             if (id.HasValue)
             {
-                poi = ps.GetPOI(id.Value);
+                POI poi = ps.GetPOI(id.Value);
+
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+
+                return View(poi);
             }
             else
             {
-                poi.Auteur_Id = User.Identity.GetUserId();
+                return View("POIOverzicht");
             }
-            
-            ViewBag.Doelgroepen = ps.GetDoelgroepen();
-
-            return View(poi);
         }
 
         [HttpPost]
-        public ActionResult POINewModify(POI poi, HttpPostedFileBase picture)
+        public ActionResult POIModify(POI poi, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    ps.AddOrUpdatePOI(poi);
+                    ps.UpdatePOI(poi);
                     if (picture != null)
                     {
                         ps.UploadPicture(poi, picture);
@@ -70,10 +84,50 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             else
             {
-                return RedirectToAction("POINewModify", poi);
+                return RedirectToAction("POIModify", poi);
             }
         }
 
+        [HttpGet]
+        public ActionResult POINew(POI poi)
+        {
+            POI poiNew = new POI();
+            if (poi != null)
+            {
+                poiNew = poi;
+            }
+
+            poiNew.Auteur_Id = User.Identity.GetUserId();
+
+            ViewBag.Doelgroepen = ps.GetDoelgroepen();
+
+            return View(poiNew);
+        }
+
+        [HttpPost]
+        public ActionResult POINew(POI poi, HttpPostedFileBase picture)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    ps.AddPOI(poi);
+                    if (picture != null)
+                    {
+                        ps.UploadPicture(poi, picture);
+                    }
+                    return RedirectToAction("POIOverzicht");
+                }
+                catch (Exception e)
+                {
+                    return View("Error: " + e);
+                }
+            }
+            else
+            {
+                return RedirectToAction("POINew", poi);
+            }
+        }
 
         public ActionResult POIActivity()
         {

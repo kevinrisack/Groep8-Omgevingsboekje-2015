@@ -35,6 +35,16 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             return repoPOI.GetByID(id);
         }
 
+        public List<POI> GetPOIByThema(Thema thema)
+        {
+            return repoPOI.GetByThema(thema);
+        }
+
+        public List<POI> GetPOIByDoelgroep(Doelgroep doelgroep)
+        {
+            return repoPOI.GetByDoelgroep(doelgroep);
+        }
+
         public List<Doelgroep> GetDoelgroepen()
         {
             return repoDoelgroep.All().ToList<Doelgroep>();
@@ -48,7 +58,13 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         /*
         ADD
         */
-        public void AddOrUpdatePOI(POI poi)
+        public void AddPOI(POI poi)
+        {
+            repoPOI.Insert(poi);
+            repoPOI.SaveChanges();
+        }
+
+        public void UpdatePOI(POI poi)
         {
             repoPOI.Update(poi);
             repoPOI.SaveChanges();
