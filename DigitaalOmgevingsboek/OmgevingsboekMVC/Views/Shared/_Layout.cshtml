@@ -34,8 +34,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Gebruikersnaam</a></li>
-                    <li><a href="#">Afmelden</a></li>
+                    <li><a href="#">@User.Identity.Name</a></li>
+                    <li><a href="@Url.Action("LogOff", "Account")">Afmelden</a></li>
                 </ul>
             </div>
         </div>
@@ -46,11 +46,11 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-
+                    @if (User.Identity.IsAuthenticated) { 
                     <li><a href="@Url.Action("Index", "Uitstap")">Uitstappen</a></li>
 
                     <li><a href="@Url.Action("POIStart", "POI")">POI</a></li>
-                    <li><a href="@Url.Action("GebruikersOverzicht", "Gebruikers")">Gebruikers</a></li>
+                    <li><a href="@Url.Action("GebruikersOverzicht", "Gebruikers")">Gebruikers</a></li>}
                 </ul>
             </div>
             @RenderBody()
