@@ -1,0 +1,515 @@
+﻿/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  height:100%;
+}
+
+html{
+    height:100%;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+
+
+  .sidebar {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    width:17%;
+    padding: 20px;
+    font-size: 1vw;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+
+
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a {
+  color: #fff;
+  background-color: #428bca;
+}
+
+
+
+
+/*
+ * Main content
+ */
+
+.content{
+    height:66%;
+    margin-top:4%;
+}
+
+
+  .main {
+    
+    padding-right: 40px;
+    padding-left: 20px;
+    height:100%;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+
+/*
+    Opmaak Body
+*/
+
+.MainLeft{
+    width:50%;
+    height:90%;
+    margin-left:5%;
+
+}
+
+.Uitstap{
+   
+    width:100%;
+    position:relative;
+    float:left;
+     background-color: #00ff00;
+     height:50%;
+ 
+}
+
+
+
+.Events{
+   
+       width:35%;
+    
+      
+        margin-right:4.5%;
+    position:relative;
+    float:right;
+     background-color: #ff0000;
+     height:90%;
+     
+}
+
+.POI{
+    width:100%;
+        position:relative;
+        float:left;
+        margin-top:4%;
+       background-color: #ffd800;
+       height:45%;
+        
+       
+}
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  margin-left:5%;
+  text-align: center;
+  height:13%;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+
+
+.placeholder {
+
+    position:relative;
+    float:left;
+
+  height: 100px;
+  width:21.4%;
+}
+
+.Option1{
+      background-color: #00ff00;
+     
+}
+
+.Option2{
+      background-color: #ff6a00;
+        margin-left:14.7%;
+}
+
+.Option3{
+      background-color: #ff0000;
+        margin-left:14.7%;
+}
+
+.Aantal{
+    padding-top:15px;
+
+}
+
+
+
+.placeholder p{
+
+}
+
+.placeholder h4{
+      text-align: right;
+}
+
+
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+
+
+
+/* POI Startscherm */
+
+.searchPOI{
+      margin-left:5%;
+      margin-right:5%;
+      margin-bottom:3%;
+      background-color: #ff0000;
+}
+
+.themaPOI{
+      margin-left:5%;
+      margin-right:5%;
+      margin-bottom:3%;
+      background-color: #00ff00;
+     
+}
+
+.themaPOI ul li{
+    display: inline-block;
+    width:18%;
+    padding:2%;
+}
+
+.doelgroepPOI{
+      margin-left:5%;
+      margin-right:5%;
+      margin-bottom:3%;
+      background-color: #ff6a00;
+}
+
+.doelgroepPOI ul li{
+    display: inline-block;
+     width:18%;
+       padding:2%;
+}
+
+/* POI Overzichtscherm */
+
+.zoekPOI{
+     background-color: #ff6a00;
+     margin-bottom:2%;
+     height:20%;
+}
+
+.lijstPOI{
+     background-color: #b200ff;
+     height:80%;
+}
+
+/* POI New Modify */
+
+.POINewTop{
+    width:90%;
+    margin-top:3%;
+    margin-left:5%;
+    margin-right:5%;
+    height:95%;
+}
+
+
+.POINewLeft{
+    position:relative;
+    float:left;
+      width:45%;
+    margin-right:5%;
+}
+
+.POINewLeft label{
+    padding:5px;
+       margin:5px;
+           margin-top:5px;
+}
+
+.POINewLeft input[type="text"]{
+        position:relative;
+    float:right;
+    margin:5px;
+    margin-top:5px;
+    width:68.5%;
+}
+
+.POINewLeft textarea{
+        position:relative;
+    float:right;
+    margin:5px;
+    margin-top:15px;
+    width:68.5%;
+}
+
+.POINewRight{
+    position:relative;
+    float:right;
+    margin-left:2%;
+    margin-right:3%;
+       width:45%;
+}
+
+.content2{
+        height:66%;
+        margin-top:2%;
+}
+
+
+
+.POINewRight label{
+    padding:5px;
+       margin:5px;
+         margin-top:15px;
+}
+
+.POINewRight label #openingsuren {
+    padding:5px;
+       margin:55px;
+}
+
+.POINewRight input[type="text"]{
+    position:relative;
+    float:right;
+    margin:5px;
+    width:68.5%;
+      margin-top:15px;
+}
+
+.POINewRight textarea{
+        position:relative;
+    float:right;
+    margin:5px;
+    margin-top:15px;
+    width:68.5%;
+}
+
+.POINewRight fieldset{
+ 
+    margin-left:15%;
+    margin-right:15%;
+
+
+}
+
+.POINewBody{
+    clear:both;
+    width:90%;
+    margin-top:5%;
+    margin-left:5%;
+    margin-right:5%;
+    height:95%;
+}
+
+.POINewAfbeeldingen{
+    margin-top:1%;
+      background-color: #b200ff;
+      width:50%;
+}
+
+.POINewActivity{
+        margin-top:1%;
+      background-color: #b200ff;
+      width:50%;
+}
+
+#NewActivity{
+    float:right;
+    position:relative;
+    margin-right:50%;
+}
+
+
+.Menu{
+    width:100%;
+    height:60px;
+      background-color: #b200ff;
+      position:fixed;
+      z-index: 2;
+}
+
+
+
+.container{
+   
+}
+
+.Menu h1{
+
+}
+
+/* POI VIEW */
+.POIViewTop{
+        width:90%;
+
+    margin-left:5%;
+    margin-right:5%;
+    height:90%;
+}
+
+.POIViewLeft{
+        position:relative;
+    float:left;
+      width:45%;
+    margin-right:5%;
+      
+}
+
+.POIViewLeft label{
+    padding:5px;
+       margin:5px;
+           margin-top:5px;
+           position:relative;
+           float:left;
+
+}
+
+
+.POIViewLeft input[type="text"],#Email{
+        position:relative;
+    float:right;
+    margin:5px;
+    margin-top:5px;
+    width:68.5%;
+}
+
+.POIViewLeft #Beschrijving{
+        position:relative;
+    float:right;
+    margin:5px;
+    margin-top:15px;
+    width:68.5%;
+    height:200px;
+    resize:none;
+}
+
+.POIViewLeft #Openingsuur{
+    position:relative;
+    float:right;
+    margin:5px;
+    margin-top:15px;
+    width:68.5%;
+    height:140px;
+    resize:none;
+}
+
+.POIViewRight{
+        position:relative;
+    float:left;
+      width:45%;
+    margin-right:5%;
+
+}
+.POIViewAfbeeldingen{
+    width:100%;
+    height:180px;
+      background-color: #b200ff;
+}
+
+.POIViewGoogleMaps{
+    width:100%;
+    height:180px;
+    background-color: #b200ff;
+}
+
+.POIViewBody{
+
+    clear:both;
+    width:90%;
+    margin-left:6%;
+    margin-right:5%;
+    height:95%;
+    position:relative;
+    float:left;
+    margin-top:30px;
+    margin-bottom:100px;
+
+}
+
+.POIViewLeerdoelen{
+      background-color: #b200ff;
+      width:65%;
+      
+}
+
+.POIViewActivity{
+      background-color: #ff0000;
+      width:65%;
+}
+
+.POIViewPlaatsReactie{
+      background-color: #ff6a00;
+      width:65%;
+}
+
+.POIViewReacties{
+      background-color: #00ff00;
+      width:65%;
+
+}
+
+.POIViewTop p{
+    position:relative;
+    float:right;
+    margin-top:10px;
+    margin-left:25px;
+    text-align:left;
+    width:70%;
+ 
+
+}
+
+.DivViewClear{
+   clear:both;
+
+
+}
+
+
+
