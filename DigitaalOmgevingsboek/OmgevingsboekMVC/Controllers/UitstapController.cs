@@ -20,17 +20,17 @@ namespace OmgevingsboekMVC.Controllers
         }
         
         // GET: Uitstap
-        public ActionResult Index(string? filter)
+        public ActionResult Index(string filter)
         {
             List<Uitstap> uitstappen;
             
-            if (!filter.HasValue)
+            if (filter == "")
             {
                 uitstappen = us.GetUitstappen();
                 return View(uitstappen);
             }
             
-            switch(filter.Value)
+            switch(filter)
             {
                 case "my":  uitstappen = us.GetUitstappen(User.Identity.GetUserId());
                             return View(uitstappen);
