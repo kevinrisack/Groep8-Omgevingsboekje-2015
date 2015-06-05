@@ -6,15 +6,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using DigitaalOmgevingsboek.Businesslayer.Services;
 
 namespace DigitaalOmgevingsboek.Controllers
 {
     public class POIController : Controller
     {
-        private IPOIService ps;
+        private POIService ps;
         private OmgevingsboekContext db = new OmgevingsboekContext();
 
-        public POIController(IPOIService ps)
+        public POIController(POIService ps)
         {
             this.ps = ps;
         }
@@ -71,7 +72,7 @@ namespace DigitaalOmgevingsboek.Controllers
         [HttpPost]
         public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds)
         {
-            poi = ps.GetPOI(poi.Id);
+            //poi = ps.GetPOI(poi.Id);
             if (ModelState.IsValid)
             {
                 try
@@ -82,8 +83,14 @@ namespace DigitaalOmgevingsboek.Controllers
                         {
                             Doelgroep dg = ps.GetDoelgroep(doelgroepId);
                             
-                            poi.Doelgroep.Add(dg);
-                            dg.POI.Add(poi);
+                            if (!dg.POI.Any(p => p.Id == poi.Id))
+                            {
+                                dg.POI.Add(poi);
+                            }
+                            if (!poi.Doelgroep.Any(d => d.Id == dg.Id))
+                            {
+                                poi.Doelgroep.Add(dg);
+                            }
                             
                             ps.UpdateDoelgroep(dg);
                         }

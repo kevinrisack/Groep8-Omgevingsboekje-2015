@@ -11,9 +11,10 @@ using System.Data.Entity;
 
 namespace OmgevingsboekMVC.Businesslayer.Repositories
 {
-    public class POIRepository : GenericRepository<POI>, OmgevingsboekMVC.Businesslayer.Repositories.IPOIRepository
+    public class POIRepository : GenericRepository<POI>
     {
         private IGenericRepository<Doelgroep> repoDoelgroep = null;
+
         OmgevingsboekContext context;
         public POIRepository(OmgevingsboekContext context, IGenericRepository<Doelgroep> repoDoelgroep)
             : base(context)

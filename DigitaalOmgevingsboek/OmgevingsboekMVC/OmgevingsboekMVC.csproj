@@ -221,10 +221,8 @@
     <Compile Include="Businesslayer\Repositories\ActiviteitRepository.cs" />
     <Compile Include="Businesslayer\Repositories\GenericRepository.cs" />
     <Compile Include="Businesslayer\Repositories\IGenericRepository.cs" />
-    <Compile Include="Businesslayer\Repositories\IPOIRepository.cs" />
     <Compile Include="Businesslayer\Repositories\POIRepository.cs" />
     <Compile Include="Businesslayer\Repositories\UitstapRepository.cs" />
-    <Compile Include="Businesslayer\Services\IPOIService.cs" />
     <Compile Include="Businesslayer\Services\POIService.cs" />
     <Compile Include="Businesslayer\Services\UitstapService.cs" />
     <Compile Include="Controllers\AccountController.cs" />

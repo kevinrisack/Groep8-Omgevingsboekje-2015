@@ -8,15 +8,15 @@ using System.Web;
 
 namespace DigitaalOmgevingsboek.Businesslayer.Services
 {
-    public class POIService : OmgevingsboekMVC.Businesslayer.Services.IPOIService
+    public class POIService
     {
-        private IPOIRepository repoPOI = null;
+        private POIRepository repoPOI = null;
         private IGenericRepository<Foto_POI> repoFotoPOI = null;
         private IGenericRepository<Doelgroep> repoDoelgroep = null;
         private IGenericRepository<Leerdoel> repoLeerdoel = null;
         private IGenericRepository<Thema> repoThema = null;
 
-        public POIService(IPOIRepository repoPOI, IGenericRepository<Foto_POI> repoFotoPOI, IGenericRepository<Doelgroep> repoDoelgroep, IGenericRepository<Leerdoel> repoLeerdoel, IGenericRepository<Thema> repoThema)
+        public POIService(POIRepository repoPOI, IGenericRepository<Foto_POI> repoFotoPOI, IGenericRepository<Doelgroep> repoDoelgroep, IGenericRepository<Leerdoel> repoLeerdoel, IGenericRepository<Thema> repoThema)
         {
             this.repoPOI = repoPOI;
             this.repoFotoPOI = repoFotoPOI;
