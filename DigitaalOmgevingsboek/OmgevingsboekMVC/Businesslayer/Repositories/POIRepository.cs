@@ -13,76 +13,80 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
 {
     public class POIRepository : GenericRepository<POI>, OmgevingsboekMVC.Businesslayer.Repositories.IPOIRepository
     {
+        private IGenericRepository<Doelgroep> repoDoelgroep = null;
+        OmgevingsboekContext context;
+        public POIRepository(OmgevingsboekContext context, IGenericRepository<Doelgroep> repoDoelgroep)
+            : base(context)
+        {
+            this.context = context;
+            this.repoDoelgroep = repoDoelgroep;
+        }
+
         public override IEnumerable<POI> All()
         {
-            using (OmgevingsboekContext context = new OmgevingsboekContext())
-            {
-                var query = (from p in context.POI.Include(p => p.Activiteit)
-                                                  .Include(p => p.AspNetUsers)
-                                                  .Include(p => p.Foto_POI)
-                                                  .Include(p => p.POI_Log)
-                                                  .Include(p => p.Rating)
-                                                  .Include(p => p.Doelgroep)
-                                                  .Include(p => p.Thema)
-                                                  .Include(p => p.Uitstap)
-                             where p.IsDeleted == false
-                             select p);
-                return query.ToList<POI>();
-            }
+            var query = (from p in context.POI.Include(p => p.Activiteit)
+                                              .Include(p => p.AspNetUsers)
+                                              .Include(p => p.Foto_POI)
+                                              .Include(p => p.POI_Log)
+                                              .Include(p => p.Rating)
+                                              .Include(p => p.Doelgroep)
+                                              .Include(p => p.Thema)
+                                              .Include(p => p.Uitstap)
+                         where p.IsDeleted == false
+                         select p);
+            return query.ToList<POI>();
         }
 
         public override POI GetByID(object id)
         {
-            using (OmgevingsboekContext context = new OmgevingsboekContext())
-            {
-                var query = (from p in context.POI.Include(p => p.Activiteit)
-                                                  .Include(p => p.AspNetUsers)
-                                                  .Include(p => p.Foto_POI)
-                                                  .Include(p => p.POI_Log)
-                                                  .Include(p => p.Rating)
-                                                  .Include(p => p.Doelgroep)
-                                                  .Include(p => p.Thema)
-                                                  .Include(p => p.Uitstap)
-                             where p.IsDeleted == false && p.Id == (int) id
-                             select p);
-                return query.Single<POI>();
-            }
+            var query = (from p in context.POI.Include(p => p.Activiteit)
+                                              .Include(p => p.AspNetUsers)
+                                              .Include(p => p.Foto_POI)
+                                              .Include(p => p.POI_Log)
+                                              .Include(p => p.Rating)
+                                              .Include(p => p.Doelgroep)
+                                              .Include(p => p.Thema)
+                                              .Include(p => p.Uitstap)
+                         where p.IsDeleted == false && p.Id == (int) id
+                         select p);
+            return query.Single<POI>();
         }
 
         public List<POI> GetByThema(int themaId)
         {
-            using (OmgevingsboekContext context = new OmgevingsboekContext())
-            {
-                var query = (from p in context.POI.Include(p => p.Activiteit)
-                                                  .Include(p => p.AspNetUsers)
-                                                  .Include(p => p.Foto_POI)
-                                                  .Include(p => p.POI_Log)
-                                                  .Include(p => p.Rating)
-                                                  .Include(p => p.Doelgroep)
-                                                  .Include(p => p.Thema)
-                                                  .Include(p => p.Uitstap)
-                             where p.IsDeleted == false && p.Thema.Any(t => t.Id == themaId)
-                             select p);
-                return query.ToList<POI>();
-            }
+            var query = (from p in context.POI.Include(p => p.Activiteit)
+                                              .Include(p => p.AspNetUsers)
+                                              .Include(p => p.Foto_POI)
+                                              .Include(p => p.POI_Log)
+                                              .Include(p => p.Rating)
+                                              .Include(p => p.Doelgroep)
+                                              .Include(p => p.Thema)
+                                              .Include(p => p.Uitstap)
+                         where p.IsDeleted == false && p.Thema.Any(t => t.Id == themaId)
+                         select p);
+            return query.ToList<POI>();
         }
 
         public List<POI> GetByDoelgroep(int doelgroepId)
         {
-            using (OmgevingsboekContext context = new OmgevingsboekContext())
-            {
-                var query = (from p in context.POI.Include(p => p.Activiteit)
-                                                  .Include(p => p.AspNetUsers)
-                                                  .Include(p => p.Foto_POI)
-                                                  .Include(p => p.POI_Log)
-                                                  .Include(p => p.Rating)
-                                                  .Include(p => p.Doelgroep)
-                                                  .Include(p => p.Thema)
-                                                  .Include(p => p.Uitstap)
-                             where p.IsDeleted == false && p.Doelgroep.Any(d => d.Id == doelgroepId)
-                             select p);
-                return query.ToList<POI>();
-            }
+            var query = (from p in context.POI.Include(p => p.Activiteit)
+                                              .Include(p => p.AspNetUsers)
+                                              .Include(p => p.Foto_POI)
+                                              .Include(p => p.POI_Log)
+                                              .Include(p => p.Rating)
+                                              .Include(p => p.Doelgroep)
+                                              .Include(p => p.Thema)
+                                              .Include(p => p.Uitstap)
+                         where p.IsDeleted == false && p.Doelgroep.Any(d => d.Id == doelgroepId)
+                         select p);
+             return query.ToList<POI>();
+        }
+
+        public void UpdateDoelgroep(Doelgroep dg)
+        {
+            context.Entry(dg).State = EntityState.Unchanged;
+            //repoDoelgroep.Update(dg);
+            //repoDoelgroep.SaveChanges();
         }
 
         public void UploadPicture(Foto_POI fotoPOI, HttpPostedFileBase picture)

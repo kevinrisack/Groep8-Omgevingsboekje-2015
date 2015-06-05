@@ -71,29 +71,25 @@ namespace DigitaalOmgevingsboek.Controllers
         [HttpPost]
         public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds)
         {
-           
+            poi = ps.GetPOI(poi.Id);
             if (ModelState.IsValid)
             {
                 try
                 {
                     if (doelgroepIds != null)
                     {
-                        List<Doelgroep> lijst = new List<Doelgroep>();
                         foreach (int doelgroepId in doelgroepIds)
                         {
                             Doelgroep dg = ps.GetDoelgroep(doelgroepId);
-                            lijst.Add(dg);
-                            //dg.POI.Add(poi);
-
-
-                            poi.Doelgroep = lijst;
-                            //ps.UpdateDoelgroep(dg);
+                            
+                            poi.Doelgroep.Add(dg);
+                            dg.POI.Add(poi);
+                            
+                            ps.UpdateDoelgroep(dg);
                         }
                     }
-
-                   
+              
                     ps.UpdatePOI(poi);
-                    
 
                     if (picture != null)
                     {
@@ -116,17 +112,11 @@ namespace DigitaalOmgevingsboek.Controllers
         [HttpGet]
         public ActionResult POINew(POI poi)
         {
-            POI poiNew = new POI();
-            if (poi != null)
-            {
-                poiNew = poi;
-            }
-
-            poiNew.Auteur_Id = User.Identity.GetUserId();
+            poi.Auteur_Id = User.Identity.GetUserId();
 
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
 
-            return View(poiNew);
+            return View(poi);
         }
 
         [HttpPost]

@@ -10,5 +10,6 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
         DigitaalOmgevingsboek.POI GetByID(object id);
         System.Collections.Generic.List<DigitaalOmgevingsboek.POI> GetByThema(int themaId);
         void UploadPicture(DigitaalOmgevingsboek.Foto_POI fotoPOI, System.Web.HttpPostedFileBase picture);
+        void UpdateDoelgroep(DigitaalOmgevingsboek.Doelgroep dg);
     }
 }

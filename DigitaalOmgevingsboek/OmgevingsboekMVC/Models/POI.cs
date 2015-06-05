@@ -24,12 +24,12 @@ namespace DigitaalOmgevingsboek
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50,MinimumLength=6,ErrorMessage="De naam moet minimum 6 karakters bevatten en maximum 50")]
+        [StringLength(50,MinimumLength=3,ErrorMessage="De naam moet minimum 3 karakters bevatten en maximum 50")]
         public string Naam { get; set; }
 
         [Required]
         [DisplayName("Adres(Straat + nummer)")]
-        [StringLength(50,MinimumLength=6,ErrorMessage="Het adres moet minimum 6 karakters bevatten en maximum 50")]
+        [StringLength(50,MinimumLength=1,ErrorMessage="Het adres moet minimum 1 karakter bevatten en maximum 50")]
         public string Adres { get; set; }
 
         public string Gemeente { get; set; }
@@ -48,7 +48,7 @@ namespace DigitaalOmgevingsboek
         [StringLength(50)]
         public string Openingsuur { get; set; }
 
-       [Numeric(ErrorMessage="Geef een geldige waarde op, bv: 1.08")]
+        [Numeric(ErrorMessage="Geef een geldige waarde op, bv: 1.08")]
         public decimal? Toegangsprijs { get; set; }
         [MinLength(6,ErrorMessage="De beschrijving moet minimum 6 karakters bevatten")]
         public string Beschrijving { get; set; }

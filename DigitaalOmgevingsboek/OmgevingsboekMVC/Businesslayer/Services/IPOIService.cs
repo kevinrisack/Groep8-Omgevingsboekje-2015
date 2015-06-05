@@ -5,7 +5,7 @@ namespace OmgevingsboekMVC.Businesslayer.Services
     {
         void AddPOI(DigitaalOmgevingsboek.POI poi);
         void UpdatePOI(DigitaalOmgevingsboek.POI poi);
-        //void UpdateDoelgroep(DigitaalOmgevingsboek.Doelgroep dg);
+        void UpdateDoelgroep(DigitaalOmgevingsboek.Doelgroep dg);
         System.Collections.Generic.List<DigitaalOmgevingsboek.Doelgroep> GetDoelgroepen();
         System.Collections.Generic.List<DigitaalOmgevingsboek.Leerdoel> GetLeerdoelen();
         System.Collections.Generic.List<DigitaalOmgevingsboek.Thema> GetThemas();
