@@ -76,16 +76,16 @@ namespace DigitaalOmgevingsboek
 
         public  AspNetUsers AspNetUsers { get; set; }
 
-        public  ICollection<Foto_POI> Foto_POI { get; set; }
+        public  virtual ICollection<Foto_POI> Foto_POI { get; set; }
 
-        public  ICollection<POI_Log> POI_Log { get; set; }
+        public virtual ICollection<POI_Log> POI_Log { get; set; }
 
-        public  ICollection<Rating> Rating { get; set; }
+        public virtual ICollection<Rating> Rating { get; set; }
 
-        public ICollection<Doelgroep> Doelgroep { get; set; }
+        public virtual ICollection<Doelgroep> Doelgroep { get; set; }
 
-        public  ICollection<Thema> Thema { get; set; }
+        public virtual ICollection<Thema> Thema { get; set; }
 
-        public ICollection<Uitstap> Uitstap { get; set; }
+        public virtual ICollection<Uitstap> Uitstap { get; set; }
     }
 }
