@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using OmgevingsboekMVC.Attributes;
 
 namespace OmgevingsboekMVC.Controllers
 {
@@ -65,6 +66,46 @@ namespace OmgevingsboekMVC.Controllers
         {
             Uitstap uitstap = new Uitstap();
             return View(uitstap);
+        }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "Rechten")]
+        public ActionResult Rechten(Uitstap uitstap)
+        {
+            if (!ModelState.IsValid)
+                return RedirectToAction("New", uitstap);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "Route")]
+        public ActionResult Route(Uitstap uitstap)
+        {
+            if (!ModelState.IsValid)
+                return RedirectToAction("New", uitstap);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "POI")]
+        public ActionResult POI(Uitstap uitstap)
+        {
+            if (!ModelState.IsValid)
+                return RedirectToAction("New", uitstap);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "Save")]
+        public ActionResult Save(Uitstap uitstap)
+        {
+            if (!ModelState.IsValid)
+                return RedirectToAction("New", uitstap);
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
