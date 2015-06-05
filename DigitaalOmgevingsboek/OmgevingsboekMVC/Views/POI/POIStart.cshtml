@@ -19,7 +19,7 @@
         </div>
         <div class="themaPOI">
             Thema: <br />
-            <ul class="themaPOI">
+            <ul class="list-inline">
                 @foreach (Thema th in ViewBag.Themas)
                 {
                     <li>@Html.ActionLink(th.ThemaNaam, "POIOverzicht", new { themaId = th.Id })</li>
@@ -28,7 +28,7 @@
         </div>
         <div class="doelgroepPOI">
             Doelgroep: <br />
-            <ul class="doelgroepPOI">
+            <ul class="list-inline">
                 @foreach (Doelgroep dg in ViewBag.Doelgroepen)
                 {
                     <li>@Html.ActionLink(dg.DoelgroepNaam, "POIOverzicht", new { doelgroepId = dg.Id })</li>
