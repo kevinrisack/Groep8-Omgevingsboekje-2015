@@ -90,47 +90,48 @@
                                 </div>
 
                             </div>
-                            </div>
-                            <div id="view2">
-                                <div class="panel">
+                        </div>
+                        <div id="view2">
+                            <div class="panel">
 
-                                    <div class="panel-body">
-                                        <!-- Voeg hier code voor het beheren van afbeeldingen-->
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <label>Afbeeldingen</label>
-                                                <br />
-                                                <input type="hidden" value="@Model.Id" name="Id" />
-                                                <input type="hidden" value="@Model.Auteur_Id" name="Auteur_Id" />
-                                                <input type="file" name="picture" id="url" /><input type="button" name="btnBrowse" value="..." /><input type="submit" name="btnUploaden" value="Uploaden" />
-                                                <br />
+                                <div class="panel-body">
+                                    <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label>Afbeeldingen</label>
+                                            <br />
+                                            <input type="hidden" value="@Model.Id" name="Id" />
+                                            <input type="hidden" value="@Model.Auteur_Id" name="Auteur_Id" />
+                                            <input type="file" name="picture" id="url" /><input type="button" name="btnBrowse" value="..." /><input type="submit" name="btnUploaden" value="Uploaden" />
+                                            <br />
 
-                                                <div class="POINewAfbeeldingen">
+                                            <div class="POINewAfbeeldingen">
 
-                                                    Afbeelding
-                                                </div>
-
+                                                Afbeelding
                                             </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    </div>
 
-                                    <div id="view3">
-                                        <label>Activiteiten</label><label id="NewActivity"><a href="@Url.Action("POIActivity", "POI")">Nieuwe Activiteit</a></label>
-                                        <br />
-                                        <div class="POINewActivity">
-                                            <!-- Voeg hier code voor het beheren van activiteiten-->
-                                            Activity
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div id="view3">
+                            <label>Activiteiten</label><label id="NewActivity"><a href="@Url.Action("POIActivity", "POI")">Nieuwe Activiteit</a></label>
+                            <br />
+                            <div class="POINewActivity">
+                                <!-- Voeg hier code voor het beheren van activiteiten-->
+                                Activity
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </form>
                 </div>
 
-            </form>
+        
             <!-- /.row -->
 </div>
     <!-- /.container-fluid -->
