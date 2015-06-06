@@ -1057,6 +1057,18 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sb-admin-2.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="tab-content\demo.html" />
+    <Content Include="tab-content\tabcontent.js" />
+    <Content Include="tab-content\template1\tabbg.gif" />
+    <Content Include="tab-content\template1\tabcontent.css" />
+    <Content Include="tab-content\template2\tabbg.gif" />
+    <Content Include="tab-content\template2\tabbg2.gif" />
+    <Content Include="tab-content\template2\tabcontent.css" />
+    <Content Include="tab-content\template3\tabcontent.css" />
+    <Content Include="tab-content\template4\tabcontent.css" />
+    <Content Include="tab-content\template5\tabcontent.css" />
+    <Content Include="tab-content\template6\tabbg.gif" />
+    <Content Include="tab-content\template6\tabcontent.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

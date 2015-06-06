@@ -11,104 +11,135 @@
                 <h1 class="page-header">POI Aanmaken</h1>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-10">
+
+            </div>
+            <div class="col-lg-2">
+                <input type="submit" value="POI Opslaan" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
+            </div>
+        </div>
         <form method="post" action="/POI/POINew" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basis Informatie POI
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Naam: </label> @Html.TextBoxFor(model => model.Naam, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Adres: </label> @Html.TextBoxFor(model => model.Adres, new { @class = "form-control" })
-                                     </div>
-                                    <div class="form-group">
-                                        <label>Gemeente: </label> @Html.TextBoxFor(model => model.Gemeente, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tel.: </label> @Html.TextBoxFor(model => model.Telefoon, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label>E-mail: </label> @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Website: </label> @Html.TextBoxFor(model => model.WebsiteUrl, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Beschrijving: </label> @Html.TextAreaFor(model => model.Beschrijving, new { @class = "form-control" })
+                    <ul class="tabs">
+                        <li><a href="#view1">Basis Informatie POI</a></li>
+                        <li><a href="#view2">Afbeeldingen</a></li>
+                        <li><a href="#view3">Activiteiten</a></li>
+                    </ul>
+                    <div class="tabcontents">
+                        <div id="view1">
+                            <div class="panel">
+
+                                <div class="panel-body">
+
+
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Naam: </label> @Html.TextBoxFor(model => model.Naam, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Adres: </label> @Html.TextBoxFor(model => model.Adres, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Gemeente: </label> @Html.TextBoxFor(model => model.Gemeente, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tel.: </label> @Html.TextBoxFor(model => model.Telefoon, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>E-mail: </label> @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Website: </label> @Html.TextBoxFor(model => model.WebsiteUrl, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Beschrijving: </label> @Html.TextAreaFor(model => model.Beschrijving, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Openingsuren: </label> @Html.TextAreaFor(model => model.Openingsuur, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tijdsduur: </label> @Html.TextBoxFor(model => model.Duurtijd, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Toegangsprijs: </label> @Html.TextBoxFor(model => model.Toegangsprijs, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Doelgroep:</label><br />
+
+
+
+                                                @foreach (Doelgroep dg in ViewBag.Doelgroepen)
+                                                {
+                                                    <div class="checkbox-inline">
+
+                                                        <input type="checkbox" id="@dg.Id" name="doelgroepIds" value="@dg.Id" />
+                                                        <label for="@dg.Id">@dg.DoelgroepNaam</label>
+                                                    </div>
+
+                                                }
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Openingsuren: </label> @Html.TextAreaFor(model => model.Openingsuur, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tijdsduur: </label> @Html.TextBoxFor(model => model.Duurtijd, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Toegangsprijs: </label> @Html.TextBoxFor(model => model.Toegangsprijs, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Doelgroep:</label><br />
-                                       
 
+                            </div>
+                            </div>
+                            <div id="view2">
+                                <div class="panel">
 
-                                            @foreach (Doelgroep dg in ViewBag.Doelgroepen)
-                                            {
-                                                <div class="checkbox-inline">
-                                                  
-                                                    <input type="checkbox" id="@dg.Id" name="doelgroepIds" value="@dg.Id" />
-                                                    <label for="@dg.Id">@dg.DoelgroepNaam</label>
+                                    <div class="panel-body">
+                                        <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label>Afbeeldingen</label>
+                                                <br />
+                                                <input type="hidden" value="@Model.Id" name="Id" />
+                                                <input type="hidden" value="@Model.Auteur_Id" name="Auteur_Id" />
+                                                <input type="file" name="picture" id="url" /><input type="button" name="btnBrowse" value="..." /><input type="submit" name="btnUploaden" value="Uploaden" />
+                                                <br />
+
+                                                <div class="POINewAfbeeldingen">
+
+                                                    Afbeelding
                                                 </div>
 
-                                            }
-                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    <div id="view3">
+                                        <label>Activiteiten</label><label id="NewActivity"><a href="@Url.Action("POIActivity", "POI")">Nieuwe Activiteit</a></label>
+                                        <br />
+                                        <div class="POINewActivity">
+                                            <!-- Voeg hier code voor het beheren van activiteiten-->
+                                            Activity
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-            </div>
                 </div>
+                </div>
+
             </form>
             <!-- /.row -->
 </div>
     <!-- /.container-fluid -->
-</div>
+
 <!-- /#page-wrapper -->
 
 
 
 
-            <div class="POINewBody">
-                <br />
-                <label>Afbeeldingen</label>
-                <br />
-                <input type="hidden" value="@Model.Id" name="Id" />
-                <input type="hidden" value="@Model.Auteur_Id" name="Auteur_Id" />
-                <input type="file" name="picture" id="url" /><input type="button" name="btnBrowse" value="..." /><input type="submit" name="btnUploaden" value="Uploaden" />
-                <br />
 
-                <div class="POINewAfbeeldingen">
-                    <!-- Voeg hier code voor het beheren van afbeeldingen-->
-                    Afbeelding
-                </div>
-                <br />
-                <label>Activiteiten</label><label id="NewActivity"><a href="@Url.Action("POIActivity", "POI")">Nieuwe Activiteit</a></label>
-                <br />
-                <div class="POINewActivity">
-                    <!-- Voeg hier code voor het beheren van activiteiten-->
-                    Activity
-                </div>
 
-                <br />
-                <br />
-                <input type="submit" value="POI Opslaan" name="btnSubmit" id="btnSubmitPOINew" />
-
-            </div>
 
