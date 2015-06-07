@@ -1115,10 +1115,10 @@
     <Content Include="Views\Uitstap\Delete.cshtml" />
     <Content Include="Views\Uitstap\New.cshtml" />
     <Content Include="Views\POI\POIModify.cshtml" />
+    <Content Include="Views\Gebruikers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Gebruikers\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Management\" />
     <Folder Include="Views\test\" />
