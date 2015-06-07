@@ -21,17 +21,18 @@
                 <h1 class="page-header">Nieuwe Uitstap</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-10">
-
-            </div>
-            <div class="col-lg-2">
-                <input type="submit" name="action:Save" value="Uitstap Opslaan" class="btn btn-lg btn-success btn-block" />
-            </div>
-        </div>
+        
        @using (Html.BeginForm())
                 {
         @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-xs-10">
+        </div>
+        <div class="col-lg-2">
+            <button type="submit" id="save" name="submit" value="save" class="btn btn-lg btn-success btn-block">Uitstap Opslaan</button>
+        </div>
+    </div>
+
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="tabs">
@@ -93,7 +94,7 @@
                             <div class="panel">
 
                                 <div class="panel-body">
-                                    <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                                    <!-- Voeg hier code voor het beheren van de routes-->
                                     <div class="row">
                                         <div class="col-lg-6">
 
@@ -106,20 +107,57 @@
 
                         <div id="view3">
                             <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>POI Naam</th>
-                                            <th>Auteur</th>
+                                            <th>Naam</th>
+                                            <th>Adres</th>
+                                            <th>Gemeente</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-  
+                                        @foreach (POI poi in ViewBag.POIs)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="@Url.Action("POIView", "POI", new { id = poi.Id})">@poi.Naam</a>
+                                                </td>
+                                                <td>
+                                                    @poi.Adres
+                                                </td>
+                                                <td>
+                                                    @poi.Gemeente
+                                                </td>
+                                                <td>
+                                                        @if (Model.POI.Contains(poi))
+                                                        {
+                                                            <button type="submit" id="delete" name="submit" class="btn btn-sm btn-danger btn-block" value="delete:@poi.Id">Verwijderen uit Uitstap</button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" id="add" name="submit" class="btn btn-sm btn-success btn-block" value="add:@poi.Id">Toevoegen aan Uitstap</button>
+                                                        }
+
+                                                </td>
+                                            </tr>
+                                            
+                                            @Html.HiddenFor(model => model.Id)
+                                            @Html.HiddenFor(model => model.Auteur_Id)
+                                            @Html.HiddenFor(model => model.Route_Id)
+                                            @Html.HiddenFor(model => model.POI)
+                                            @Html.HiddenFor(model => model.Route)
+                                            
+                                            @Html.HiddenFor(model => model.AspNetUsers)
+                                            @Html.HiddenFor(model => model.AspNetUsers1)
+                                            @Html.HiddenFor(model => model.IsDeleted)
+                                            
+                                        }
+
                                     </tbody>
                                 </table>
-
                             </div>
+
                     </div>
                 </div>
             </div>
@@ -131,3 +169,10 @@
     <!-- /.row -->
 </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>

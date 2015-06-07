@@ -10,12 +10,15 @@ namespace OmgevingsboekMVC.Businesslayer.Services
     public class UitstapService
     {
         private UitstapRepository repoUitstap = null;
+        private POIRepository repoPOI = null;
 
-        public UitstapService(UitstapRepository repoUitstap)
+        public UitstapService(UitstapRepository repoUitstap, POIRepository repoPOI)
         {
             this.repoUitstap = repoUitstap;
+            this.repoPOI = repoPOI;
         }
 
+        #region Uitstappen
         public List<Uitstap> GetUitstappen()
         {
             return repoUitstap.All().ToList<Uitstap>();
@@ -57,5 +60,18 @@ namespace OmgevingsboekMVC.Businesslayer.Services
             repoUitstap.Delete(id);
             repoUitstap.SaveChanges();
         }
+        #endregion
+
+        #region POI
+        public List<POI> GetPOIs()
+        {
+            return repoPOI.All().ToList<POI>();
+        }
+
+        public POI GetPOIById(int id)
+        {
+            return repoPOI.GetByID(id);
+        }
+        #endregion
     }
 }

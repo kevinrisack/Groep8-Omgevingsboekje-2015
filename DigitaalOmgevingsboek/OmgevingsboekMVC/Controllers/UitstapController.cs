@@ -65,47 +65,38 @@ namespace OmgevingsboekMVC.Controllers
         public ActionResult New()
         {
             Uitstap uitstap = new Uitstap();
+            uitstap.Auteur_Id = User.Identity.GetUserId();
+            ViewBag.POIs = us.GetPOIs();
             return View(uitstap);
         }
 
         [HttpPost]
-        [MultipleButton(Name = "action", Argument = "Rechten")]
-        public ActionResult Rechten(Uitstap uitstap)
+        [ValidateAntiForgeryToken]
+        public ActionResult New(Uitstap uitstap, string submit)
         {
-            if (!ModelState.IsValid)
-                return RedirectToAction("New", uitstap);
+            ViewBag.POIs = us.GetPOIs();
+            string[] input = submit.Split(':');
 
-            return RedirectToAction("Index");
-        }
+            switch (input[0])
+            {
+                case "save":
+                    if (!ModelState.IsValid)
+                        return View(uitstap);
 
-        [HttpPost]
-        [MultipleButton(Name = "action", Argument = "Route")]
-        public ActionResult Route(Uitstap uitstap)
-        {
-            if (!ModelState.IsValid)
-                return RedirectToAction("New", uitstap);
+                    us.UpdateUitstap(uitstap);
+                    return RedirectToAction("Details", uitstap.Id);
 
-            return RedirectToAction("Index");
-        }
+                case "delete":
+                    uitstap.POI.Remove(us.GetPOIById(int.Parse(input[1])));
+                    return View(uitstap);
 
-        [HttpPost]
-        [MultipleButton(Name = "action", Argument = "POI")]
-        public ActionResult POI(Uitstap uitstap)
-        {
-            if (!ModelState.IsValid)
-                return RedirectToAction("New", uitstap);
+                case "add":
+                    uitstap.POI.Add(us.GetPOIById(int.Parse(input[1])));
+                    return View(uitstap);
 
-            return RedirectToAction("Index");
-        }
+                default: return RedirectToAction("Index", "my");
 
-        [HttpPost]
-        [MultipleButton(Name = "action", Argument = "Save")]
-        public ActionResult Save(Uitstap uitstap)
-        {
-            if (!ModelState.IsValid)
-                return RedirectToAction("New", uitstap);
-
-            return RedirectToAction("Index");
+            }
         }
 
         [HttpGet]
@@ -115,19 +106,24 @@ namespace OmgevingsboekMVC.Controllers
                 return RedirectToAction("Index");
 
             Uitstap uitstap = us.GetUitstap(id.Value);
-            return View(uitstap);
+
+            if (uitstap.Naam != null)
+                return View(uitstap);
+            else
+                return RedirectToAction("New");
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Uitstap uitstap)
         {
             if (ModelState.IsValid)
             {
-                us.AddUitstap(uitstap);
+                us.UpdateUitstap(uitstap);
                 return RedirectToAction("Details", uitstap.Id);
             }
             else
-                return RedirectToAction("Edit", uitstap.Id);
+                return View(uitstap);
         }
 
         public ActionResult Details(int? id)
