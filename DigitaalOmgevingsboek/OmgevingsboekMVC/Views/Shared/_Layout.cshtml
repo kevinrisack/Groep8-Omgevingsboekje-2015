@@ -76,10 +76,13 @@
                     <li>
                         <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href='@Html.ActionLink("Afmelden", "LogOff", "Account")'><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-gear fa-fw"></i>Afmelden</a></li>
+
+                    }
                 </ul>
                 <!-- /.dropdown-user -->
             </li>
