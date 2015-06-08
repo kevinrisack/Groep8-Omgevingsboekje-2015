@@ -1,5 +1,6 @@
 ﻿using DigitaalOmgevingsboek;
 using OmgevingsboekMVC.Businesslayer.Repositories;
+using DigitaalOmgevingsboek.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,13 @@ namespace OmgevingsboekMVC.Businesslayer.Services
     {
         private UitstapRepository repoUitstap = null;
         private POIRepository repoPOI = null;
+        private GenericRepository<AspNetUsers> repoUser = null;
 
-        public UitstapService(UitstapRepository repoUitstap, POIRepository repoPOI)
+        public UitstapService(UitstapRepository repoUitstap, POIRepository repoPOI, GenericRepository<AspNetUsers> repoUser)
         {
             this.repoUitstap = repoUitstap;
             this.repoPOI = repoPOI;
+            this.repoUser = repoUser;
         }
 
         #region Uitstappen
@@ -71,6 +74,17 @@ namespace OmgevingsboekMVC.Businesslayer.Services
         public POI GetPOIById(int id)
         {
             return repoPOI.GetByID(id);
+        }
+        #endregion
+
+        #region Users
+        public List<AspNetUsers> GetUsers()
+        {
+            return repoUser.All().ToList<AspNetUsers>();
+        }
+        public AspNetUsers GetUserById(string id)
+        {
+            return repoUser.GetByID(id);
         }
         #endregion
     }

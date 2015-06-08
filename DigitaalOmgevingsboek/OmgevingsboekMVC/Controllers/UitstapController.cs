@@ -7,7 +7,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using OmgevingsboekMVC.Attributes;
 
 namespace OmgevingsboekMVC.Controllers
 {
@@ -73,7 +72,7 @@ namespace OmgevingsboekMVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult New(Uitstap uitstap, string submit)
-        {
+        {   
             ViewBag.POIs = us.GetPOIs();
             string[] input = submit.Split(':');
 
@@ -87,10 +86,12 @@ namespace OmgevingsboekMVC.Controllers
                     return RedirectToAction("Details", uitstap.Id);
 
                 case "delete":
+                    ViewBag.POIUpdate = true;
                     uitstap.POI.Remove(us.GetPOIById(int.Parse(input[1])));
                     return View(uitstap);
 
                 case "add":
+                    ViewBag.POIUpdate = true;
                     uitstap.POI.Add(us.GetPOIById(int.Parse(input[1])));
                     return View(uitstap);
 

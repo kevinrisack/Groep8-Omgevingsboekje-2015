@@ -94,11 +94,28 @@
                             <div class="panel">
 
                                 <div class="panel-body">
-                                    <!-- Voeg hier code voor het beheren van de routes-->
-                                    <div class="row">
-                                        <div class="col-lg-6">
-
-
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.POI)
+                                        <div class="dataTable_wrapper">
+                                            <table class="table table-striped table-bordered table-hover dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Naam</td>
+                                                        <td>Adres</td>
+                                                        <td>Gemeente</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (POI poi in Model.POI)
+                                                    {
+                                                        <tr>
+                                                            <td>@poi.Naam</td>
+                                                            <td>@poi.Adres</td>
+                                                            <td>@poi.Gemeente</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -141,17 +158,6 @@
 
                                                 </td>
                                             </tr>
-                                            
-                                            @Html.HiddenFor(model => model.Id)
-                                            @Html.HiddenFor(model => model.Auteur_Id)
-                                            @Html.HiddenFor(model => model.Route_Id)
-                                            @Html.HiddenFor(model => model.POI)
-                                            @Html.HiddenFor(model => model.Route)
-                                            
-                                            @Html.HiddenFor(model => model.AspNetUsers)
-                                            @Html.HiddenFor(model => model.AspNetUsers1)
-                                            @Html.HiddenFor(model => model.IsDeleted)
-                                            
                                         }
 
                                     </tbody>
@@ -163,7 +169,10 @@
             </div>
    
     </div>
-       }
+           @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Auteur_Id)
+        @Html.HiddenFor(model => model.Route_Id)
+                }
 
 
     <!-- /.row -->
@@ -171,7 +180,7 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('#dataTables-example').DataTable({
+        $('.dataTables-example').DataTable({
             responsive: true
         });
     });
