@@ -21,7 +21,7 @@ namespace OmgevingsboekMVC.Controllers
                 lijst = gebruikerrepo.All().ToList();
             }
             ViewBag.Gebruikers = lijst;
-            return View();
+            return View("GebruikersOverzicht");
         }
     }
 }
