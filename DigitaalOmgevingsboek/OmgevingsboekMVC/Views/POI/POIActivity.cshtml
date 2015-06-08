@@ -1,7 +1,145 @@
 ﻿
 @{
-    ViewBag.Title = "POIActivity";
+    ViewBag.Title = "POINew";
 }
 
-<h2>POIActivity</h2>
 
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Activity Aanmaken</h1>
+            </div>
+        </div>
+
+        <form method="post" action="/POI/POINew" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-xs-10 col-lg-10">
+
+                </div>
+                <div class="col-lg-2 col-xs-12">
+                    <input type="submit" value="POI Opslaan" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="tabs">
+                        <li><a href="#view1">Basis Informatie Activity</a></li>
+                        <li><a href="#view2">Afbeeldingen</a></li>
+                        <li><a href="#view3">Leergebied</a></li>
+                    </ul>
+                    <div class="tabcontents">
+                        <div id="view1">
+                            <div class="panel">
+
+                                <div class="panel-body">
+
+
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                            
+                                          
+                                            </div>
+                                            <div class="form-group">
+                                          
+                                      
+                                            </div>
+                                            <div class="form-group">
+                                           
+                                      
+                                            </div>
+                                            <div class="form-group">
+                                   
+                                 
+                                            </div>
+                                            <div class="form-group">
+                                 
+                                       
+                                            </div>
+                                            <div class="form-group">
+                                
+                                     
+                                            </div>
+                                            <div class="form-group">
+                                        
+                                           
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                        
+                 
+                                            </div>
+                                            <div class="form-group">
+                                               
+                                     
+                                            </div>
+ 
+                                            <div class="form-group">
+                                                <label>Doelgroep:</label><br />
+
+
+
+                                           
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Thema:</label><br />
+
+
+
+                                     
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="view2">
+                            <div class="panel">
+
+                                <div class="panel-body">
+                                    <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label>Afbeeldingen</label>
+                                            <br />
+     
+                                            <input type="file" name="picture" id="url" /><input type="button" name="btnBrowse" value="..." /><input type="submit" name="btnUploaden" value="Uploaden" />
+                                            <br />
+
+                                            <div class="POINewAfbeeldingen">
+
+                                                Afbeelding
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="view3">
+                            <label>Activiteiten</label><label id="NewActivity"><a href="@Url.Action("POIActivity", "POI")">Nieuwe Activiteit</a></label>
+                            <br />
+                            <div class="POINewActivity">
+                                <!-- Voeg hier code voor het beheren van activiteiten-->
+                                Activity
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+<!-- /#page-wrapper -->
