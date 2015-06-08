@@ -107,6 +107,33 @@
 
 
                                             </div>
+
+                                            <div class="form-group">
+                                                <label>Thema:</label><br />
+
+
+
+                                                @foreach (Thema th in ViewBag.Themas)
+                                                {
+                                                    var i = "";
+
+                                                    foreach (Thema thema in Model.Thema)
+                                                    {
+
+                                                        if (th.Id == thema.Id)
+                                                        {
+                                                            i = "checked";
+                                                        }
+                                                    }
+                                                    <div class="checkbox-inline">
+
+                                                        <input type="checkbox" id="@th.Id" name="themaIds" value="@th.Id" @i />
+                                                        <label for="@th.Id">@th.ThemaNaam</label>
+                                                    </div>
+
+                                                }
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

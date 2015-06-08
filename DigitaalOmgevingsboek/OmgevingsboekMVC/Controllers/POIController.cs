@@ -61,6 +61,7 @@ namespace DigitaalOmgevingsboek.Controllers
                 POI poi = ps.GetPOI(id.Value);
 
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                ViewBag.Themas = ps.GetThemas();
 
                 return View(poi);
             }
@@ -71,7 +72,7 @@ namespace DigitaalOmgevingsboek.Controllers
         }
 
         [HttpPost]
-        public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds)
+        public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> themaIds)
         {
             POI poiModify = ps.GetPOI(poi.Id);
             if (ModelState.IsValid)
@@ -90,7 +91,22 @@ namespace DigitaalOmgevingsboek.Controllers
                             
                             ps.UpdateDoelgroep(dg);
                         }
-                    }                               
+                    }
+
+                    poiModify.Thema = new List<Thema>();
+                    if (themaIds != null)
+                    {
+                        foreach (int themaId in themaIds)
+                        {
+                            Thema th = ps.GetThema(themaId);
+
+                            th.POI.Add(poiModify);
+                            poiModify.Thema.Add(th);
+
+                            ps.UpdateThema(th);
+                        }
+                    }
+
                     ps.UpdatePOI(poiModify);
 
                     if (picture != null)
@@ -108,6 +124,7 @@ namespace DigitaalOmgevingsboek.Controllers
             else
             {
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                ViewBag.Themas = ps.GetThemas();
                 return View(poiModify);
             }
         }
@@ -118,17 +135,19 @@ namespace DigitaalOmgevingsboek.Controllers
             poi.Auteur_Id = User.Identity.GetUserId();
 
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
+            ViewBag.Themas = ps.GetThemas();
 
             return View(poi);
         }
 
         [HttpPost]
-        public ActionResult POINew(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds)
+        public ActionResult POINew(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> themaIds)
         {
             if (ModelState.IsValid)
             {
                 try
-                {   ps.AddPOI(poi);
+                {   
+                    ps.AddPOI(poi);
 
                     if (doelgroepIds != null)
                     {
@@ -140,6 +159,19 @@ namespace DigitaalOmgevingsboek.Controllers
                             poi.Doelgroep.Add(dg);
 
                             ps.UpdateDoelgroep(dg);
+                        }
+                    }
+
+                    if (themaIds != null)
+                    {
+                        foreach (int themaId in themaIds)
+                        {
+                            Thema th = ps.GetThema(themaId);
+
+                            th.POI.Add(poi);
+                            poi.Thema.Add(th);
+
+                            ps.UpdateThema(th);
                         }
                     }
                     
@@ -159,6 +191,7 @@ namespace DigitaalOmgevingsboek.Controllers
             else
             {
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                ViewBag.Themas = ps.GetThemas();
                 return View(poi);
             }
         }

@@ -223,6 +223,7 @@
     <Compile Include="Businesslayer\Repositories\GenericRepository.cs" />
     <Compile Include="Businesslayer\Repositories\IGenericRepository.cs" />
     <Compile Include="Businesslayer\Repositories\POIRepository.cs" />
+    <Compile Include="Businesslayer\Repositories\ThemaRepository.cs" />
     <Compile Include="Businesslayer\Repositories\UitstapRepository.cs" />
     <Compile Include="Businesslayer\Services\POIService.cs" />
     <Compile Include="Businesslayer\Services\UitstapService.cs" />

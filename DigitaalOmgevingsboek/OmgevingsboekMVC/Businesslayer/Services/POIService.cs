@@ -12,24 +12,23 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
     {
         private POIRepository repoPOI = null;
         private DoelgroepRepository repoDoelgroep = null;
+        private ThemaRepository repoThema = null;
 
         private IGenericRepository<Foto_POI> repoFotoPOI = null;      
         private IGenericRepository<Leerdoel> repoLeerdoel = null;
-        private IGenericRepository<Thema> repoThema = null;
 
         OmgevingsboekContext context;
 
-        public POIService(POIRepository repoPOI, DoelgroepRepository repoDoelgroep, IGenericRepository<Foto_POI> repoFotoPOI, IGenericRepository<Leerdoel> repoLeerdoel, IGenericRepository<Thema> repoThema)
+        public POIService(IGenericRepository<Foto_POI> repoFotoPOI, IGenericRepository<Leerdoel> repoLeerdoel)
         {
             this.context = new OmgevingsboekContext();
 
             this.repoPOI = new POIRepository(context);
             this.repoDoelgroep = new DoelgroepRepository(context);
+            this.repoThema = new ThemaRepository(context);
 
-            this.repoFotoPOI = repoFotoPOI;
-            this.repoFotoPOI = repoFotoPOI;            
+            this.repoFotoPOI = repoFotoPOI;          
             this.repoLeerdoel = repoLeerdoel;
-            this.repoThema = repoThema;
         }
 
         #region Get POI(s)
@@ -71,6 +70,10 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         {
             return repoThema.All().ToList<Thema>();
         }
+        public Thema GetThema(int themaId)
+        {
+            return repoThema.GetByID(themaId);
+        }
         #endregion
 
         #region Add/Update
@@ -90,6 +93,12 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         {
             repoDoelgroep.Update(dg);
             repoDoelgroep.SaveChanges();
+        }
+
+        public void UpdateThema(Thema th)
+        {
+            repoThema.Update(th);
+            repoThema.SaveChanges();
         }
 
         public void UploadPicture(POI poi, HttpPostedFileBase picture)

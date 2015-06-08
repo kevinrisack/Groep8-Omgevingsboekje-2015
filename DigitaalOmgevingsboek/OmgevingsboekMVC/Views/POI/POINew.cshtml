@@ -96,6 +96,22 @@
                                                 }
 
                                             </div>
+                                            <div class="form-group">
+                                                <label>Thema:</label><br />
+
+
+
+                                                @foreach (Thema th in ViewBag.Themas)
+                                                {
+                                                    <div class="checkbox-inline">
+
+                                                        <input type="checkbox" id="@th.Id" name="themaIds" value="@th.Id" />
+                                                        <label for="@th.Id">@th.ThemaNaam</label>
+                                                    </div>
+
+                                                }
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

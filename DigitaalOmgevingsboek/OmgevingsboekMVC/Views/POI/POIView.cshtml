@@ -110,6 +110,19 @@
 
                                             }
                                         </div>
+
+                                        <div class="form-group">
+                                            <label>Thema:</label>
+
+
+                                            @foreach (Thema t in Model.Thema)
+                                            {
+                                                <p>
+                                                    @t.ThemaNaam
+                                                </p>
+
+                                            }
+                                        </div>
                                     </div>
                                     <div class="col-lg-6">
                                         @*@foreach(Foto_POI foto in Model.Foto_POI){
