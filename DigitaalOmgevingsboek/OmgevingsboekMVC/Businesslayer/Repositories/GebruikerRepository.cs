@@ -28,5 +28,14 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             return query.ToList<AspNetUsers>();
         }
 
+        public AspNetUsers GetByEmail(string aspuser)
+        {
+            var query=(from u in this.context.AspNetUsers where u.Email==aspuser select u);
+
+            return query.Single<AspNetUsers>();
+        }
+
+
+
         }
 }

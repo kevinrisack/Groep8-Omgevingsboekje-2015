@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OmgevingsboekMVC.Models;
+using DigitaalOmgevingsboek;
+using DigitaalOmgevingsboek.BusinessLayer;
+using OmgevingsboekMVC.Businesslayer.Repositories;
 
 namespace OmgevingsboekMVC.Controllers
 {
@@ -71,15 +74,39 @@ namespace OmgevingsboekMVC.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        {
+        { AspNetUsers aspuser = new AspNetUsers();
+
+            using (OmgevingsboekContext context = new OmgevingsboekContext())
+            {
+                GebruikerRepository repo = new GebruikerRepository(context);
+                aspuser = repo.GetByEmail(model.Email);
+
+            }
+
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
             }
+            if (aspuser != null) {  
+                    if(aspuser.IsPending==true)
+                    {
+                        return View("Error");
+
+                    }
+                    if (aspuser.IsDeleted == true)
+                    {
+                        return View("Error");
+
+                    } 
+            }
+           
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+           
+          
+            
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
