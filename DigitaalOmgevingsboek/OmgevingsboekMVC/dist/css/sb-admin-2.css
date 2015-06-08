@@ -89,6 +89,18 @@ body {
     background-color:#44c8f5;
 }
 
+
+.navbar-default2 .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-default2 .navbar-toggle:hover,
+.navbar-default2 .navbar-toggle:focus {
+  background-color: #ddd;
+}
+.navbar-default2 .navbar-toggle .icon-bar {
+  background-color: #888;
+}
+
 .sidebar .sidebar-nav.navbar-collapse {
     padding-right: 0;
     padding-left: 0;
