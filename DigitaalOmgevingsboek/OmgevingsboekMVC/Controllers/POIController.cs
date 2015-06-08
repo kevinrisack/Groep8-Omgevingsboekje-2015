@@ -72,7 +72,7 @@ namespace DigitaalOmgevingsboek.Controllers
         [HttpPost]
         public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds)
         {
-            //poi = ps.GetPOI(poi.Id);
+            POI poiModify = ps.GetPOI(poi.Id);
             if (ModelState.IsValid)
             {
                 try
@@ -83,24 +83,24 @@ namespace DigitaalOmgevingsboek.Controllers
                         {
                             Doelgroep dg = ps.GetDoelgroep(doelgroepId);
                             
-                            if (!dg.POI.Any(p => p.Id == poi.Id))
+                            if (!dg.POI.Any(p => p.Id == poiModify.Id))
                             {
-                                dg.POI.Add(poi);
+                                dg.POI.Add(poiModify);
                             }
-                            if (!poi.Doelgroep.Any(d => d.Id == dg.Id))
+                            if (!poiModify.Doelgroep.Any(d => d.Id == dg.Id))
                             {
-                                poi.Doelgroep.Add(dg);
+                                poiModify.Doelgroep.Add(dg);
                             }
                             
                             ps.UpdateDoelgroep(dg);
                         }
                     }
               
-                    ps.UpdatePOI(poi);
+                    ps.UpdatePOI(poiModify);
 
                     if (picture != null)
                     {
-                        ps.UploadPicture(poi, picture);
+                        ps.UploadPicture(poiModify, picture);
                     }
 
                     return RedirectToAction("POIOverzicht");
@@ -112,7 +112,8 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             else
             {
-                return RedirectToAction("POIModify", poi);
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                return View(poiModify);
             }
         }
 
@@ -147,7 +148,8 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             else
             {
-                return RedirectToAction("POINew", poi);
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                return View(poi);
             }
         }
 

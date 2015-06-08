@@ -13,14 +13,11 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
 {
     public class POIRepository : GenericRepository<POI>
     {
-        private IGenericRepository<Doelgroep> repoDoelgroep = null;
-
         OmgevingsboekContext context;
-        public POIRepository(OmgevingsboekContext context, IGenericRepository<Doelgroep> repoDoelgroep)
+        public POIRepository(OmgevingsboekContext context)
             : base(context)
         {
             this.context = context;
-            this.repoDoelgroep = repoDoelgroep;
         }
 
         public override IEnumerable<POI> All()
@@ -81,13 +78,6 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
                          where p.IsDeleted == false && p.Doelgroep.Any(d => d.Id == doelgroepId)
                          select p);
              return query.ToList<POI>();
-        }
-
-        public void UpdateDoelgroep(Doelgroep dg)
-        {
-            context.Entry(dg).State = EntityState.Unchanged;
-            //repoDoelgroep.Update(dg);
-            //repoDoelgroep.SaveChanges();
         }
 
         public void UploadPicture(Foto_POI fotoPOI, HttpPostedFileBase picture)

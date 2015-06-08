@@ -12,15 +12,25 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
     {
         private POIRepository repoPOI = null;
         private IGenericRepository<Foto_POI> repoFotoPOI = null;
-        private IGenericRepository<Doelgroep> repoDoelgroep = null;
+        private DoelgroepRepository repoDoelgroep = null;
         private IGenericRepository<Leerdoel> repoLeerdoel = null;
         private IGenericRepository<Thema> repoThema = null;
 
-        public POIService(POIRepository repoPOI, IGenericRepository<Foto_POI> repoFotoPOI, IGenericRepository<Doelgroep> repoDoelgroep, IGenericRepository<Leerdoel> repoLeerdoel, IGenericRepository<Thema> repoThema)
+        OmgevingsboekContext context;
+
+        public POIService(POIRepository repoPOI, IGenericRepository<Foto_POI> repoFotoPOI, DoelgroepRepository repoDoelgroep, IGenericRepository<Leerdoel> repoLeerdoel, IGenericRepository<Thema> repoThema)
         {
-            this.repoPOI = repoPOI;
+            //this.repoPOI = repoPOI;
+            //this.repoFotoPOI = repoFotoPOI;
+            //this.repoDoelgroep = repoDoelgroep;
+            //this.repoLeerdoel = repoLeerdoel;
+            //this.repoThema = repoThema;
+
+            this.context = new OmgevingsboekContext();
+
+            this.repoPOI = new POIRepository(context);
             this.repoFotoPOI = repoFotoPOI;
-            this.repoDoelgroep = repoDoelgroep;
+            this.repoDoelgroep = new DoelgroepRepository(context);
             this.repoLeerdoel = repoLeerdoel;
             this.repoThema = repoThema;
         }
@@ -70,7 +80,8 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
 
         public void UpdateDoelgroep(Doelgroep dg)
         {
-            repoPOI.UpdateDoelgroep(dg);
+            repoDoelgroep.Update(dg);
+            repoDoelgroep.SaveChanges();
         }
 
         /*

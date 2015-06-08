@@ -218,6 +218,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Businesslayer\Context\OmgevingsboekContext.cs" />
     <Compile Include="Businesslayer\Repositories\ActiviteitRepository.cs" />
+    <Compile Include="Businesslayer\Repositories\DoelgroepRepository.cs" />
     <Compile Include="Businesslayer\Repositories\GebruikerRepository.cs" />
     <Compile Include="Businesslayer\Repositories\GenericRepository.cs" />
     <Compile Include="Businesslayer\Repositories\IGenericRepository.cs" />

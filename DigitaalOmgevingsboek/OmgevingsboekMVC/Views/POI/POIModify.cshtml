@@ -12,15 +12,16 @@
                 <h1 class="page-header">POI Bewerken</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-10">
 
-            </div>
-            <div class="col-lg-2">
-                <input type="submit" value="POI Opslaan" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
-            </div>
-        </div>
         <form method="post" action="/POI/POIModify" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-xs-10">
+
+                </div>
+                <div class="col-lg-2">
+                    <input type="submit" value="POI Opslaan" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="tabs">
@@ -38,35 +39,45 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Naam: </label> @Html.TextBoxFor(model => model.Naam, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Naam, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="form-group">
                                                 <label>Adres: </label> @Html.TextBoxFor(model => model.Adres, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Adres, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="form-group">
                                                 <label>Gemeente: </label> @Html.TextBoxFor(model => model.Gemeente, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Gemeente, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="form-group">
                                                 <label>Tel.: </label> @Html.TextBoxFor(model => model.Telefoon, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Telefoon, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="form-group">
                                                 <label>E-mail: </label> @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="form-group">
                                                 <label>Website: </label> @Html.TextBoxFor(model => model.WebsiteUrl, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.WebsiteUrl, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="form-group">
                                                 <label>Beschrijving: </label> @Html.TextAreaFor(model => model.Beschrijving, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Beschrijving, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Openingsuren: </label> @Html.TextAreaFor(model => model.Openingsuur, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Openingsuur, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="form-group">
                                                 <label>Tijdsduur: </label> @Html.TextBoxFor(model => model.Duurtijd, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Duurtijd, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="form-group">
                                                 <label>Toegangsprijs: </label> @Html.TextBoxFor(model => model.Toegangsprijs, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Toegangsprijs, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="form-group">
                                                 <label>Doelgroep:</label><br />
