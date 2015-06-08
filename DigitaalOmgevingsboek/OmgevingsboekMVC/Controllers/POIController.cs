@@ -77,25 +77,19 @@ namespace DigitaalOmgevingsboek.Controllers
             {
                 try
                 {
+                    poiModify.Doelgroep = new List<Doelgroep>();
                     if (doelgroepIds != null)
                     {
                         foreach (int doelgroepId in doelgroepIds)
                         {
                             Doelgroep dg = ps.GetDoelgroep(doelgroepId);
                             
-                            if (!dg.POI.Any(p => p.Id == poiModify.Id))
-                            {
-                                dg.POI.Add(poiModify);
-                            }
-                            if (!poiModify.Doelgroep.Any(d => d.Id == dg.Id))
-                            {
-                                poiModify.Doelgroep.Add(dg);
-                            }
+                            dg.POI.Add(poiModify);
+                            poiModify.Doelgroep.Add(dg);
                             
                             ps.UpdateDoelgroep(dg);
                         }
-                    }
-              
+                    }                               
                     ps.UpdatePOI(poiModify);
 
                     if (picture != null)
@@ -133,8 +127,23 @@ namespace DigitaalOmgevingsboek.Controllers
             if (ModelState.IsValid)
             {
                 try
-                {
-                    ps.AddPOI(poi);
+                {   ps.AddPOI(poi);
+
+                    if (doelgroepIds != null)
+                    {
+                        foreach (int doelgroepId in doelgroepIds)
+                        {
+                            Doelgroep dg = ps.GetDoelgroep(doelgroepId);
+
+                            dg.POI.Add(poi);
+                            poi.Doelgroep.Add(dg);
+
+                            ps.UpdateDoelgroep(dg);
+                        }
+                    }
+                    
+                    ps.UpdatePOI(poi);
+
                     if (picture != null)
                     {
                         ps.UploadPicture(poi, picture);
