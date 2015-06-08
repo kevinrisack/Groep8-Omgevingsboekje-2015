@@ -85,6 +85,10 @@ body {
     left: auto;
 }
 
+.navbar-default2{
+    background-color:#44c8f5;
+}
+
 .sidebar .sidebar-nav.navbar-collapse {
     padding-right: 0;
     padding-left: 0;
