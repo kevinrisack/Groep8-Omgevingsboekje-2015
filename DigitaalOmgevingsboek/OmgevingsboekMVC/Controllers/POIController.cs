@@ -10,6 +10,7 @@ using DigitaalOmgevingsboek.Businesslayer.Services;
 
 namespace DigitaalOmgevingsboek.Controllers
 {
+    [Authorize]
     public class POIController : Controller
     {
         private POIService ps;
@@ -160,6 +161,20 @@ namespace DigitaalOmgevingsboek.Controllers
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
                 return View(poi);
             }
+        }
+
+        public ActionResult POIDelete(int? id)
+        {
+            if (id.HasValue)
+            {
+                POI poi = ps.GetPOI(id.Value);
+                poi.IsDeleted = true;
+
+                ps.UpdatePOI(poi);
+
+                return RedirectToAction("POIOverzicht");
+            }
+            return RedirectToAction("POIOverzicht");
         }
 
         public ActionResult POIActivity()

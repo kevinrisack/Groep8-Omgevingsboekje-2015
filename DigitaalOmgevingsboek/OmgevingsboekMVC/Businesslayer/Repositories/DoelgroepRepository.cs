@@ -25,13 +25,6 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             return query.Single<Doelgroep>();
         }
 
-        //public void UpdateDoelgroep(Doelgroep dg)
-        //{
-        //    //context.Entry(dg).State = EntityState.Unchanged;
-        //    repoDoelgroep.Update(dg);
-        //    repoDoelgroep.SaveChanges();
-        //}
-
         public override void Update(Doelgroep dg)
         {
             foreach (POI poi in dg.POI)
@@ -40,14 +33,6 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
                 context.Entry(poi).State = EntityState.Unchanged;
             }
             base.Update(dg);
-            //context.Set<POI>().Attach(dg.POI);
-            //context.
-            //if (context.Entry(dg.POI).State == EntityState.Detached)
-            //{
-            //    dbSet.Attach(dg);
-            //}
-
-            //base.Update(dg);
         }
     }
 }
