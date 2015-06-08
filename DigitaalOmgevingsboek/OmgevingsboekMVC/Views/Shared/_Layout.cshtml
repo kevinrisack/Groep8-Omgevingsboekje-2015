@@ -70,12 +70,6 @@
       
                 
                 <ul class="dropdown-menu dropdown-user">
-                    <li>
-                        <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
@@ -124,9 +118,6 @@
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="@Url.Action("Index","Gebruiker")">Overzicht</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">Lijst</a>
                             </li>
                         </ul>
                     </li>

@@ -368,3 +368,9 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+.POIViewGoogleMaps{
+    margin-top:10px;
+    height:350px;
+    
+}
