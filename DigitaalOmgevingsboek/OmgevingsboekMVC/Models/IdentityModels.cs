@@ -19,6 +19,7 @@ namespace OmgevingsboekMVC.Models
         public string Name { get; set; }
         public string Firstname { get; set; }
         public bool IsPending { get; set; }
+        public bool IsDeleted { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

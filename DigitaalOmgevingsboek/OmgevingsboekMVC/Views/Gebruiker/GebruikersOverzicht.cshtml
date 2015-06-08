@@ -4,6 +4,9 @@
     ViewBag.Title = "Gebruikers";
 }
 
+
+
+
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -15,9 +18,9 @@
             <div class="col-lg-9 col-xs-9">
 
             </div>
-            <div class="col-lg-3 col-xs-3">
+            @*<div class="col-lg-3 col-xs-3">
                 <input value="Nieuwe Gebruiker" name="btnSubmit" class="btn btn-lg btn-success btn-block" onclick="@Url.Action("Register","Account")" />
-            </div>
+            </div>*@
         </div>
         <form>
             <div class="row">
@@ -38,18 +41,22 @@
                                         <table class="table table-striped table-bordered table-hover dataTables-example">
                                             <thead>
                                                 <tr>
-                                                    <th>Naam Gebruiker</th>
-                                                    <th></th>
+                                                    <th>Voornaam</th>
+                                                    <th>Naam</th>
+                                                    <th>gebruikersnaam</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach (AspNetUsers anu in ViewBag.Gebruikers)
                                                 {
+                                                    if (anu.IsPending == false)
+                                                    {
                                                     <tr class="gradeC">
                                                         <td>@anu.Firstname</td>
                                                         <td>@anu.Name</td>
                                                         <td>@anu.UserName</td>
-                                                    </tr>
+                                                    </tr>}
+
                                                 }
 
 
@@ -70,18 +77,25 @@
                                         <table class="table table-striped table-bordered table-hover dataTables-example">
                                             <thead>
                                                 <tr>
-                                                    <th>Naam Gebruiker</th>
-                                                    <th></th>
+                                                    <th>Voornaam</th>
+                                                    <th>Naam</th>
+                                                    <th>Gebruikersnaam</th>
+                                                    <th>Actie</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach (AspNetUsers anu in ViewBag.Gebruikers)
                                                 {
-                                                    <tr class="gradeC">
-                                                        <td>@anu.Firstname</td>
-                                                        <td>@anu.Name</td>
-                                                        <td>@anu.UserName</td>
-                                                    </tr>
+                                                    if (anu.IsPending == true)
+                                                    {
+                                                        <tr class="gradeC">
+                                                            <td>@anu.Firstname</td>
+                                                            <td>@anu.Name</td>
+                                                            <td>@anu.UserName</td>
+                                                            <td>@Html.ActionLink("Toestaan","Toestaan",anu) | @Html.ActionLink("Weigeren", "Weigeren", anu)</td>
+                                                
+                                                        </tr>}
+
                                                 }
 
 

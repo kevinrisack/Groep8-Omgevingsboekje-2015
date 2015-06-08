@@ -57,6 +57,10 @@ namespace OmgevingsboekMVC.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -68,6 +72,10 @@ namespace OmgevingsboekMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -139,6 +147,10 @@ namespace OmgevingsboekMVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -151,11 +163,11 @@ namespace OmgevingsboekMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,IsPending=true};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,IsPending=true,Name=model.Naam,Firstname=model.Voornaam,IsDeleted=false};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

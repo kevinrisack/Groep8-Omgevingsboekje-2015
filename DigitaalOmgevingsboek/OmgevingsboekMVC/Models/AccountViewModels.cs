@@ -65,6 +65,14 @@ namespace OmgevingsboekMVC.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Naam")]
+        public string Naam { get; set; }
+
+        [Required]
+        [Display(Name = "Voornaam")]
+        public string Voornaam { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
