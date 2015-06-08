@@ -50,6 +50,7 @@ namespace DigitaalOmgevingsboek
         public string UserName { get; set; }
 
         public bool IsDeleted { get; set; }
+        public bool IsPending { get; set; }
 
         public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
 

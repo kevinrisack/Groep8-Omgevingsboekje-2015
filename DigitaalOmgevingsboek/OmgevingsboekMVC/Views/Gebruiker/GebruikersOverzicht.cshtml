@@ -1,8 +1,8 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model IEnumerable<DigitaalOmgevingsboek.AspNetUsers>
 
+@{
+    ViewBag.Title = "Gebruikers";
+}
 
 <div id="page-wrapper">
     <div class="container-fluid">
@@ -16,7 +16,7 @@
 
             </div>
             <div class="col-lg-2">
-                <input value="Nieuwe Gebruiker" name="btnSubmit" class="btn btn-lg btn-success btn-block" onclick="@Url.Action("Register","Account") />
+                <input value="Nieuwe Gebruiker" name="btnSubmit" class="btn btn-lg btn-success btn-block" onclick="@Url.Action("Register","Account")" />
             </div>
         </div>
         <form>
@@ -37,27 +37,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach (AspNetUsers anu in ViewBag.Gebruikers)
+                                        {
                                         <tr class="gradeC">
-                                            <td>KHTML</td>
-                                            <td>Konqureror 3.1</td>
-                                            <td>KDE 3.1</td>
-                                            <td class="center">3.1</td>
-                                            <td class="center">C</td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>KHTML</td>
-                                            <td>Konqureror 3.3</td>
-                                            <td>KDE 3.3</td>
-                                            <td class="center">3.3</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>KHTML</td>
-                                            <td>Konqureror 3.5</td>
-                                            <td>KDE 3.5</td>
-                                            <td class="center">3.5</td>
-                                            <td class="center">A</td>
-                                        </tr>
+                                            <td>@anu.Firstname</td>
+                                            <td>@anu.Name</td>
+                                            <td>@anu.UserName</td>
+                                        </tr> 
+                                        }
+                                        
+                                       
 
                                     </tbody>
                                     </table>

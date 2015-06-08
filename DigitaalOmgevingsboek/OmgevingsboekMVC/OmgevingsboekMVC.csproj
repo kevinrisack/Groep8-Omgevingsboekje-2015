@@ -216,9 +216,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Attributes\MultipleButtonAttribute.cs" />
     <Compile Include="Businesslayer\Context\OmgevingsboekContext.cs" />
     <Compile Include="Businesslayer\Repositories\ActiviteitRepository.cs" />
+    <Compile Include="Businesslayer\Repositories\GebruikerRepository.cs" />
     <Compile Include="Businesslayer\Repositories\GenericRepository.cs" />
     <Compile Include="Businesslayer\Repositories\IGenericRepository.cs" />
     <Compile Include="Businesslayer\Repositories\POIRepository.cs" />
@@ -226,6 +226,7 @@
     <Compile Include="Businesslayer\Services\POIService.cs" />
     <Compile Include="Businesslayer\Services\UitstapService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GebruikerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\POIController.cs" />
@@ -236,6 +237,10 @@
     <Compile Include="Migrations\201505290933382_InitDatabase.cs" />
     <Compile Include="Migrations\201505290933382_InitDatabase.Designer.cs">
       <DependentUpon>201505290933382_InitDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506080918188_changedAspNetUsers.cs" />
+    <Compile Include="Migrations\201506080918188_changedAspNetUsers.Designer.cs">
+      <DependentUpon>201506080918188_changedAspNetUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -1115,10 +1120,11 @@
     <Content Include="Views\Uitstap\Delete.cshtml" />
     <Content Include="Views\Uitstap\New.cshtml" />
     <Content Include="Views\POI\POIModify.cshtml" />
-    <Content Include="Views\Gebruikers\Index.cshtml" />
+    <Content Include="Views\Gebruiker\GebruikersOverzicht.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Gebruikers\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Management\" />
     <Folder Include="Views\test\" />
@@ -1130,6 +1136,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505290933382_InitDatabase.resx">
       <DependentUpon>201505290933382_InitDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506080918188_changedAspNetUsers.resx">
+      <DependentUpon>201506080918188_changedAspNetUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
