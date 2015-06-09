@@ -30,9 +30,10 @@ namespace OmgevingsboekMVC.Controllers
         {
             using(OmgevingsboekContext context=new OmgevingsboekContext())
             {
-                GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>();
+                GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>(context);
                 aspuser.IsPending = false;
                 repo.Update(aspuser);
+                repo.SaveChanges();
 
             }
 
