@@ -88,9 +88,19 @@
 
                                                 @foreach (Doelgroep dg in ViewBag.Doelgroepen)
                                                 {
+                                                    var i = "";
+
+                                                    foreach (Doelgroep doelgroep in Model.Doelgroep)
+                                                    {
+
+                                                        if (dg.Id == doelgroep.Id)
+                                                        {
+                                                            i = "checked";
+                                                        }
+                                                    }
                                                     <div class="checkbox-inline">
 
-                                                        <input type="checkbox" id="@dg.Id" name="doelgroepIds" value="@dg.Id" />
+                                                        <input type="checkbox" id="@dg.Id" name="doelgroepIds" value="@dg.Id" @i />
                                                         <label for="@dg.Id">@dg.DoelgroepNaam</label>
                                                     </div>
 
@@ -104,9 +114,19 @@
 
                                                 @foreach (Thema th in ViewBag.Themas)
                                                 {
+                                                    var i = "";
+
+                                                    foreach (Thema thema in Model.Thema)
+                                                    {
+
+                                                        if (th.Id == thema.Id)
+                                                        {
+                                                            i = "checked";
+                                                        }
+                                                    }
                                                     <div class="checkbox-inline">
 
-                                                        <input type="checkbox" id="@th.Id" name="themaIds" value="@th.Id" />
+                                                        <input type="checkbox" id="@th.Id" name="themaIds" value="@th.Id" @i />
                                                         <label for="@th.Id">@th.ThemaNaam</label>
                                                     </div>
 

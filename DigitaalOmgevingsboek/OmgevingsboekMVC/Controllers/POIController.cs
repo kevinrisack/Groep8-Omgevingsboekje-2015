@@ -137,8 +137,9 @@ namespace DigitaalOmgevingsboek.Controllers
         }
 
         [HttpGet]
-        public ActionResult POINew(POI poi)
+        public ActionResult POINew()
         {
+            POI poi = new POI();
             poi.Auteur_Id = User.Identity.GetUserId();
 
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
@@ -198,6 +199,22 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             else
             {
+                if (doelgroepIds != null)
+                {
+                    foreach (int doelgroepId in doelgroepIds)
+                    {
+                        Doelgroep dg = ps.GetDoelgroep(doelgroepId);
+                        poi.Doelgroep.Add(dg);
+                    }
+                }
+                if (themaIds != null)
+                {
+                    foreach (int themaId in themaIds)
+                    {
+                        Thema th = ps.GetThema(themaId);
+                        poi.Thema.Add(th);
+                    }
+                }
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
                 ViewBag.Themas = ps.GetThemas();
                 return View(poi);
