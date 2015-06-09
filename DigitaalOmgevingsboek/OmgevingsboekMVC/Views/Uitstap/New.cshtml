@@ -1,0 +1,74 @@
+﻿@model DigitaalOmgevingsboek.Uitstap
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    
+
+
+                            <!--
+                            <input type="submit" name="action:Rechten" value="Beheerrechten" class="btn btn-default firstbutton" />
+                            <input type="submit" name="action:Route" value="Route Aanpassen" class="btn btn-default" />
+                            <input type="submit" name="action:POI" value="POI Toevoegen" class="btn btn-default" />
+                            < class="btn btn-default lastbutton" />
+                             -->
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Nieuwe Uitstap</h1>
+            </div>
+        </div>
+        
+       @using (Html.BeginForm())
+                {
+        @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-xs-10">
+        </div>
+        <div class="col-lg-2">
+            <button type="submit" id="save" name="submit" value="save" class="btn btn-lg btn-success btn-block">Uitstap Opslaan</button>
+        </div>
+    </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                            <div class="panel">
+
+                                <div class="panel-body">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Naam)
+                                        <div>
+                                            @Html.EditorFor(model => model.Naam)
+                                            @Html.ValidationMessageFor(model => model.Naam, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Beschrijving)
+                                        <div>
+                                            @Html.EditorFor(model => model.Beschrijving)
+                                            @Html.ValidationMessageFor(model => model.Beschrijving, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                       
+                            </div>
+                        </div>
+                </div>
+       }
+            </div>
+   
+    </div>
+<script>
+    $(document).ready(function () {
+        $('.dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>
