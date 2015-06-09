@@ -104,13 +104,12 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label>Multiple Selects</label>
-                                                    <select multiple class="form-control" style="height:300px;">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
+                                                    <label>POI's in route</label>
+                                                    <select size="@ViewBag.Points.Count" class="form-control" style="height:300px;">
+                                                        @foreach(POI poi in @ViewBag.Points)
+                                                        {
+                                                            <option>@poi.Naam</option>
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
@@ -120,12 +119,14 @@
                                         </div>
                                         <div class="row">
                                             <div class="dataTable_wrapper">
+                                                <label>Alle POI's</label>
                                                 <table class="table table-striped table-bordered table-hover dataTables-example">
                                                     <thead>
                                                         <tr>
                                                             <td>Naam</td>
                                                             <td>Adres</td>
                                                             <td>Gemeente</td>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -135,6 +136,16 @@
                                                                 <td>@poi.Naam</td>
                                                                 <td>@poi.Adres</td>
                                                                 <td>@poi.Gemeente</td>
+                                                                <td>
+                                                                    @if (ViewBag.Points.Contains(poi))
+                                                                    {
+                                                                        <button type="submit" id="delete" name="submit" class="btn btn-sm btn-danger btn-block" value="delete:route:@poi.Id">Verwijderen uit Uitstap</button>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <button type="submit" id="add" name="submit" class="btn btn-sm btn-success btn-block" value="add:route:@poi.Id">Toevoegen aan Uitstap</button>
+                                                                    }
+                                                                </td>
                                                             </tr>
                                                         }
                                                     </tbody>
@@ -198,6 +209,7 @@
                                                         <th>Naam</th>
                                                         <th>Voornaam</th>
                                                         <th>Gebruikersnaam</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

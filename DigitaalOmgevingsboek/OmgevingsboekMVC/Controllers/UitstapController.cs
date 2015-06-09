@@ -27,10 +27,7 @@ namespace OmgevingsboekMVC.Controllers
             List<Uitstap> uitstappen = us.GetUitstappen();
 
             if (filter == null)
-                if (User.IsInRole("Administrator"))
-                    return View(uitstappen);
-                else
-                    return RedirectToAction("Index", "Uitstap", new { filter = "my" });
+                return RedirectToAction("Index", "Uitstap", new { filter = "all" });
 
             List<Uitstap> uitstappenMine = us.GetUitstappen(User.Identity.GetUserId());
 
@@ -81,6 +78,11 @@ namespace OmgevingsboekMVC.Controllers
             uitstap.POI = new List<POI>();
             uitstap.AspNetUsers1 = new List<AspNetUsers>();
 
+            foreach (AspNetUsers anu in us.GetUsers())
+                foreach (AspNetRoles role in anu.AspNetRoles)
+                    if (role.Name.Equals("Administrator"))
+                        uitstap.AspNetUsers1.Add(anu);
+
             uitstap = us.AddUitstap(uitstap);
 
             return RedirectToAction("Edit", new { id = uitstap.Id});
@@ -100,6 +102,17 @@ namespace OmgevingsboekMVC.Controllers
             {
                 ViewBag.POI = us.GetPOIs();
                 ViewBag.Users = us.GetUsers();
+
+                List<POI> poiInRoute = new List<POI>();
+                try
+                {
+                    foreach (string s in uitstap.Route.Points.Split(';'))
+                        poiInRoute.Add(us.GetPOIById(int.Parse(s)));
+                }
+                catch (Exception) { }
+
+                ViewBag.Points = poiInRoute;
+
                 return View(uitstap);
             }
             else
@@ -130,6 +143,10 @@ namespace OmgevingsboekMVC.Controllers
                 case "delete":
                     switch (input[1])
                     {
+                        case "route":
+                            
+                            return RedirectToAction("Edit", new { id = originalUitstap.Id });
+                        
                         case "poi":
                             originalUitstap.POI.Remove(us.GetPOIById(int.Parse(input[2])));
                             us.UpdateUitstap(originalUitstap);
@@ -147,6 +164,10 @@ namespace OmgevingsboekMVC.Controllers
                 case "add":
                     switch(input[1])
                     {
+                        case "route":
+                            originalUitstap.Route.Points += ";" + input[2];
+                            return RedirectToAction("Edit", new { id = originalUitstap.Id });
+                        
                         case "poi":
                             originalUitstap.POI.Add(us.GetPOIById(int.Parse(input[2])));
                             us.UpdateUitstap(originalUitstap);

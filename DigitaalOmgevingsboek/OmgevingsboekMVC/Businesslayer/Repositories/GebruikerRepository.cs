@@ -32,7 +32,14 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
         {
             var query=(from u in this.context.AspNetUsers.Include(u=>u.POI).Include(u=>u.Uitstap).Include(u=>u.Uitstap1) where u.Email==aspuser select u);
 
-            return query.Single<AspNetUsers>();
+            try
+            {
+                return query.Single<AspNetUsers>();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
 
