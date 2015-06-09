@@ -17,6 +17,8 @@
 
         }
         google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addDomListener(window, 'load', codeAddress);
+        google.maps.event.addDomListener(window, 'load', displayRoute);
 
         function codeAddress() {
             var address = "Veldstraat 77 +' '+ Gent";
@@ -37,18 +39,43 @@
 
             //var start = new google.maps.LatLng(28.694004, 77.110291);
             //var end = new google.maps.LatLng(28.72082, 77.107241);
+         
 
             var start = "veldstraat 77,koekelare";
             var end = "veldstraat 50, gent";
+            var waypoits = [];
+            var waypts = [];
+            waypts[0] = "koekelare";
+            waypts[1] = "brugge";
+            waypts[2] = "roeselare";
+            waypts[3] = "Moscow"
 
-            var directionsDisplay = new google.maps.DirectionsRenderer();// also, constructor can get "DirectionsRendererOptions" object
-            directionsDisplay.setMap(map); // map should be already initialized.
+            /*var waypts = [{ location: "Ballybricken" },
+              { location: "Waterford" },
+              { location: "Ireland" },
+              { location: "The Glen" },
+              { location: "Waterford" }];*/
+            for (var i = 0; i < 4; i++) {
+              
+                    waypoits.push({
+                        location: waypts[i],
+                       
+                    });
+                
+            }
 
             var request = {
                 origin: start,
                 destination: end,
+                waypoints: waypoits,
+                optimizeWaypoints: true,
                 travelMode: google.maps.TravelMode.DRIVING
             };
+
+            var directionsDisplay = new google.maps.DirectionsRenderer();// also, constructor can get "DirectionsRendererOptions" object
+            directionsDisplay.setMap(map); // map should be already initialized.
+
+
             var directionsService = new google.maps.DirectionsService();
             directionsService.route(request, function (response, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
@@ -58,8 +85,7 @@
         }
 
 
-        google.maps.event.addDomListener(window, 'load', codeAddress);
-        google.maps.event.addDomListener(window, 'load', displayRoute);
+
 
     </script>
 }
@@ -101,12 +127,17 @@
                 </ul>
                 <div class="tabcontents">
                     <div id="view1">
+                        <div class="row">
 
-                        <div class="POIViewGoogleMaps2" id="map-canvas">
-                            <!-- Voeg hier code voor het beheren van afbeeldingen-->
-                            Google Maps
                         </div>
 
+                        <div class="row">
+                            <div class="POIViewGoogleMaps2" id="map-canvas">
+                                <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                                Google Maps
+                            </div>
+                        </div>
+                      
                     </div>
                     <div id="view2">
 
