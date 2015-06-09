@@ -24,38 +24,38 @@ namespace OmgevingsboekMVC.Controllers
         // GET: Uitstap
         public ActionResult Index(string filter)
         {
-            List<Uitstap> uitstappen;
-            
+            List<Uitstap> uitstappen = us.GetUitstappen();
+
             if (filter == null)
-            {
                 if (User.IsInRole("Administrator"))
-                {
-                    uitstappen = us.GetUitstappen();
                     return View(uitstappen);
-                }
                 else
                     return RedirectToAction("Index", "Uitstap", new { filter = "my" });
+
+            List<Uitstap> uitstappenMine = us.GetUitstappen(User.Identity.GetUserId());
+
+            List<Uitstap> uitstappenMetRechten = new List<Uitstap>();
+            foreach (Uitstap u in uitstappen)
+            {
+                foreach (AspNetUsers user in u.AspNetUsers1)
+                {
+                    if (user.Id == User.Identity.GetUserId())
+                        uitstappenMetRechten.Add(u);
+                }
             }
+
+            foreach (Uitstap u in uitstappenMine)
+                uitstappenMetRechten.Add(u);
+
+            ViewBag.nAll = uitstappenMetRechten.Count;
+            ViewBag.nMine = us.GetUitstappen(User.Identity.GetUserId()).Count;
             
             switch(filter)
             {
-                case "my":  uitstappen = us.GetUitstappen(User.Identity.GetUserId());
-                            return View(uitstappen);
+                case "my": 
+                            return View(uitstappenMine);
 
-                case "all": uitstappen = us.GetUitstappen();
-                            List<Uitstap> uitstappenMetRechten = new List<Uitstap>();
-                            foreach (Uitstap u in uitstappen)
-                            {
-                                foreach (AspNetUsers user in u.AspNetUsers1)
-                                {
-                                    if (user.Id == User.Identity.GetUserId())
-                                        uitstappenMetRechten.Add(u);
-                                }
-                            }
-                            List<Uitstap> uitstappenEigen = us.GetUitstappen(User.Identity.GetUserId());
-                            foreach (Uitstap u in uitstappenEigen)
-                                uitstappenMetRechten.Add(u);
-
+                case "all": 
                             return View(uitstappenMetRechten);
 
                 default: return RedirectToAction("Index", "Uitstap", new { filter = "my"});
@@ -99,6 +99,7 @@ namespace OmgevingsboekMVC.Controllers
             if (uitstap.Naam != null)
             {
                 ViewBag.POI = us.GetPOIs();
+                ViewBag.Users = us.GetUsers();
                 return View(uitstap);
             }
             else
@@ -110,6 +111,8 @@ namespace OmgevingsboekMVC.Controllers
         public ActionResult Edit(Uitstap uitstap, string submit)
         {
             Uitstap originalUitstap = us.GetUitstap(uitstap.Id);
+            ViewBag.POI = us.GetPOIs();
+            ViewBag.Users = us.GetUsers();
 
             if (originalUitstap.Naam != uitstap.Naam) originalUitstap.Naam = uitstap.Naam;
             if (originalUitstap.Beschrijving != uitstap.Beschrijving) originalUitstap.Beschrijving = uitstap.Beschrijving;
@@ -125,14 +128,37 @@ namespace OmgevingsboekMVC.Controllers
                     return RedirectToAction("Details", uitstap.Id);
 
                 case "delete":
-                    originalUitstap.POI.Remove(us.GetPOIById(int.Parse(input[1])));
-                    us.UpdateUitstap(originalUitstap);
-                    return RedirectToAction("Edit", new { id = originalUitstap.Id });
+                    switch (input[1])
+                    {
+                        case "poi":
+                            originalUitstap.POI.Remove(us.GetPOIById(int.Parse(input[2])));
+                            us.UpdateUitstap(originalUitstap);
+                            return RedirectToAction("Edit", new { id = originalUitstap.Id });
+
+                        case "user":
+                            originalUitstap.AspNetUsers1.Remove(us.GetUserById(input[2]));
+                            us.UpdateUitstap(originalUitstap);
+                            return RedirectToAction("Edit", new { id = originalUitstap.Id });
+
+                        default: return RedirectToAction("Index", new { filter = "my" });
+                    }
+
 
                 case "add":
-                    originalUitstap.POI.Add(us.GetPOIById(int.Parse(input[1])));
-                    us.UpdateUitstap(originalUitstap);
-                    return RedirectToAction("Edit", new { id = originalUitstap.Id });
+                    switch(input[1])
+                    {
+                        case "poi":
+                            originalUitstap.POI.Add(us.GetPOIById(int.Parse(input[2])));
+                            us.UpdateUitstap(originalUitstap);
+                            return RedirectToAction("Edit", new { id = originalUitstap.Id });
+
+                        case "user":
+                            originalUitstap.AspNetUsers1.Add(us.GetUserById(input[2]));
+                            us.UpdateUitstap(originalUitstap);
+                            return RedirectToAction("Edit", new { id = originalUitstap.Id });
+
+                        default: return RedirectToAction("Index", new { filter = "my" });
+                    }
 
                 default: return RedirectToAction("Index", new { filter = "my" });
 

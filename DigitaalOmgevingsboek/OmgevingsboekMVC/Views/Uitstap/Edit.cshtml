@@ -173,11 +173,11 @@
                                                 <td>
                                                     @if (Model.POI.Contains(poi))
                                                     {
-                                                        <button type="submit" id="delete" name="submit" class="btn btn-sm btn-danger btn-block" value="delete:@poi.Id">Verwijderen uit Uitstap</button>
+                                                        <button type="submit" id="delete" name="submit" class="btn btn-sm btn-danger btn-block" value="delete:poi:@poi.Id">Verwijderen uit Uitstap</button>
                                                     }
                                                     else
                                                     {
-                                                        <button type="submit" id="add" name="submit" class="btn btn-sm btn-success btn-block" value="add:@poi.Id">Toevoegen aan Uitstap</button>
+                                                        <button type="submit" id="add" name="submit" class="btn btn-sm btn-success btn-block" value="add:poi:@poi.Id">Toevoegen aan Uitstap</button>
                                                     }
                                                 </td>
                                             </tr>
@@ -189,35 +189,44 @@
                         </div>
                         <div id="view4">
                             <div class="panel">
-                                <div class="panel-body">
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Naam)
-                                        <div>
-                                            @Html.EditorFor(model => model.Naam)
-                                            @Html.ValidationMessageFor(model => model.Naam, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.POI)
+                                        Rechten toekennen aan:
                                         <div class="dataTable_wrapper">
                                             <table class="table table-striped table-bordered table-hover dataTables-example">
                                                 <thead>
                                                     <tr>
-                                                        <td>Naam</td>
-                                                        <td>Adres</td>
-                                                        <td>Gemeente</td>
+                                                        <th>Naam</th>
+                                                        <th>Voornaam</th>
+                                                        <th>Gebruikersnaam</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach (POI poi in Model.POI)
+                                                    @foreach (AspNetUsers anu in ViewBag.Users)
                                                     {
+                                                        if(!anu.Id.Equals(Model.Auteur_Id))
+                                                        {
+                                                            foreach(AspNetRoles role in anu.AspNetRoles)
+                                                            {
+                                                                if (role.Name != "Administrator")
+                                                                {
                                                         <tr>
-                                                            <td>@poi.Naam</td>
-                                                            <td>@poi.Adres</td>
-                                                            <td>@poi.Gemeente</td>
+                                                            <td>@anu.Name</td>
+                                                            <td>@anu.Firstname</td>
+                                                            <td>@anu.UserName</td>
+                                                            <td>
+                                                                @if (Model.AspNetUsers1.Contains(anu))
+                                                                {
+                                                                    <button type="submit" id="delete" name="submit" class="btn btn-sm btn-danger btn-block" value="delete:user:@anu.Id">Verwijderen uit Uitstap</button>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <button type="submit" id="add" name="submit" class="btn btn-sm btn-success btn-block" value="add:user:@anu.Id">Toevoegen aan Uitstap</button>
+                                                                }
+                                                            </td>
                                                         </tr>
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 </tbody>
                                             </table>
@@ -233,8 +242,6 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
             @Html.HiddenFor(model => model.Id)
         }
 

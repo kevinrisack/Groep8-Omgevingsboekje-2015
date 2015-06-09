@@ -19,7 +19,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
         public override IEnumerable<Uitstap> All()
         {
             var query = (from u in this.context.Uitstap.Include(u => u.AspNetUsers)
-                                                        .Include(ua => ua.AspNetUsers1)
+                                                        .Include(u => u.AspNetUsers1)
                          where u.IsDeleted == false
                          select u);
             return query;
@@ -28,9 +28,9 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
         public Uitstap GetByID(int id)
         {
             var query = (from u in this.context.Uitstap.Include(u => u.AspNetUsers)
-                                                        .Include(ua => ua.AspNetUsers1)
-                                                        .Include(p => p.POI)
-                                                        .Include(r => r.Route)
+                                                        .Include(u => u.AspNetUsers1)
+                                                        .Include(u => u.POI)
+                                                        .Include(u => u.Route)
                          where u.IsDeleted == false && u.Id == id
                          select u);
 
