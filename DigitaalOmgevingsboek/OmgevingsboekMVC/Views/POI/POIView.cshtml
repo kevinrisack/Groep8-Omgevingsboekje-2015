@@ -191,8 +191,43 @@
                             <div class="panel-body">
 
                                 <div class="row">
-                                    <label>Activiteiten</label>
-                                    <br />
+                                    <div class="dataTable_wrapper">
+                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th>Naam</th>
+                                                    <th>Adres</th>
+                                                    <th>Duur</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var activiteit in Model.Activiteit)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.ActionLink(activiteit.Naam, "ActivityView", new { id = activiteit.Id })
+                                                        </td>
+                                                        <td>
+                                                            @Model.Adres
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => activiteit.Duur)
+                                                        </td>
+                                                        <td>
+                                                            @Html.ActionLink("Wijzig", "ActivityModify", new { id = activiteit.Id })
+                                                            @if (ViewBag.UserId == Model.Auteur_Id)
+                                                            {
+                                                                <span>|</span>
+                                                                @Html.ActionLink("Verwijder", "ActivityDelete", new { id = activiteit.Id }, new { onclick = "return confirm('Weet u zeker dat u deze activiteit wilt verwijderen?');" })
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     @foreach (Activiteit activiteit in Model.Activiteit)
                                     {
                                         <div class="POIViewActivity">
@@ -235,6 +270,12 @@
         </div>
     </div>
 
-
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>
  
 
