@@ -52,7 +52,7 @@
                                             <tbody>
                                                 @foreach (AspNetUsers anu in ViewBag.Gebruikers)
                                                 {
-                                                    if (anu.IsPending == false && anu.IsDeleted==false)
+                                                    if ((anu.IsPending == false) && (anu.IsDeleted==false) && (anu.UserName!=User.Identity.Name))
                                                     {
                                                     <tr class="gradeC">
                                                         <td>@anu.Firstname</td>

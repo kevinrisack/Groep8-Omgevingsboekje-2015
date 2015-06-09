@@ -23,7 +23,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
 
         public override IEnumerable<AspNetUsers> All()
         {
-            var query = (from u in this.context.AspNetUsers.Include(u=>u.POI).Include(u=>u.Uitstap)            
+            var query = (from u in this.context.AspNetUsers.Include(u=>u.POI).Include(u=>u.Uitstap).Include(u=>u.AspNetRoles)          
                          select u);
             return query.ToList<AspNetUsers>();
         }
