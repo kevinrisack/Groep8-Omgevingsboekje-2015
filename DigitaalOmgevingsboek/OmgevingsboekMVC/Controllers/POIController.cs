@@ -10,7 +10,7 @@ using DigitaalOmgevingsboek.Businesslayer.Services;
 
 namespace DigitaalOmgevingsboek.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class POIController : Controller
     {
         private POIService ps;
@@ -50,6 +50,9 @@ namespace DigitaalOmgevingsboek.Controllers
             
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
             ViewBag.Leerdoelen = ps.GetLeerdoelen();
+
+            ViewBag.UserId = User.Identity.GetUserId();
+
             return View(pois);
         }
 
@@ -72,6 +75,7 @@ namespace DigitaalOmgevingsboek.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> themaIds)
         {
             POI poiModify = ps.GetPOI(poi.Id);
@@ -141,6 +145,7 @@ namespace DigitaalOmgevingsboek.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult POINew(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> themaIds)
         {
             if (ModelState.IsValid)
@@ -201,11 +206,17 @@ namespace DigitaalOmgevingsboek.Controllers
             if (id.HasValue)
             {
                 POI poi = ps.GetPOI(id.Value);
-                poi.IsDeleted = true;
 
-                ps.UpdatePOI(poi);
-
-                return RedirectToAction("POIOverzicht");
+                if (poi.Auteur_Id == User.Identity.GetUserId())
+                {
+                    poi.IsDeleted = true;
+                    ps.UpdatePOI(poi);
+                    return RedirectToAction("POIOverzicht");
+                }
+                else
+                {
+                    return View("Error: " + "U heeft geen toestemming op deze POI te verwijderen.");
+                }     
             }
             return RedirectToAction("POIOverzicht");
         }

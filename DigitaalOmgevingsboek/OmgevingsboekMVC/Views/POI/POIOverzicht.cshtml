@@ -74,12 +74,15 @@
                                                         @Html.DisplayFor(modelItem => item.Gemeente)
                                                     </td>
                                                     <td>
-                                                        @Html.ActionLink("Wijzig", "POIModify", new { id = item.Id }) |
-                                                        @Html.ActionLink("Verwijder", "POIDelete", new { id = item.Id }, new { onclick = "return confirm('Weet u zeker dat u deze POI wilt verwijderen?');" })
-                                                    </td>
+                                                        @Html.ActionLink("Wijzig", "POIModify", new { id = item.Id })
+                                                        @if (ViewBag.UserId == item.Auteur_Id)
+                                                        {
+                                                            <span>|</span>
+                                                            @Html.ActionLink("Verwijder", "POIDelete", new { id = item.Id }, new { onclick = "return confirm('Weet u zeker dat u deze POI wilt verwijderen?');" })
+                                                        }
+                                                        </td>
                                                 </tr>
                                             }
-
 
                                         </tbody>
                                     </table>
