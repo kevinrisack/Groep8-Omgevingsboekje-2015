@@ -121,7 +121,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
                     if (picture != null)
                     {
-                        ps.UploadPicture(poi, picture);
+                        ps.UploadPicturePOI(poi, picture);
                     }
                     return RedirectToAction("POIOverzicht");
                 }
@@ -216,7 +216,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
                     if (picture != null)
                     {
-                        ps.UploadPicture(poi, picture);
+                        ps.UploadPicturePOI(poi, picture);
                     }
 
                     return RedirectToAction("POIOverzicht");

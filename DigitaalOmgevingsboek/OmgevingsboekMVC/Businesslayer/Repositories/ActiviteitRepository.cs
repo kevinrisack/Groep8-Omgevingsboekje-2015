@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace OmgevingsboekMVC.Businesslayer.Repositories
 {
@@ -17,17 +20,6 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             this.context = context;
         }
 
-        //public List<Activiteit> GetActiviteiten(POI poi)
-        //{
-        //    var query = (from a in context.Activiteit.Include(a => a.POI)
-        //                                             .Include(a => a.Foto_Activiteit)
-        //                                             .Include(a => a.Link)
-        //                                             .Include(a=> a.Leerdoel)
-        //                 where a.POI == poi
-        //                 select a);
-        //    return query.ToList<Activiteit>();
-        //}
-
         public override Activiteit GetByID(object id)
         {
             var query = (from a in context.Activiteit.Include(a => a.POI)
@@ -38,6 +30,25 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
                          where a.Id == (int)id
                          select a);
             return query.Single<Activiteit>();
+        }
+
+        public void UploadPicture(Foto_Activiteit fotoActiviteit, HttpPostedFileBase picture)
+        {
+            //retrieve storage account from connection string
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            //create the blob client
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+            //retrieve reference to a previously created container
+            CloudBlobContainer container = blobClient.GetContainerReference("images");
+
+            //retrieve reference to a blob named "pictureName"
+            string pictureName = fotoActiviteit.URL;
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(pictureName);
+
+            //create or overwrite the 'picture.FileName" blob with contents from a local file
+            blockBlob.UploadFromStream(picture.InputStream);
         }
     }
 }
