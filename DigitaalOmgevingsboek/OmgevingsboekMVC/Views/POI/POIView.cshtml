@@ -193,10 +193,13 @@
                                 <div class="row">
                                     <label>Activiteiten</label>
                                     <br />
-                                    <div class="POIViewActivity">
-                                        <!-- Voeg hier code voor het weergeven van activities-->
-                                        Activity
-                                    </div>
+                                    @foreach (Activiteit activiteit in Model.Activiteit)
+                                    {
+                                        <div class="POIViewActivity">
+                                            <!-- Voeg hier code voor het weergeven van activities-->
+                                            @activiteit.Naam
+                                        </div>
+                                    }
                                 </div>
                                 <!-- /.container-fluid -->
                             </div>

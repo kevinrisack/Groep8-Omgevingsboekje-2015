@@ -72,7 +72,7 @@ namespace DigitaalOmgevingsboek
 
         public bool IsDeleted { get; set; }
 
-        public Activiteit Activiteit { get; set; }
+        public virtual ICollection<Activiteit> Activiteit { get; set; }
 
         public  AspNetUsers AspNetUsers { get; set; }
 

@@ -96,8 +96,9 @@ namespace DigitaalOmgevingsboek
                 .HasPrecision(8, 2);
 
             modelBuilder.Entity<POI>()
-                .HasOptional(e => e.Activiteit)
-                .WithRequired(e => e.POI);
+                .HasMany( e => e.Activiteit)
+                .WithRequired(e => e.POI)
+                .HasForeignKey(e => e.POI_Id);
 
             modelBuilder.Entity<POI>()
                 .HasMany(e => e.Foto_POI)
