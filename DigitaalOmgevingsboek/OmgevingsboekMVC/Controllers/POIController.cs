@@ -10,7 +10,7 @@ using DigitaalOmgevingsboek.Businesslayer.Services;
 
 namespace DigitaalOmgevingsboek.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class POIController : Controller
     {
         private POIService ps;
@@ -78,44 +78,47 @@ namespace DigitaalOmgevingsboek.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> themaIds)
         {
-            POI poiModify = ps.GetPOI(poi.Id);
             if (ModelState.IsValid)
             {
+                
                 try
                 {
-                    poiModify.Doelgroep = new List<Doelgroep>();
+                    ps.UpdatePOI(poi);
+                    poi = ps.GetPOI(poi.Id);
+
+                    poi.Doelgroep = new List<Doelgroep>();
                     if (doelgroepIds != null)
                     {
                         foreach (int doelgroepId in doelgroepIds)
                         {
                             Doelgroep dg = ps.GetDoelgroep(doelgroepId);
                             
-                            dg.POI.Add(poiModify);
-                            poiModify.Doelgroep.Add(dg);
+                            dg.POI.Add(poi);
+                            poi.Doelgroep.Add(dg);
                             
                             ps.UpdateDoelgroep(dg);
                         }
                     }
 
-                    poiModify.Thema = new List<Thema>();
+                    poi.Thema = new List<Thema>();
                     if (themaIds != null)
                     {
                         foreach (int themaId in themaIds)
                         {
                             Thema th = ps.GetThema(themaId);
 
-                            th.POI.Add(poiModify);
-                            poiModify.Thema.Add(th);
+                            th.POI.Add(poi);
+                            poi.Thema.Add(th);
 
                             ps.UpdateThema(th);
                         }
                     }
 
-                    ps.UpdatePOI(poiModify);
+                    ps.UpdatePOI(poi);
 
                     if (picture != null)
                     {
-                        ps.UploadPicture(poiModify, picture);
+                        ps.UploadPicture(poi, picture);
                     }
 
                     return RedirectToAction("POIOverzicht");
@@ -129,7 +132,7 @@ namespace DigitaalOmgevingsboek.Controllers
             {
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
                 ViewBag.Themas = ps.GetThemas();
-                return View(poiModify);
+                return View(poi);
             }
         }
 
