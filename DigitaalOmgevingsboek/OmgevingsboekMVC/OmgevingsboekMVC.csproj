@@ -1134,6 +1134,7 @@
     <Content Include="Views\Uitstap\New.cshtml" />
     <Content Include="Views\POI\POIModify.cshtml" />
     <Content Include="Views\Gebruiker\GebruikersOverzicht.cshtml" />
+    <Content Include="Views\POI\ActivityView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

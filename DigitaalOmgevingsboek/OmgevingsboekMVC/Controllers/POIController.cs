@@ -21,6 +21,7 @@ namespace DigitaalOmgevingsboek.Controllers
             this.ps = ps;
         }
 
+        #region POI
         public ActionResult POIStart()
         {
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
@@ -56,84 +57,16 @@ namespace DigitaalOmgevingsboek.Controllers
             return View(pois);
         }
 
-        [HttpGet]
-        public ActionResult POIModify(int? id)
+        public ActionResult POIView(int? id)
         {
-            if (id.HasValue)
-            {
-                POI poi = ps.GetPOI(id.Value);
-
-                ViewBag.Doelgroepen = ps.GetDoelgroepen();
-                ViewBag.Themas = ps.GetThemas();
-
-                return View(poi);
-            }
-            else
+            if (!id.HasValue)
             {
                 return RedirectToAction("POIOverzicht");
             }
-        }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> themaIds)
-        {
-            if (ModelState.IsValid)
-            {
-                
-                try
-                {
-                    ps.UpdatePOI(poi);
-                    poi = ps.GetPOI(poi.Id);
+            POI poi = ps.GetPOI(id.Value);
 
-                    poi.Doelgroep = new List<Doelgroep>();
-                    if (doelgroepIds != null)
-                    {
-                        foreach (int doelgroepId in doelgroepIds)
-                        {
-                            Doelgroep dg = ps.GetDoelgroep(doelgroepId);
-                            
-                            dg.POI.Add(poi);
-                            poi.Doelgroep.Add(dg);
-                            
-                            ps.UpdateDoelgroep(dg);
-                        }
-                    }
-
-                    poi.Thema = new List<Thema>();
-                    if (themaIds != null)
-                    {
-                        foreach (int themaId in themaIds)
-                        {
-                            Thema th = ps.GetThema(themaId);
-
-                            th.POI.Add(poi);
-                            poi.Thema.Add(th);
-
-                            ps.UpdateThema(th);
-                        }
-                    }
-
-                    ps.UpdatePOI(poi);
-
-                    if (picture != null)
-                    {
-                        ps.UploadPicture(poi, picture);
-                    }
-
-                    return RedirectToAction("POIOverzicht");
-                }
-                catch (Exception e)
-                {
-                    return View("Error: " + e);
-                }
-            }
-            else
-            {
-                ViewBag.Doelgroepen = ps.GetDoelgroepen();
-                ViewBag.Themas = ps.GetThemas();
-                return View(poi);
-            }
+            return View(poi);
         }
 
         [HttpGet]
@@ -221,6 +154,86 @@ namespace DigitaalOmgevingsboek.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult POIModify(int? id)
+        {
+            if (id.HasValue)
+            {
+                POI poi = ps.GetPOI(id.Value);
+
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                ViewBag.Themas = ps.GetThemas();
+
+                return View(poi);
+            }
+            else
+            {
+                return RedirectToAction("POIOverzicht");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> themaIds)
+        {
+            if (ModelState.IsValid)
+            {
+
+                try
+                {
+                    ps.UpdatePOI(poi);
+                    poi = ps.GetPOI(poi.Id);
+
+                    poi.Doelgroep = new List<Doelgroep>();
+                    if (doelgroepIds != null)
+                    {
+                        foreach (int doelgroepId in doelgroepIds)
+                        {
+                            Doelgroep dg = ps.GetDoelgroep(doelgroepId);
+
+                            dg.POI.Add(poi);
+                            poi.Doelgroep.Add(dg);
+
+                            ps.UpdateDoelgroep(dg);
+                        }
+                    }
+
+                    poi.Thema = new List<Thema>();
+                    if (themaIds != null)
+                    {
+                        foreach (int themaId in themaIds)
+                        {
+                            Thema th = ps.GetThema(themaId);
+
+                            th.POI.Add(poi);
+                            poi.Thema.Add(th);
+
+                            ps.UpdateThema(th);
+                        }
+                    }
+
+                    ps.UpdatePOI(poi);
+
+                    if (picture != null)
+                    {
+                        ps.UploadPicture(poi, picture);
+                    }
+
+                    return RedirectToAction("POIOverzicht");
+                }
+                catch (Exception e)
+                {
+                    return View("Error: " + e);
+                }
+            }
+            else
+            {
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                ViewBag.Themas = ps.GetThemas();
+                return View(poi);
+            }
+        }
+
         public ActionResult POIDelete(int? id)
         {
             if (id.HasValue)
@@ -240,23 +253,24 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             return RedirectToAction("POIOverzicht");
         }
+        #endregion
 
         public ActionResult POIActivity()
         {
             return View();
         }
 
-
-        public ActionResult POIView(int? id)
+        public ActionResult ActivityView(int? id)
         {
-            if (!id.HasValue)
+            if (id.HasValue)
             {
-                return RedirectToAction("POIOverzicht");
+                Activiteit activiteit = ps.GetActiviteit(id.Value);
+                return View(activiteit);
             }
-
-            POI poi = ps.GetPOI(id.Value);
-
-            return View(poi);
+            else
+            {
+                return RedirectToAction("POIStart");
+            }
         }
     }
 }

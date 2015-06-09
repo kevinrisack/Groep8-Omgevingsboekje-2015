@@ -175,7 +175,6 @@
                                         <label>Google Maps</label>
                                         <br />
                                         <div class="POIViewGoogleMaps" id="map-canvas">
-                                            <!-- Voeg hier code voor het beheren van afbeeldingen-->
                                             Google Maps
                                         </div>
 
@@ -216,11 +215,13 @@
                                                         </td>
                                                         <td>
                                                             @Html.ActionLink("Wijzig", "ActivityModify", new { id = activiteit.Id })
+                                                            @*
                                                             @if (ViewBag.UserId == Model.Auteur_Id)
                                                             {
                                                                 <span>|</span>
                                                                 @Html.ActionLink("Verwijder", "ActivityDelete", new { id = activiteit.Id }, new { onclick = "return confirm('Weet u zeker dat u deze activiteit wilt verwijderen?');" })
-                                                            }
+                                                            }                                  
+                                                            *@²
                                                         </td>
                                                     </tr>
                                                 }

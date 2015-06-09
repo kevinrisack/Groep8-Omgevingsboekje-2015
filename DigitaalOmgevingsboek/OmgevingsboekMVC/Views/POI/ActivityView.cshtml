@@ -1,0 +1,115 @@
+﻿@model DigitaalOmgevingsboek.Activiteit
+
+@{
+    ViewBag.Title = "ActivityView";
+}
+
+<h2>ActivityView</h2>
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">@Html.DisplayFor(model => model.Naam)</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group"> <label>POI: </label> @Html.ActionLink(Model.POI.Naam, "POIView", new { id = Model.POI.Id })</div>
+                        <div class="form-group"> <label>Adres: </label> @Html.DisplayFor(model => model.POI.Adres)</div>
+                        <div class="form-group"><label>Gemeente: </label> @Html.DisplayFor(model => model.POI.Gemeente)</div>
+
+                        <div class="form-group"><label>Beschrijving: </label> @Html.DisplayFor(model => model.Beschrijving)</div>
+                        <div class="form-group"><label>Website: </label> @Html.DisplayFor(model => model.Materiaal)</div>
+                        <div class="form-group"><label>Tijdsduur: </label> @Html.DisplayFor(model => model.Duur)</div>
+
+                        <div class="form-group"><label>Terugkoppeling: </label> @Html.DisplayFor(model => model.Terugkoppeling)</div>
+                        <div class="form-group"><label>Opmerkingen: </label> @Html.DisplayFor(model => model.Opmerkingen)</div>
+
+                        <div class="form-group">
+                            <label>Links:</label>
+
+
+                            @foreach (Link link in Model.Link)
+                            {
+                                <p>
+                                    @link.URL
+                                </p>
+
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label>Doelgroep:</label>
+
+
+                            @foreach (Doelgroep dg in Model.Doelgroep)
+                            {
+                                <p>
+                                    @dg.DoelgroepNaam
+                                </p>
+
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label>Leerdoel:</label>
+
+
+                            @foreach (Leerdoel ld in Model.Leerdoel)
+                            {
+                                <p>
+                                    @ld.LeerdoelNaam
+                                </p>
+
+                            }
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox">
+
+                                @{
+                                    var i = 0;
+
+                                    foreach (Foto_Activiteit foto in Model.Foto_Activiteit)
+                                    {
+                                        var itemClass = i++ == 0 ? "item active" : "item";
+                                        <div class="@itemClass">
+                                            <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.URL" alt="Foto POI">
+
+
+                                        </div>}
+
+                                }
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
+</div>

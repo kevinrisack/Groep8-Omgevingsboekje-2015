@@ -13,6 +13,7 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         private POIRepository repoPOI = null;
         private DoelgroepRepository repoDoelgroep = null;
         private ThemaRepository repoThema = null;
+        private ActiviteitRepository repoActiviteit = null;
 
         private IGenericRepository<Foto_POI> repoFotoPOI = null;      
         private IGenericRepository<Leerdoel> repoLeerdoel = null;
@@ -26,6 +27,7 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             this.repoPOI = new POIRepository(context);
             this.repoDoelgroep = new DoelgroepRepository(context);
             this.repoThema = new ThemaRepository(context);
+            this.repoActiviteit = new ActiviteitRepository(context);
 
             this.repoFotoPOI = repoFotoPOI;          
             this.repoLeerdoel = repoLeerdoel;
@@ -114,6 +116,13 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             repoPOI.UploadPicture(fotoPOI, picture);
 
             repoPOI.SaveChanges();   
+        }
+        #endregion
+
+        #region Activiteit
+        public Activiteit GetActiviteit(int id)
+        {
+            return repoActiviteit.GetByID(id);
         }
         #endregion
     }
