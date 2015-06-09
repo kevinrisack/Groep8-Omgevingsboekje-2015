@@ -87,5 +87,10 @@ namespace DigitaalOmgevingsboek
         public virtual ICollection<Thema> Thema { get; set; }
 
         public virtual ICollection<Uitstap> Uitstap { get; set; }
+
+        public override string ToString()
+        {
+            return Naam;
+        }
     }
 }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
+using OmgevingsboekMVC.ViewModels;
 
 namespace OmgevingsboekMVC.Controllers
 {
@@ -63,37 +65,40 @@ namespace OmgevingsboekMVC.Controllers
 
         public ActionResult New()
         {
-            Uitstap uitstap = new Uitstap();
-            uitstap.Auteur_Id = User.Identity.GetUserId();
-            ViewBag.POIs = us.GetPOIs();
-            return View(uitstap);
+            UitstapVM uitstapvm = new UitstapVM();
+            uitstapvm.uitstap = new Uitstap();
+            uitstapvm.lijstPOI = new List<POI>();
+            uitstapvm.allePOI = us.GetPOIs();
+
+            return View(uitstapvm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult New(Uitstap uitstap, string submit)
-        {   
-            ViewBag.POIs = us.GetPOIs();
+        public ActionResult New(UitstapVM uitstapvm, string submit)
+        {
             string[] input = submit.Split(':');
 
             switch (input[0])
             {
                 case "save":
                     if (!ModelState.IsValid)
-                        return View(uitstap);
+                        return View(uitstapvm);
 
-                    us.UpdateUitstap(uitstap);
-                    return RedirectToAction("Details", uitstap.Id);
+                        uitstapvm.uitstap.POI = uitstapvm.lijstPOI;
+                        uitstapvm.uitstap = us.AddUitstap(uitstapvm.uitstap);
+                    return RedirectToAction("Details", uitstapvm.uitstap.Id);
 
                 case "delete":
                     ViewBag.POIUpdate = true;
-                    uitstap.POI.Remove(us.GetPOIById(int.Parse(input[1])));
-                    return View(uitstap);
+                    POI poi = us.GetPOIById(int.Parse(input[1]));
+                    bool whatever = uitstapvm.lijstPOI.Remove(poi);
+                    return View(uitstapvm);
 
                 case "add":
                     ViewBag.POIUpdate = true;
-                    uitstap.POI.Add(us.GetPOIById(int.Parse(input[1])));
-                    return View(uitstap);
+                    uitstapvm.lijstPOI.Add(us.GetPOIById(int.Parse(input[1])));
+                    return View(uitstapvm);
 
                 default: return RedirectToAction("Index", "my");
 

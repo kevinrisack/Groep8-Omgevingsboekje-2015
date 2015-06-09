@@ -46,10 +46,11 @@ namespace OmgevingsboekMVC.Businesslayer.Services
             return repoUitstap.GetByID(id);
         }
 
-        public void AddUitstap(Uitstap uitstap)
+        public Uitstap AddUitstap(Uitstap uitstap)
         {
-            repoUitstap.Insert(uitstap);
+            Uitstap result = repoUitstap.Insert(uitstap);
             repoUitstap.SaveChanges();
+            return result;
         }
 
         public void UpdateUitstap(Uitstap uitstap)
