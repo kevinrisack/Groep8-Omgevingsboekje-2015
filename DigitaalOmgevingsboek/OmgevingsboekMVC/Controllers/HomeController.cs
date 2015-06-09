@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DigitaalOmgevingsboek;
+using DigitaalOmgevingsboek.BusinessLayer;
+using OmgevingsboekMVC.Businesslayer.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +13,24 @@ namespace OmgevingsboekMVC.Controllers
     {
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated) {   return View();}
+            if (User.Identity.IsAuthenticated) {
+
+                string user = User.Identity.Name;
+                AspNetUsers currentUser = new AspNetUsers();
+
+                using (OmgevingsboekContext context = new OmgevingsboekContext())
+                {
+                    GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>(context);
+                    GebruikerRepository gebruikersrepo=new GebruikerRepository(context);
+
+                    currentUser=gebruikersrepo.GetByEmail(user);
+
+
+                    ViewBag.gebruiker = currentUser;
+
+                }
+                
+                return View(currentUser);}
             return RedirectToAction("Login", "Account");
           
         }

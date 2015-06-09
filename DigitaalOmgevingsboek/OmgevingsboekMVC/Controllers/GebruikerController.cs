@@ -45,9 +45,42 @@ namespace OmgevingsboekMVC.Controllers
         {
             using (OmgevingsboekContext context = new OmgevingsboekContext())
             {
-                GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>();
+                GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>(context);
 
                 repo.Delete(aspuser);
+                repo.SaveChanges();
+
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Verwijderen(AspNetUsers aspuser)
+        {
+            using (OmgevingsboekContext context = new OmgevingsboekContext())
+            {
+                GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>(context);
+                aspuser.IsDeleted = true;
+
+                repo.Update(aspuser);
+                repo.SaveChanges();
+
+
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Activeren(AspNetUsers aspuser)
+        {
+            using (OmgevingsboekContext context = new OmgevingsboekContext())
+            {
+                GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>(context);
+                aspuser.IsDeleted = false;
+
+                repo.Update(aspuser);
+                repo.SaveChanges();
+
 
             }
 

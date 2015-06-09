@@ -30,7 +30,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
 
         public AspNetUsers GetByEmail(string aspuser)
         {
-            var query=(from u in this.context.AspNetUsers where u.Email==aspuser select u);
+            var query=(from u in this.context.AspNetUsers.Include(u=>u.POI).Include(u=>u.Uitstap).Include(u=>u.Uitstap1) where u.Email==aspuser select u);
 
             return query.Single<AspNetUsers>();
         }
