@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
-using OmgevingsboekMVC.ViewModels;
 
 namespace OmgevingsboekMVC.Controllers
 {
@@ -65,45 +64,29 @@ namespace OmgevingsboekMVC.Controllers
 
         public ActionResult New()
         {
-            UitstapVM uitstapvm = new UitstapVM();
-            uitstapvm.uitstap = new Uitstap();
-            uitstapvm.lijstPOI = new List<POI>();
-            uitstapvm.allePOI = us.GetPOIs();
-
-            return View(uitstapvm);
+            Uitstap uitstap = new Uitstap();
+            return View(uitstap);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult New(UitstapVM uitstapvm, string submit)
+        public ActionResult New(Uitstap uitstap)
         {
-            string[] input = submit.Split(':');
+            if (!ModelState.IsValid)
+                return View(uitstap);
 
-            switch (input[0])
-            {
-                case "save":
-                    if (!ModelState.IsValid)
-                        return View(uitstapvm);
+            uitstap.IsDeleted = false;
+            uitstap.Auteur_Id = User.Identity.GetUserId();
+            uitstap.Route = new Route();
+            uitstap.POI = new List<POI>();
+            uitstap.AspNetUsers1 = new List<AspNetUsers>();
 
-                        uitstapvm.uitstap.POI = uitstapvm.lijstPOI;
-                        uitstapvm.uitstap = us.AddUitstap(uitstapvm.uitstap);
-                    return RedirectToAction("Details", uitstapvm.uitstap.Id);
+            uitstap = us.AddUitstap(uitstap);
 
-                case "delete":
-                    ViewBag.POIUpdate = true;
-                    POI poi = us.GetPOIById(int.Parse(input[1]));
-                    bool whatever = uitstapvm.lijstPOI.Remove(poi);
-                    return View(uitstapvm);
-
-                case "add":
-                    ViewBag.POIUpdate = true;
-                    uitstapvm.lijstPOI.Add(us.GetPOIById(int.Parse(input[1])));
-                    return View(uitstapvm);
-
-                default: return RedirectToAction("Index", "my");
-
-            }
+            return RedirectToAction("Edit", new { id = uitstap.Id});
         }
+
+        
 
         [HttpGet]
         public ActionResult Edit(int? id)
@@ -114,22 +97,46 @@ namespace OmgevingsboekMVC.Controllers
             Uitstap uitstap = us.GetUitstap(id.Value);
 
             if (uitstap.Naam != null)
+            {
+                ViewBag.POI = us.GetPOIs();
                 return View(uitstap);
+            }
             else
                 return RedirectToAction("New");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Uitstap uitstap)
+        public ActionResult Edit(Uitstap uitstap, string submit)
         {
-            if (ModelState.IsValid)
+            Uitstap originalUitstap = us.GetUitstap(uitstap.Id);
+
+            if (originalUitstap.Naam != uitstap.Naam) originalUitstap.Naam = uitstap.Naam;
+            if (originalUitstap.Beschrijving != uitstap.Beschrijving) originalUitstap.Beschrijving = uitstap.Beschrijving;
+            
+            string[] input = submit.Split(':');
+
+            switch (input[0])
             {
-                us.UpdateUitstap(uitstap);
-                return RedirectToAction("Details", uitstap.Id);
+                case "save":
+                    if (!ModelState.IsValid)
+                        return View(uitstap);
+
+                    return RedirectToAction("Details", uitstap.Id);
+
+                case "delete":
+                    originalUitstap.POI.Remove(us.GetPOIById(int.Parse(input[1])));
+                    us.UpdateUitstap(originalUitstap);
+                    return RedirectToAction("Edit", new { id = originalUitstap.Id });
+
+                case "add":
+                    originalUitstap.POI.Add(us.GetPOIById(int.Parse(input[1])));
+                    us.UpdateUitstap(originalUitstap);
+                    return RedirectToAction("Edit", new { id = originalUitstap.Id });
+
+                default: return RedirectToAction("Index", new { filter = "my" });
+
             }
-            else
-                return View(uitstap);
         }
 
         public ActionResult Details(int? id)
@@ -138,7 +145,10 @@ namespace OmgevingsboekMVC.Controllers
                 return RedirectToAction("Index");
             
             Uitstap uitstap = us.GetUitstap(id.Value);
-            return View(uitstap);
+            if (!uitstap.IsDeleted)
+                return View(uitstap);
+            else
+                return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int? id)

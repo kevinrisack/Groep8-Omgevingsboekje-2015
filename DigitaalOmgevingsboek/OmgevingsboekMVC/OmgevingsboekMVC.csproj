@@ -277,7 +277,6 @@
     <Compile Include="Models\Uitstap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\UitstapVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bower_components\bootstrap-social\bootstrap-social.css" />

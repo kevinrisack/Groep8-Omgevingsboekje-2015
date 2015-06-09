@@ -27,7 +27,6 @@ namespace DigitaalOmgevingsboek
 
         public string Beschrijving { get; set; }
 
-        [Required]
         [StringLength(128)]
         public string Auteur_Id { get; set; }
 

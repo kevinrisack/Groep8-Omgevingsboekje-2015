@@ -14,11 +14,15 @@ namespace OmgevingsboekMVC.Businesslayer.Services
         private POIRepository repoPOI = null;
         private GenericRepository<AspNetUsers> repoUser = null;
 
-        public UitstapService(UitstapRepository repoUitstap, POIRepository repoPOI, GenericRepository<AspNetUsers> repoUser)
+        private OmgevingsboekContext context;
+
+        public UitstapService()
         {
-            this.repoUitstap = repoUitstap;
-            this.repoPOI = repoPOI;
-            this.repoUser = repoUser;
+            this.context = new OmgevingsboekContext();
+
+            this.repoUitstap = new UitstapRepository(context);
+            this.repoPOI = new POIRepository(context);
+            this.repoUser = new GenericRepository<AspNetUsers>(context);
         }
 
         #region Uitstappen

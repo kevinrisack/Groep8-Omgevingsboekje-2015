@@ -40,8 +40,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             }
             catch (Exception e)
             {
-                Uitstap uitstap = new Uitstap();
-                return uitstap;
+                return new Uitstap() { IsDeleted = true};
             }
         }
     }
