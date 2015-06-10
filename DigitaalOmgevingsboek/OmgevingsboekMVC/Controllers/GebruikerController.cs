@@ -46,7 +46,7 @@ namespace OmgevingsboekMVC.Controllers
                 SendGridMessage mail = new SendGridMessage();
                 mail.From = new MailAddress(User.Identity.Name);
                 mail.AddTo(aspuser.Email);
-                mail.Subject = "Account verwijderd";
+                mail.Subject = "Account geaccepteerd";
                 mail.Html = "<p>Beste " + aspuser.Firstname + ",</p><br /><p>Uw aanvraag voor een Surroundings-account werd geaccepteerd.</ br>Welkom bij surrroundings, voor meer informatie kan u terecht op</p>";
 
 
@@ -74,7 +74,7 @@ namespace OmgevingsboekMVC.Controllers
                 SendGridMessage mail = new SendGridMessage();
                 mail.From = new MailAddress(User.Identity.Name);
                 mail.AddTo(aspuser.Email);
-                mail.Subject = "Account verwijderd";
+                mail.Subject = "Account geweigerd";
                 mail.Html = "<p>Beste " + aspuser.Firstname + ",</p><br /><p>Uw aanvraag voor een Surroundings-account werd geweigerd.</ br>Indien dit een vergissing is, kan u een mail sturen naar "+ User.Identity.Name+"</p>";
 
 
