@@ -15,7 +15,7 @@ namespace DigitaalOmgevingsboek
         public int? Score { get; set; }
 
         [Required]
-       [StringLength(512)]
+        [StringLength(512)]
         public string Comment { get; set; }
 
         public int? POI_Id { get; set; }

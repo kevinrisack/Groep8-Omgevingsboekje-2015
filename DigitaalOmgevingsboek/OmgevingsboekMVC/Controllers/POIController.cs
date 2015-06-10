@@ -57,6 +57,7 @@ namespace DigitaalOmgevingsboek.Controllers
             return View(pois);
         }
 
+        [HttpGet]
         public ActionResult POIView(int? id)
         {
             if (!id.HasValue)
@@ -66,6 +67,19 @@ namespace DigitaalOmgevingsboek.Controllers
 
             POI poi = ps.GetPOI(id.Value);
 
+            return View(poi);
+        }
+
+        [HttpPost]
+        public ActionResult POIView(int? id, string reactie)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction("POIOverzicht");
+            }
+
+            POI poi = ps.GetPOI(id.Value);
+            
             return View(poi);
         }
 
