@@ -231,7 +231,6 @@
     <Compile Include="Businesslayer\Repositories\POIRepository.cs" />
     <Compile Include="Businesslayer\Repositories\ThemaRepository.cs" />
     <Compile Include="Businesslayer\Repositories\UitstapRepository.cs" />
-    <Compile Include="Businesslayer\Repositories\UserRepository.cs" />
     <Compile Include="Businesslayer\Services\POIService.cs" />
     <Compile Include="Businesslayer\Services\UitstapService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
