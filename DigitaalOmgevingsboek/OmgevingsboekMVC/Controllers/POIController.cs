@@ -83,7 +83,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult POINew(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> themaIds)
+        public ActionResult POINew(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> themaIds)
         {
             if (ModelState.IsValid)
             {
@@ -119,9 +119,12 @@ namespace DigitaalOmgevingsboek.Controllers
                     
                     ps.UpdatePOI(poi);
 
-                    if (picture != null)
+                    if (pictures != null)
                     {
-                        ps.UploadPicturePOI(poi, picture);
+                        foreach (HttpPostedFileBase picture in pictures)
+                        {
+                            ps.UploadPicturePOI(poi, picture);
+                        }                       
                     }
                     return RedirectToAction("POIView", new { id = poi.Id });
                 }
@@ -174,7 +177,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult POIModify(POI poi, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> themaIds)
+        public ActionResult POIModify(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> themaIds)
         {
             if (ModelState.IsValid)
             {
@@ -214,9 +217,12 @@ namespace DigitaalOmgevingsboek.Controllers
 
                     ps.UpdatePOI(poi);
 
-                    if (picture != null)
+                    if (pictures != null)
                     {
-                        ps.UploadPicturePOI(poi, picture);
+                        foreach (HttpPostedFileBase picture in pictures)
+                        {
+                            ps.UploadPicturePOI(poi, picture);
+                        }                       
                     }
 
                     return RedirectToAction("POIOverzicht");
@@ -290,7 +296,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ActivityNew(Activiteit activiteit, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> leerdoelIds)
+        public ActionResult ActivityNew(Activiteit activiteit, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> leerdoelIds)
         {
             if (ModelState.IsValid)
             {
@@ -326,9 +332,12 @@ namespace DigitaalOmgevingsboek.Controllers
                     
                     ps.UpdateActiviteit(activiteit);
 
-                    if (picture != null)
+                    if (pictures != null)
                     {
-                        ps.UploadPictureActiviteit(activiteit, picture);
+                        foreach (HttpPostedFileBase picture in pictures)
+                        {
+                            ps.UploadPictureActiviteit(activiteit, picture);
+                        }
                     }
                     return RedirectToAction("ActivityView", new { id = activiteit.Id });
                 }
@@ -381,7 +390,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ActivityModify(Activiteit activiteit, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> leerdoelIds)
+        public ActionResult ActivityModify(Activiteit activiteit, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> leerdoelIds)
         {
             if (ModelState.IsValid)
             {
@@ -421,9 +430,12 @@ namespace DigitaalOmgevingsboek.Controllers
 
                     ps.UpdateActiviteit(activiteit);
 
-                    if (picture != null)
+                    if (pictures != null)
                     {
-                        ps.UploadPictureActiviteit(activiteit, picture);
+                        foreach (HttpPostedFileBase picture in pictures)
+                        {
+                            ps.UploadPictureActiviteit(activiteit, picture);
+                        }
                     }
 
                     return RedirectToAction("ActivityView", new { id = activiteit.Id });
