@@ -12,7 +12,7 @@ namespace OmgevingsboekMVC.Businesslayer.Services
     {
         private UitstapRepository repoUitstap = null;
         private POIRepository repoPOI = null;
-        private UserRepository repoUser = null;
+        private GebruikerRepository repoUser = null;
 
         private OmgevingsboekContext context;
 
@@ -22,7 +22,7 @@ namespace OmgevingsboekMVC.Businesslayer.Services
 
             this.repoUitstap = new UitstapRepository(context);
             this.repoPOI = new POIRepository(context);
-            this.repoUser = new UserRepository(context);
+            this.repoUser = new GebruikerRepository(context);
         }
 
         #region Uitstappen
