@@ -123,7 +123,7 @@ namespace DigitaalOmgevingsboek.Controllers
                     {
                         ps.UploadPicturePOI(poi, picture);
                     }
-                    return RedirectToAction("POIOverzicht");
+                    return RedirectToAction("POIView", new { id = poi.Id });
                 }
                 catch (Exception e)
                 {
@@ -255,11 +255,7 @@ namespace DigitaalOmgevingsboek.Controllers
         }
         #endregion
 
-        public ActionResult POIActivity()
-        {
-            return View();
-        }
-
+        #region Activiteit
         public ActionResult ActivityView(int? id)
         {
             if (id.HasValue)
@@ -272,5 +268,98 @@ namespace DigitaalOmgevingsboek.Controllers
                 return RedirectToAction("POIStart");
             }
         }
+
+        [HttpGet]
+        public ActionResult ActivityNew(int? id)
+        {
+            if (id.HasValue)
+            {
+                Activiteit activiteit = new Activiteit();
+                activiteit.POI_Id = id.Value;
+
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                ViewBag.Leerdoelen = ps.GetLeerdoelen();
+
+                return View(activiteit);
+            }
+            else
+            {
+                return RedirectToAction("POIOverzicht");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ActivityNew(Activiteit activiteit, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> leerdoelIds)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {   
+                    ps.AddActiviteit(activiteit);
+
+                    if (doelgroepIds != null)
+                    {
+                        foreach (int doelgroepId in doelgroepIds)
+                        {
+                            Doelgroep dg = ps.GetDoelgroep(doelgroepId);
+
+                            dg.Activiteit.Add(activiteit);
+                            activiteit.Doelgroep.Add(dg);
+
+                            ps.UpdateDoelgroep(dg);
+                        }
+                    }
+
+                    if (leerdoelIds != null)
+                    {
+                        foreach (int leerdoelId in leerdoelIds)
+                        {
+                            Leerdoel ld = ps.GetLeerdoel(leerdoelId);
+
+                            ld.Activiteit.Add(activiteit);
+                            activiteit.Leerdoel.Add(ld);
+
+                            ps.UpdateLeerdoel(ld);
+                        }
+                    }
+                    
+                    ps.UpdateActiviteit(activiteit);
+
+                    if (picture != null)
+                    {
+                        ps.UploadPictureActiviteit(activiteit, picture);
+                    }
+                    return RedirectToAction("ActivityView", new { id = activiteit.Id });
+                }
+                catch (Exception e)
+                {
+                    return View("Error: " + e);
+                }
+            }
+            else
+            {
+                if (doelgroepIds != null)
+                {
+                    foreach (int doelgroepId in doelgroepIds)
+                    {
+                        Doelgroep dg = ps.GetDoelgroep(doelgroepId);
+                        activiteit.Doelgroep.Add(dg);
+                    }
+                }
+                if (leerdoelIds != null)
+                {
+                    foreach (int leerdoelId in leerdoelIds)
+                    {
+                        Leerdoel ld = ps.GetLeerdoel(leerdoelId);
+                        activiteit.Leerdoel.Add(ld);
+                    }
+                }
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                ViewBag.Leerdoelen = ps.GetLeerdoelen();
+                return View(activiteit);
+            }
+        }
+        #endregion
     }
 }

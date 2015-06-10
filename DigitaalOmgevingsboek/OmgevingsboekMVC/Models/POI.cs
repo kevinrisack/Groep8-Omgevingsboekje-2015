@@ -32,6 +32,7 @@ namespace DigitaalOmgevingsboek
         [StringLength(50,MinimumLength=1,ErrorMessage="Het adres moet minimum 1 karakter bevatten en maximum 50")]
         public string Adres { get; set; }
 
+        [Required]
         public string Gemeente { get; set; }
 
         [StringLength(50)]

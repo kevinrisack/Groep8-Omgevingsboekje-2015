@@ -32,6 +32,11 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
                 context.Set<POI>().Attach(poi);
                 context.Entry(poi).State = EntityState.Unchanged;
             }
+            foreach (Activiteit act in dg.Activiteit)
+            {
+                context.Set<Activiteit>().Attach(act);
+                context.Entry(act).State = EntityState.Unchanged;
+            }
             base.Update(dg);
         }
     }

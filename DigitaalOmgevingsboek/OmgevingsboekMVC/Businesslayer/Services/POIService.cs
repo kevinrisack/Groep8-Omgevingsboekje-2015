@@ -13,24 +13,20 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         private POIRepository repoPOI = null;
         private DoelgroepRepository repoDoelgroep = null;
         private ThemaRepository repoThema = null;
-        private ActiviteitRepository repoActiviteit = null;
-
-        private IGenericRepository<Foto_POI> repoFotoPOI = null;      
-        private IGenericRepository<Leerdoel> repoLeerdoel = null;
+        private ActiviteitRepository repoActiviteit = null;     
+        private LeerdoelRepository repoLeerdoel = null;
 
         OmgevingsboekContext context;
 
-        public POIService(IGenericRepository<Foto_POI> repoFotoPOI, IGenericRepository<Leerdoel> repoLeerdoel)
+        public POIService()
         {
             this.context = new OmgevingsboekContext();
 
             this.repoPOI = new POIRepository(context);
             this.repoDoelgroep = new DoelgroepRepository(context);
             this.repoThema = new ThemaRepository(context);
-            this.repoActiviteit = new ActiviteitRepository(context);
-
-            this.repoFotoPOI = repoFotoPOI;          
-            this.repoLeerdoel = repoLeerdoel;
+            this.repoActiviteit = new ActiviteitRepository(context);        
+            this.repoLeerdoel = new LeerdoelRepository(context);
         }
 
         #region POI
@@ -94,6 +90,10 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         {
             return repoLeerdoel.All().ToList<Leerdoel>();
         }
+        public Leerdoel GetLeerdoel(int leerdoelId)
+        {
+            return repoLeerdoel.GetByID(leerdoelId);
+        }
 
         public List<Thema> GetThemas()
         {
@@ -108,6 +108,11 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         {
             repoDoelgroep.Update(dg);
             repoDoelgroep.SaveChanges();
+        }
+        public void UpdateLeerdoel(Leerdoel ld)
+        {
+            repoLeerdoel.Update(ld);
+            repoLeerdoel.SaveChanges();
         }
         public void UpdateThema(Thema th)
         {
