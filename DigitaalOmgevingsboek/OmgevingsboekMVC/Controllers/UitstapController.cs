@@ -106,7 +106,7 @@ namespace OmgevingsboekMVC.Controllers
                 List<POI> poiInRoute = new List<POI>();
                 try
                 {
-                    foreach (string s in uitstap.Route.Points.Split(';'))
+                    foreach (string s in uitstap.Route.Points.Split(';').ToList<string>())
                         poiInRoute.Add(us.GetPOIById(int.Parse(s)));
                 }
                 catch (Exception) { }
@@ -127,6 +127,8 @@ namespace OmgevingsboekMVC.Controllers
             ViewBag.POI = us.GetPOIs();
             ViewBag.Users = us.GetUsers();
 
+            ViewBag.Points = GetPoisInRoute(originalUitstap);
+
             if (originalUitstap.Naam != uitstap.Naam) originalUitstap.Naam = uitstap.Naam;
             if (originalUitstap.Beschrijving != uitstap.Beschrijving) originalUitstap.Beschrijving = uitstap.Beschrijving;
             
@@ -144,7 +146,25 @@ namespace OmgevingsboekMVC.Controllers
                     switch (input[1])
                     {
                         case "route":
-                            
+                            List<POI> poisInRoute = ViewBag.Points;
+                            poisInRoute.Remove(us.GetPOIById(int.Parse(input[2])));
+
+                            ViewBag.Points = poisInRoute;
+
+                            string newPoints = null;
+                            if (poisInRoute.Count != 0)
+                            {
+                                newPoints = poisInRoute.First().Id.ToString(); poisInRoute.RemoveAt(0);
+                                foreach (POI point in poisInRoute)
+                                    newPoints += ";" + point.Id; 
+                            }
+                            else
+                                newPoints = null;
+
+                            originalUitstap.Route.Points = newPoints;
+
+                            us.UpdateUitstap(originalUitstap);
+                                    
                             return RedirectToAction("Edit", new { id = originalUitstap.Id });
                         
                         case "poi":
@@ -165,7 +185,13 @@ namespace OmgevingsboekMVC.Controllers
                     switch(input[1])
                     {
                         case "route":
-                            originalUitstap.Route.Points += ";" + input[2];
+                            if (originalUitstap.Route.Points != null)
+                                originalUitstap.Route.Points += ";" + input[2];
+                            else
+                                originalUitstap.Route.Points += input[2];
+
+                            ViewBag.Points = GetPoisInRoute(originalUitstap);
+                            us.UpdateUitstap(originalUitstap);
                             return RedirectToAction("Edit", new { id = originalUitstap.Id });
                         
                         case "poi":
@@ -184,6 +210,18 @@ namespace OmgevingsboekMVC.Controllers
                 default: return RedirectToAction("Index", new { filter = "my" });
 
             }
+        }
+
+        private List<POI> GetPoisInRoute(Uitstap uitstap)
+        {
+            List<POI> poiInRoute = new List<POI>();
+            try
+            {
+                foreach (string s in uitstap.Route.Points.Split(';'))
+                    poiInRoute.Add(us.GetPOIById(int.Parse(s)));
+            }
+            catch (Exception) { }
+            return poiInRoute;
         }
 
         public ActionResult Details(int? id)
