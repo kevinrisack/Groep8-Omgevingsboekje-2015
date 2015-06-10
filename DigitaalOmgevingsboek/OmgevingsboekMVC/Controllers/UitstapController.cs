@@ -146,20 +146,7 @@ namespace OmgevingsboekMVC.Controllers
                     switch (input[1])
                     {
                         case "route":
-                            List<POI> poisInRoute = ViewBag.Points;
-                            poisInRoute.Remove(us.GetPOIById(int.Parse(input[2])));
-
-                            ViewBag.Points = poisInRoute;
-
-                            string newPoints = null;
-                            if (poisInRoute.Count != 0)
-                            {
-                                newPoints = poisInRoute.First().Id.ToString(); poisInRoute.RemoveAt(0);
-                                foreach (POI point in poisInRoute)
-                                    newPoints += ";" + point.Id; 
-                            }
-                            else
-                                newPoints = null;
+                            string newPoints = RouteVerwijderen(input[2]);
 
                             originalUitstap.Route.Points = newPoints;
 
@@ -169,6 +156,11 @@ namespace OmgevingsboekMVC.Controllers
                         
                         case "poi":
                             originalUitstap.POI.Remove(us.GetPOIById(int.Parse(input[2])));
+
+                            string newPoints2 = RouteVerwijderen(input[2]);
+
+                            originalUitstap.Route.Points = newPoints2;
+
                             us.UpdateUitstap(originalUitstap);
                             return RedirectToAction("Edit", new { id = originalUitstap.Id });
 
@@ -210,6 +202,25 @@ namespace OmgevingsboekMVC.Controllers
                 default: return RedirectToAction("Index", new { filter = "my" });
 
             }
+        }
+
+        private string RouteVerwijderen(string input)
+        {
+            List<POI> poisInRoute = ViewBag.Points;
+            poisInRoute.Remove(us.GetPOIById(int.Parse(input)));
+
+            ViewBag.Points = poisInRoute;
+
+            string newPoints = null;
+            if (poisInRoute.Count != 0)
+            {
+                newPoints = poisInRoute.First().Id.ToString(); poisInRoute.RemoveAt(0);
+                foreach (POI point in poisInRoute)
+                    newPoints += ";" + point.Id;
+            }
+            else
+                newPoints = null;
+            return newPoints;
         }
 
         private List<POI> GetPoisInRoute(Uitstap uitstap)

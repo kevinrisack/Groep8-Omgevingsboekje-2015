@@ -51,7 +51,7 @@
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.Beschrijving)
                                         <div>
-                                            @Html.EditorFor(model => model.Beschrijving)
+                                            @Html.TextAreaFor(model => model.Beschrijving)
                                             @Html.ValidationMessageFor(model => model.Beschrijving, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
