@@ -25,7 +25,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             var query = (from p in context.POI.Include(p => p.Activiteit)
                                               .Include(p => p.AspNetUsers)
                                               .Include(p => p.Foto_POI)
-                                              .Include(p => p.POI_Log)
+                                              
                                               .Include(p => p.Rating)
                                               .Include(p => p.Doelgroep)
                                               .Include(p => p.Thema)
@@ -40,7 +40,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             var query = (from p in context.POI.Include(p => p.Activiteit)
                                               .Include(p => p.AspNetUsers)
                                               .Include(p => p.Foto_POI)
-                                              .Include(p => p.POI_Log)
+                                             
                                               .Include(p => p.Rating)
                                               .Include(p => p.Doelgroep)
                                               .Include(p => p.Thema)
@@ -55,7 +55,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             var query = (from p in context.POI.Include(p => p.Activiteit)
                                               .Include(p => p.AspNetUsers)
                                               .Include(p => p.Foto_POI)
-                                              .Include(p => p.POI_Log)
+                                             
                                               .Include(p => p.Rating)
                                               .Include(p => p.Doelgroep)
                                               .Include(p => p.Thema)
@@ -70,7 +70,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             var query = (from p in context.POI.Include(p => p.Activiteit)
                                               .Include(p => p.AspNetUsers)
                                               .Include(p => p.Foto_POI)
-                                              .Include(p => p.POI_Log)
+                                              
                                               .Include(p => p.Rating)
                                               .Include(p => p.Doelgroep)
                                               .Include(p => p.Thema)
