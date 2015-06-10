@@ -17,16 +17,28 @@ namespace OmgevingsboekMVC.Controllers
 
                 string user = User.Identity.Name;
                 AspNetUsers currentUser = new AspNetUsers();
+                List<POI> allPOI = new List<POI>();
+                List<Uitstap> allUistappen = new List<Uitstap>();
+                List<AspNetUsers> allGebruikers = new List<AspNetUsers>();
+               
 
                 using (OmgevingsboekContext context = new OmgevingsboekContext())
                 {
                     GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>(context);
+                    POIRepository POIrepo = new POIRepository(context);
+                    UitstapRepository Uitstaprep = new UitstapRepository(context);
                     GebruikerRepository gebruikersrepo=new GebruikerRepository(context);
 
                     currentUser=gebruikersrepo.GetByEmail(user);
-
+                    allPOI = POIrepo.All().ToList();
+                    allUistappen = Uitstaprep.All().ToList();
+                    allGebruikers= gebruikersrepo.All().ToList();
 
                     ViewBag.gebruiker = currentUser;
+                    ViewBag.lijstPOI = allPOI;
+                    ViewBag.lijstUitstappen = allUistappen;
+                    ViewBag.lijstGebruikers = allGebruikers;
+
 
                 }
                 

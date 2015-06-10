@@ -13,6 +13,9 @@ using DigitaalOmgevingsboek;
 using DigitaalOmgevingsboek.BusinessLayer;
 using OmgevingsboekMVC.Businesslayer.Repositories;
 using System.Web.Security;
+using SendGrid;
+using System.Net.Mail;
+using System.Net;
 
 namespace OmgevingsboekMVC.Controllers
 {
@@ -256,7 +259,20 @@ namespace OmgevingsboekMVC.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                var Sendgebruikersnaam = "NielsDeryckere";
+                var SendPass = "Rome2-Totalwar";
+                SendGridMessage mail = new SendGridMessage();
+                mail.From = new MailAddress("niels.deryckere@student.howest.be");
+                mail.AddTo(model.Email);
+                mail.Subject = "Paswoord resetten";
+                mail.Html = "Reset uw paswoord door <a href=\"" + callbackUrl + "\">hier te klikken</a>";
+
+
+                var credentials = new NetworkCredential(Sendgebruikersnaam, SendPass);
+                var transportWeb = new Web(credentials);
+                await transportWeb.DeliverAsync(mail);
+                //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 

@@ -14,7 +14,7 @@ namespace DigitaalOmgevingsboek
         public POI()
         {
             Foto_POI = new HashSet<Foto_POI>();
-            POI_Log = new HashSet<POI_Log>();
+            //POI_Log = new HashSet<POI_Log>();
             Rating = new HashSet<Rating>();
             Doelgroep = new HashSet<Doelgroep>();
             Thema = new HashSet<Thema>();
@@ -79,7 +79,7 @@ namespace DigitaalOmgevingsboek
 
         public  virtual ICollection<Foto_POI> Foto_POI { get; set; }
 
-        public virtual ICollection<POI_Log> POI_Log { get; set; }
+        //public virtual ICollection<POI_Log> POI_Log { get; set; }
 
         public virtual ICollection<Rating> Rating { get; set; }
 

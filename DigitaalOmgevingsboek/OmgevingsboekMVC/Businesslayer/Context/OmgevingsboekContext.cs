@@ -106,11 +106,11 @@ namespace DigitaalOmgevingsboek
                 .HasForeignKey(e => e.POI_Id)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<POI>()
-                .HasMany(e => e.POI_Log)
-                .WithRequired(e => e.POI)
-                .HasForeignKey(e => e.POI_Id)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<POI>()
+            //    .HasMany(e => e.POI_Log)
+            //    .WithRequired(e => e.POI)
+            //    .HasForeignKey(e => e.POI_Id)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<POI>()
                 .HasMany(e => e.Rating)
