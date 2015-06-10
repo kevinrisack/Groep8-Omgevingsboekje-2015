@@ -1136,6 +1136,7 @@
     <Content Include="Views\Gebruiker\GebruikersOverzicht.cshtml" />
     <Content Include="Views\POI\ActivityView.cshtml" />
     <Content Include="Views\POI\ActivityNew.cshtml" />
+    <Content Include="Views\POI\ActivityModify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

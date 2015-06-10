@@ -360,6 +360,86 @@ namespace DigitaalOmgevingsboek.Controllers
                 return View(activiteit);
             }
         }
+
+        [HttpGet]
+        public ActionResult ActivityModify(int? id)
+        {
+            if (id.HasValue)
+            {
+                Activiteit activiteit = ps.GetActiviteit(id.Value);
+
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                ViewBag.Leerdoelen = ps.GetLeerdoelen();
+
+                return View(activiteit);
+            }
+            else
+            {
+                return RedirectToAction("POIOverzicht");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ActivityModify(Activiteit activiteit, HttpPostedFileBase picture, List<int> doelgroepIds, List<int> leerdoelIds)
+        {
+            if (ModelState.IsValid)
+            {
+
+                try
+                {
+                    ps.UpdateActiviteit(activiteit);
+                    activiteit = ps.GetActiviteit(activiteit.Id);
+
+                    activiteit.Doelgroep = new List<Doelgroep>();
+                    if (doelgroepIds != null)
+                    {
+                        foreach (int doelgroepId in doelgroepIds)
+                        {
+                            Doelgroep dg = ps.GetDoelgroep(doelgroepId);
+
+                            dg.Activiteit.Add(activiteit);
+                            activiteit.Doelgroep.Add(dg);
+
+                            ps.UpdateDoelgroep(dg);
+                        }
+                    }
+
+                    activiteit.Leerdoel = new List<Leerdoel>();
+                    if (leerdoelIds != null)
+                    {
+                        foreach (int leerdoelId in leerdoelIds)
+                        {
+                            Leerdoel ld = ps.GetLeerdoel(leerdoelId);
+
+                            ld.Activiteit.Add(activiteit);
+                            activiteit.Leerdoel.Add(ld);
+
+                            ps.UpdateLeerdoel(ld);
+                        }
+                    }
+
+                    ps.UpdateActiviteit(activiteit);
+
+                    if (picture != null)
+                    {
+                        ps.UploadPictureActiviteit(activiteit, picture);
+                    }
+
+                    return RedirectToAction("ActivityView", new { id = activiteit.Id });
+                }
+                catch (Exception e)
+                {
+                    return View("Error: " + e);
+                }
+            }
+            else
+            {
+                ViewBag.Doelgroepen = ps.GetDoelgroepen();
+                ViewBag.Leerdoelen = ps.GetLeerdoelen();
+                return View(activiteit);
+            }
+        }
         #endregion
     }
 }

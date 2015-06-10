@@ -1,0 +1,159 @@
+﻿@model DigitaalOmgevingsboek.Activiteit
+@{
+    ViewBag.Title = "ActivityModify";
+}
+
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Activiteit Aanpassen</h1>
+            </div>
+        </div>
+
+        <form method="post" action="/POI/ActivityModify" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-xs-10 col-lg-10">
+
+                </div>
+                <div class="col-lg-2 col-xs-12">
+                    <input type="submit" value="Activiteit Opslaan" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="tabs">
+                        <li><a href="#view1">Basis Informatie Activity</a></li>
+                        <li><a href="#view2">Afbeeldingen</a></li>
+                        <li><a href="#view3">Leergebied</a></li>
+                    </ul>
+                    <div class="tabcontents">
+                        <div id="view1">
+                            <div class="panel">
+
+                                <div class="panel-body">
+
+                                    <input type="hidden" value="@Model.Id" name="Id" />
+                                    <input type="hidden" value="@Model.POI_Id" name="POI_Id" />
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Naam: </label> @Html.TextBoxFor(model => model.Naam, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Naam, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Beschrijving: </label> @Html.TextBoxFor(model => model.Beschrijving, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Beschrijving, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Website: </label> @Html.TextBoxFor(model => model.Materiaal, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Materiaal, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tijdsduur: </label> @Html.TextBoxFor(model => model.Duur, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Duur, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Terugkoppeling: </label> @Html.TextBoxFor(model => model.Terugkoppeling, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Terugkoppeling, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Opmerkingen: </label> @Html.TextBoxFor(model => model.Opmerkingen, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Opmerkingen, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                @foreach (Doelgroep dg in ViewBag.Doelgroepen)
+                                                {
+                                                    var i = "";
+
+                                                    foreach (Doelgroep doelgroep in Model.Doelgroep)
+                                                    {
+
+                                                        if (dg.Id == doelgroep.Id)
+                                                        {
+                                                            i = "checked";
+                                                        }
+                                                    }
+                                                    <div class="checkbox-inline">
+
+                                                        <input type="checkbox" id="@dg.Id" name="doelgroepIds" value="@dg.Id" @i />
+                                                        <label for="@dg.Id">@dg.DoelgroepNaam</label>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="view2">
+                            <div class="panel">
+
+                                <div class="panel-body">
+                                    <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label>Afbeeldingen</label>
+                                            <br />
+                                            <input type="file" name="picture" id="url" /><input type="button" name="btnBrowse" value="..." /><input type="submit" name="btnUploaden" value="Uploaden" />
+                                            <br />
+
+                                            <div class="POINewAfbeeldingen">
+
+                                                Afbeelding
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="view3">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label>Leergebied</label>
+                                            <br />
+                                            <div class="form-group">
+                                                @foreach (Leerdoel ld in ViewBag.Leerdoelen)
+                                                {
+                                                    var i = "";
+
+                                                    foreach (Leerdoel leerdoel in Model.Leerdoel)
+                                                    {
+
+                                                        if (ld.Id == leerdoel.Id)
+                                                        {
+                                                            i = "checked";
+                                                        }
+                                                    }
+                                                    <div class="checkbox-inline">
+
+                                                        <input type="checkbox" id="@ld.Id" name="leerdoelIds" value="@ld.Id" @i />
+                                                        <label for="@ld.Id">@ld.LeerdoelNaam</label>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- /.container-fluid -->
+<!-- /#page-wrapper -->
