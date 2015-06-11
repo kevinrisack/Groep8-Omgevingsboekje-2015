@@ -133,23 +133,26 @@
                         <div id="view1">
                             <div class="panel">
                                 <div class="panel-body">
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Uitstap.Naam)
-                                        <div>
-                                            @Html.TextBoxFor(model => model.Uitstap.Naam)
-                                            @Html.ValidationMessageFor(model => model.Uitstap.Naam, "", new { @class = "text-danger" })
+                                    <div class="row">
+                                        <div class="col-lg-7 col-xs-12">
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Uitstap.Naam)
+                                                <div>
+                                                    @Html.TextBoxFor(model => model.Uitstap.Naam, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Uitstap.Naam, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Uitstap.Beschrijving)
+                                                <div>
+                                                    @Html.TextAreaFor(model => model.Uitstap.Beschrijving, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Uitstap.Beschrijving, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Uitstap.Beschrijving)
-                                        <div>
-                                            @Html.TextAreaFor(model => model.Uitstap.Beschrijving)
-                                            @Html.ValidationMessageFor(model => model.Uitstap.Beschrijving, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.Uitstap.POI)
                                         <div class="dataTable_wrapper">
@@ -210,7 +213,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                  
-                                                    @Html.ListBoxFor(model => model.SelectedValues, Model.Points, new { id = "routeList", height = "300px" })
+                                                    @Html.ListBoxFor(model => model.SelectedValues, Model.Points, new { id = "routeList",@class = "form-control" })
                                                 </div>
                                             </div>
                                             <div class="col-lg-1">
