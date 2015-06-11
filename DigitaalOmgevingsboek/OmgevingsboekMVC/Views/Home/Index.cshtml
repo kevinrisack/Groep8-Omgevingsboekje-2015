@@ -180,12 +180,15 @@
                                 <tbody>
                                     @foreach (Uitstap uitstap in ViewBag.gebruiker.Uitstap)
                                     {
+                                        if(uitstap.IsDeleted==false)
+                                        { 
                                         <tr class="odd gradeX">
                                             <td><a href="@Url.Action("Details", "Uitstap", new { id = uitstap.Id, onclick = "setCookie()" })">@uitstap.Naam</a></td>
                                             <td>@uitstap.Beschrijving</td>
                                             
 
                                         </tr>
+                                    }
                                     }
                                 </tbody>
                             </table>
@@ -211,13 +214,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (POI poi in ViewBag.gebruiker.POI) { 
+                                    @foreach (POI poi in ViewBag.gebruiker.POI) {
+                                        if (poi.IsDeleted == false) {
                                     <tr class="odd gradeX">
                                         <td><a href="@Url.Action("POIView", "POI", new { id = poi.Id, onclick = "setCookie()" })">@poi.Naam</a></td>
                                         <td>@poi.Adres</td>
                                         <td>@poi.Gemeente</td>
                                       
                                     </tr>
+                                        }
                                     }
                                 </tbody>
                             </table>

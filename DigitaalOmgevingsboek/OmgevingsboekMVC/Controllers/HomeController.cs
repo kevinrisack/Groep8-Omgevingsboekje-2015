@@ -24,7 +24,7 @@ namespace OmgevingsboekMVC.Controllers
 
                 using (OmgevingsboekContext context = new OmgevingsboekContext())
                 {
-                    GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>(context);
+                    GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>();
                     POIRepository POIrepo = new POIRepository(context);
                     UitstapRepository Uitstaprep = new UitstapRepository(context);
                     GebruikerRepository gebruikersrepo=new GebruikerRepository(context);
