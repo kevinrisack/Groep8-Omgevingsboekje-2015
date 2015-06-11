@@ -31,6 +31,8 @@ namespace OmgevingsboekMVC.Controllers
             List<Uitstap> uitstappen = us.GetUitstappen();
             List<Uitstap> uitstappenMine = us.GetUitstappen(User.Identity.GetUserId());
 
+            ViewBag.nMine = uitstappenMine.Count;
+
             List<Uitstap> uitstappenMetRechten = new List<Uitstap>();
             foreach (Uitstap u in uitstappen)
             {
@@ -45,7 +47,6 @@ namespace OmgevingsboekMVC.Controllers
                 uitstappenMetRechten.Add(u);
 
             ViewBag.nAll = uitstappenMetRechten.Count;
-            ViewBag.nMine = us.GetUitstappen(User.Identity.GetUserId()).Count;
             ViewBag.User = User.Identity.GetUserId();
             
             switch(filter)
