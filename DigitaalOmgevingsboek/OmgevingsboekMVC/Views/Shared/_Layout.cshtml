@@ -50,7 +50,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Surroundings</a>
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")" onclick="setCookie()">Surroundings</a>
 
 
 
@@ -98,7 +98,7 @@
                                 <a href="@Url.Action("POINew", "POI")" onclick="setCookie()">Nieuw</a>
                             </li>
                             <li>
-                                <a href="@Url.Action("POIStart", "POI")" onclick="setCookie()">Lijst</a>
+                                <a href="@Url.Action("POIStart", "POI")" onclick="setCookie()">Overzicht</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

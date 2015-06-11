@@ -385,6 +385,16 @@ table.dataTable thead .sorting:after {
     
 }
 
+.googleMapsRoute{
+      height:300px;
+      margin-bottom:30px;
+}
+
+#routeList{
+    height:300px;
+    width:100%;
+}
+
 .POIViewGoogleMaps2{
     margin-top:10px;
     height:500px;
