@@ -126,9 +126,12 @@ namespace OmgevingsboekMVC.Controllers
             Uitstap originalUitstap = us.GetUitstap(uitstapVM.Uitstap.Id);
 
             //Route punten toevoegen aan Uitstap
-            originalUitstap.Route.Points = uitstapVM.SelectedValues[0];
-            for (int i = 1; i < uitstapVM.SelectedValues.Length; i++)
-                originalUitstap.Route.Points += ";" + uitstapVM.SelectedValues[i];
+            if (uitstapVM.SelectedValues != null)
+            {
+                originalUitstap.Route.Points = uitstapVM.SelectedValues[0];
+                for (int i = 1; i < uitstapVM.SelectedValues.Length; i++)
+                    originalUitstap.Route.Points += ";" + uitstapVM.SelectedValues[i];
+            }
 
             //Algemene Info toevoegen aan Uitstap
             if (originalUitstap.Naam != uitstapVM.Uitstap.Naam) originalUitstap.Naam = uitstapVM.Uitstap.Naam;
