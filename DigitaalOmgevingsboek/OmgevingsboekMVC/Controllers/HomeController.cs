@@ -52,7 +52,7 @@ namespace OmgevingsboekMVC.Controllers
 
                     foreach(AspNetUsers aspnetuser in gebruikersrepo.All().ToList() )
                     {
-                        if((aspnetuser.IsDeleted==false) && (aspnetuser.IsPending==false) && (aspnetuser.EmailConfirmed==false))
+                        if((aspnetuser.IsDeleted==false) && (aspnetuser.IsPending==false) && (aspnetuser.EmailConfirmed==true))
                         {
                             allGebruikers.Add(aspnetuser);
 
