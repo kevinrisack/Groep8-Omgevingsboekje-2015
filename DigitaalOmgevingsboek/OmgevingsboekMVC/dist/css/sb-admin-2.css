@@ -379,6 +379,11 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
+.headerImage{
+    
+ 
+}
+
 .POIViewGoogleMaps{
     margin-top:40px;
     height:350px;
