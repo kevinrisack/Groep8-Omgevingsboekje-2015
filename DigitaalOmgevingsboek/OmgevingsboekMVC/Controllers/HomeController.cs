@@ -30,9 +30,34 @@ namespace OmgevingsboekMVC.Controllers
                     GebruikerRepository gebruikersrepo=new GebruikerRepository(context);
 
                     currentUser=gebruikersrepo.GetByEmail(user);
-                    allPOI = POIrepo.All().ToList();
-                    allUistappen = Uitstaprep.All().ToList();
-                    allGebruikers= gebruikersrepo.All().ToList();
+                    
+                   
+                    
+
+                    foreach (POI poi in POIrepo.All().ToList())
+                    {
+                        if(poi.IsDeleted==false)
+                        {
+                            allPOI.Add(poi);
+                        }
+                    }
+
+                    foreach(Uitstap uitstap in Uitstaprep.All().ToList())
+                    {
+                        if(uitstap.IsDeleted==false)
+                        {
+                            allUistappen.Add(uitstap);
+                        }
+                    }
+
+                    foreach(AspNetUsers aspnetuser in gebruikersrepo.All().ToList() )
+                    {
+                        if((aspnetuser.IsDeleted==false) && (aspnetuser.IsPending==false) && (aspnetuser.EmailConfirmed==false))
+                        {
+                            allGebruikers.Add(aspnetuser);
+
+                        }
+                    }
 
                     ViewBag.gebruiker = currentUser;
                     ViewBag.lijstPOI = allPOI;
