@@ -139,15 +139,20 @@
 
                                                     }
 
-                                                }
+                                                    if (i == 0)
+                                                    {
+                                                        <img src="http://dummyimage.com/300x150/aaa/fff.png&text=Geen+afbeeldingen">
+                                                    }
+
+}
                                             </div>
                                         </div>
 
 
-                                        <label>Google Maps</label>
+
                                         <br />
                                         <div class="POIViewGoogleMaps" id="map-canvas">
-                                            Google Maps
+
                                         </div>
 
                                     </div>
@@ -189,11 +194,11 @@
                                                         <td>
                                                             @Html.ActionLink("Wijzig", "ActivityModify", new { id = activiteit.Id })
                                                             @*
-                                                            @if (ViewBag.UserId == Model.Auteur_Id)
-                                                            {
-                                                                <span>|</span>
-                                                                @Html.ActionLink("Verwijder", "ActivityDelete", new { id = activiteit.Id }, new { onclick = "return confirm('Weet u zeker dat u deze activiteit wilt verwijderen?');" })
-                                                            }                                  
+                                                                @if (ViewBag.UserId == Model.Auteur_Id)
+                                                                {
+                                                                    <span>|</span>
+                                                                    @Html.ActionLink("Verwijder", "ActivityDelete", new { id = activiteit.Id }, new { onclick = "return confirm('Weet u zeker dat u deze activiteit wilt verwijderen?');" })
+                                                                }
                                                             *@
                                                         </td>
                                                     </tr>
@@ -230,11 +235,11 @@
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <script>
     $(document).ready(function () {
@@ -243,5 +248,5 @@
         });
     });
 </script>
- 
+
 
