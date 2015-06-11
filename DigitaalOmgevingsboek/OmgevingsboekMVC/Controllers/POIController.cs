@@ -245,14 +245,13 @@ namespace DigitaalOmgevingsboek.Controllers
 
                     ps.UpdatePOI(poi);
 
-                    if (pictures != null)
+                    if (!pictures.Contains(null))
                     {
                         foreach (HttpPostedFileBase picture in pictures)
                         {
                             ps.UploadPicturePOI(poi, picture);
-                        }                       
+                        }
                     }
-
                     return RedirectToAction("POIOverzicht");
                 }
                 catch (Exception e)
