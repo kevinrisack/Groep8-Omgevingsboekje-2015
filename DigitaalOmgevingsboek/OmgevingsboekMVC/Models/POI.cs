@@ -42,11 +42,11 @@ namespace DigitaalOmgevingsboek
         [EmailAddress(ErrorMessage="U heeft een onjuist emailadres ingevoerd")]
         public string Email { get; set; }
 
-        [StringLength(50)]
+        [StringLength(250)]
         [DisplayName("Website")]
         public string WebsiteUrl { get; set; }
 
-        [StringLength(50)]
+        [StringLength(250)]
         public string Openingsuur { get; set; }
 
         [Numeric(ErrorMessage="Geef een geldige waarde op, bv: 1.08")]
