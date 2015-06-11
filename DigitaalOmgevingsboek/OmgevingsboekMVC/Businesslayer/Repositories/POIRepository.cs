@@ -24,8 +24,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
         {
             var query = (from p in context.POI.Include(p => p.Activiteit)
                                               .Include(p => p.AspNetUsers)
-                                              .Include(p => p.Foto_POI)
-                                              
+                                              .Include(p => p.Foto_POI)                                            
                                               .Include(p => p.Rating)
                                               .Include(p => p.Doelgroep)
                                               .Include(p => p.Thema)
@@ -39,8 +38,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
         {
             var query = (from p in context.POI.Include(p => p.Activiteit)
                                               .Include(p => p.AspNetUsers)
-                                              .Include(p => p.Foto_POI)
-                                             
+                                              .Include(p => p.Foto_POI)                                           
                                               .Include(p => p.Rating)
                                               .Include(p => p.Doelgroep)
                                               .Include(p => p.Thema)
@@ -54,8 +52,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
         {
             var query = (from p in context.POI.Include(p => p.Activiteit)
                                               .Include(p => p.AspNetUsers)
-                                              .Include(p => p.Foto_POI)
-                                             
+                                              .Include(p => p.Foto_POI)                                            
                                               .Include(p => p.Rating)
                                               .Include(p => p.Doelgroep)
                                               .Include(p => p.Thema)
@@ -69,13 +66,26 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
         {
             var query = (from p in context.POI.Include(p => p.Activiteit)
                                               .Include(p => p.AspNetUsers)
-                                              .Include(p => p.Foto_POI)
-                                              
+                                              .Include(p => p.Foto_POI)                                          
                                               .Include(p => p.Rating)
                                               .Include(p => p.Doelgroep)
                                               .Include(p => p.Thema)
                                               .Include(p => p.Uitstap)
                          where p.IsDeleted == false && p.Doelgroep.Any(d => d.Id == doelgroepId)
+                         select p);
+             return query.ToList<POI>();
+        }
+
+        public List<POI> GetByUser(string userId)
+        {
+            var query = (from p in context.POI.Include(p => p.Activiteit)
+                                              .Include(p => p.AspNetUsers)
+                                              .Include(p => p.Foto_POI)                                          
+                                              .Include(p => p.Rating)
+                                              .Include(p => p.Doelgroep)
+                                              .Include(p => p.Thema)
+                                              .Include(p => p.Uitstap)
+                         where p.IsDeleted == false && p.Auteur_Id == userId
                          select p);
              return query.ToList<POI>();
         }

@@ -13,8 +13,8 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="form-group">
-                    <input type="button" class="btn btn-lg btn-success btn-block" name="btnSearch" value="Bekijk alle POI's'" onclick="location.href='@Url.Action("POIOverzicht", "POI")'" />
-                    <input type="button" class="btn btn-lg btn-success btn-block" name="btnSearch" value="Bekijk mijn POI's'" onclick="location.href='@Url.Action("POIOverzicht", "POI", new { user = Page.CurrentUser.Id })'" />
+                    <input type="button" class="btn btn-lg btn-success btn-block" name="btnSearch" value="Bekijk alle POI's" onclick="location.href='@Url.Action("POIOverzicht", "POI", new { filter = "alle"})'" />
+                    <input type="button" class="btn btn-lg btn-success btn-block" name="btnSearch" value="Bekijk mijn POI's" onclick="location.href='@Url.Action("POIOverzicht", "POI", new { filter = "mijn" })'" />
                 </div>
             </div>
         </div>

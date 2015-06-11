@@ -29,7 +29,7 @@ namespace DigitaalOmgevingsboek.Controllers
             return View();
         }
 
-        public ActionResult POIOverzicht(int? themaId, int? doelgroepId, string userId)
+        public ActionResult POIOverzicht(int? themaId, int? doelgroepId, string filter)
         {
             List<POI> pois = new List<POI>();
 
@@ -44,15 +44,23 @@ namespace DigitaalOmgevingsboek.Controllers
                 pois = ps.GetPOIByDoelgroep(doelgroepId.Value);
             }
             //get POI by user
-            else if (userId != "" && userId != null)
+            else if (filter != "" && filter != null)
             {
-                pois.Add(new POI());
-                //pois = ps.GetPOIByUser(userId.Value);
+                switch (filter)
+                {
+                    //get all POIs
+                    case "alle":
+                        pois = ps.GetPOIs();
+                        break;
+                    //get POI by user
+                    case "mijn":
+                        pois = ps.GetPOIByUser(User.Identity.GetUserId());
+                        break;
+                }
             }
-            //get all POIs
             else
             {
-                pois = ps.GetPOIs();
+                return View("Error: " + "Er is iets misgelopen");
             }
             
             ViewBag.Doelgroepen = ps.GetDoelgroepen();

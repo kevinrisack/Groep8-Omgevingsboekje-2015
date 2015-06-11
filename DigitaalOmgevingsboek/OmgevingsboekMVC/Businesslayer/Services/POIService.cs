@@ -42,6 +42,10 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         {
             return repoPOI.GetByDoelgroep(doelgroepId);
         }
+        public List<POI> GetPOIByUser(string userId)
+        {
+            return repoPOI.GetByUser(userId);
+        }
     
         public POI GetPOI(int id)
         {
