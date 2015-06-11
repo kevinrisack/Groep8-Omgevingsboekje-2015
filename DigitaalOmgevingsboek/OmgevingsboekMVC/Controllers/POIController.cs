@@ -29,7 +29,7 @@ namespace DigitaalOmgevingsboek.Controllers
             return View();
         }
 
-        public ActionResult POIOverzicht(int? themaId, int? doelgroepId)
+        public ActionResult POIOverzicht(int? themaId, int? doelgroepId, string userId)
         {
             List<POI> pois = new List<POI>();
 
@@ -42,6 +42,12 @@ namespace DigitaalOmgevingsboek.Controllers
             else if (doelgroepId.HasValue)
             {
                 pois = ps.GetPOIByDoelgroep(doelgroepId.Value);
+            }
+            //get POI by user
+            else if (userId != "" && userId != null)
+            {
+                pois.Add(new POI());
+                //pois = ps.GetPOIByUser(userId.Value);
             }
             //get all POIs
             else
@@ -133,7 +139,7 @@ namespace DigitaalOmgevingsboek.Controllers
                     
                     ps.UpdatePOI(poi);
 
-                    if (pictures != null)
+                    if (!pictures.Contains(null))
                     {
                         foreach (HttpPostedFileBase picture in pictures)
                         {
