@@ -22,35 +22,7 @@
                         
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-
-                                <form action="">
-                                    <div class="form-group">
-                                        <label>Zoek: </label>
-                                        <input type="text" name="search" id="search" class="form-control" placeholder="Geef hier uw zoekterm in"><br>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Doelgroep:</label>
-                                        <select class="form-control" name="Doelgroep">
-                                            @foreach (Doelgroep dg in ViewBag.Doelgroepen)
-                                            {
-                                                <option>@dg.DoelgroepNaam</option>
-                                            }
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Leerdoel:</label>
-                                        <select class="form-control" name="Leerdoel">
-                                            @foreach (Leerdoel ld in ViewBag.Leerdoelen)
-                                            {
-                                                <option>@ld.LeerdoelNaam</option>
-                                            }
-                                        </select>
-                                    </div>
-
-                                </form>
-                                <br />
-                
-                                <div class="dataTable_wrapper">
+                               <div class="dataTable_wrapper">
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>

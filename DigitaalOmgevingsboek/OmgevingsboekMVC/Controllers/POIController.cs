@@ -60,7 +60,7 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             else
             {
-                return View("Error: " + "Er is iets misgelopen");
+                pois = ps.GetPOIs();
             }
             
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
