@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
+using OmgevingsboekMVC.ViewModel;
 
 namespace OmgevingsboekMVC.Controllers
 {
@@ -24,11 +25,10 @@ namespace OmgevingsboekMVC.Controllers
         // GET: Uitstap
         public ActionResult Index(string filter)
         {
-            List<Uitstap> uitstappen = us.GetUitstappen();
-
             if (filter == null)
                 return RedirectToAction("Index", "Uitstap", new { filter = "all" });
 
+            List<Uitstap> uitstappen = us.GetUitstappen();
             List<Uitstap> uitstappenMine = us.GetUitstappen(User.Identity.GetUserId());
 
             List<Uitstap> uitstappenMetRechten = new List<Uitstap>();
@@ -46,6 +46,7 @@ namespace OmgevingsboekMVC.Controllers
 
             ViewBag.nAll = uitstappenMetRechten.Count;
             ViewBag.nMine = us.GetUitstappen(User.Identity.GetUserId()).Count;
+            ViewBag.User = User.Identity.GetUserId();
             
             switch(filter)
             {
@@ -55,7 +56,7 @@ namespace OmgevingsboekMVC.Controllers
                 case "all": 
                             return View(uitstappenMetRechten);
 
-                default: return RedirectToAction("Index", "Uitstap", new { filter = "my"});
+                default: return RedirectToAction("Index", "Uitstap", new { filter = "all"});
             }
         }
 
@@ -96,24 +97,20 @@ namespace OmgevingsboekMVC.Controllers
             if (!id.HasValue)
                 return RedirectToAction("Index");
 
-            Uitstap uitstap = us.GetUitstap(id.Value);
+            UitstapVM uitstapVM = new UitstapVM();
+            uitstapVM.Uitstap = us.GetUitstap(id.Value);
 
-            if (uitstap.Naam != null)
+            if (uitstapVM.Uitstap.Naam != null)
             {
                 ViewBag.POI = us.GetPOIs();
                 ViewBag.Users = us.GetUsers();
+                ViewBag.Points = GetPoisInRoute(uitstapVM.Uitstap);
 
-                List<POI> poiInRoute = new List<POI>();
-                try
-                {
-                    foreach (string s in uitstap.Route.Points.Split(';').ToList<string>())
-                        poiInRoute.Add(us.GetPOIById(int.Parse(s)));
-                }
-                catch (Exception) { }
+                uitstapVM.Points = new List<SelectListItem>();
+                foreach (POI poi in ViewBag.Points)
+                    uitstapVM.Points.Add(new SelectListItem { Value = poi.Id.ToString(), Text = poi.Naam });
 
-                ViewBag.Points = poiInRoute;
-
-                return View(uitstap);
+                return View(uitstapVM);
             }
             else
                 return RedirectToAction("New");
@@ -121,32 +118,46 @@ namespace OmgevingsboekMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Uitstap uitstap, string submit)
+        public ActionResult Edit(UitstapVM uitstapVM, string submit)
         {
-            Uitstap originalUitstap = us.GetUitstap(uitstap.Id);
-            ViewBag.POI = us.GetPOIs();
-            ViewBag.Users = us.GetUsers();
+            Uitstap originalUitstap = us.GetUitstap(uitstapVM.Uitstap.Id);
 
-            ViewBag.Points = GetPoisInRoute(originalUitstap);
+            //Route punten toevoegen aan Uitstap
+            originalUitstap.Route.Points = uitstapVM.SelectedValues[0];
+            for (int i = 1; i < uitstapVM.SelectedValues.Length; i++)
+                originalUitstap.Route.Points += ";" + uitstapVM.SelectedValues[i];
 
-            if (originalUitstap.Naam != uitstap.Naam) originalUitstap.Naam = uitstap.Naam;
-            if (originalUitstap.Beschrijving != uitstap.Beschrijving) originalUitstap.Beschrijving = uitstap.Beschrijving;
+            //Algemene Info toevoegen aan Uitstap
+            if (originalUitstap.Naam != uitstapVM.Uitstap.Naam) originalUitstap.Naam = uitstapVM.Uitstap.Naam;
+            if (originalUitstap.Beschrijving != uitstapVM.Uitstap.Beschrijving) originalUitstap.Beschrijving = uitstapVM.Uitstap.Beschrijving;
             
             string[] input = submit.Split(':');
 
             switch (input[0])
             {
+                //Save button pressed
                 case "save":
                     if (!ModelState.IsValid)
-                        return View(uitstap);
+                    {
+                        ViewBag.POI = us.GetPOIs();
+                        ViewBag.Users = us.GetUsers();
+                        ViewBag.Points = GetPoisInRoute(originalUitstap);
+                        return View(uitstapVM);
+                    }
 
-                    return RedirectToAction("Details", uitstap.Id);
+                    us.UpdateUitstap(originalUitstap);
+                    return RedirectToAction("Details", uitstapVM.Uitstap.Id);
+
+                //case "direction":
+                //    originalUitstap.Route.Points = ChangeDirection(originalUitstap, routelijst, input[1]);
+                //    us.UpdateUitstap(originalUitstap);
+                //    return RedirectToAction("Edit", new { id = originalUitstap.Id });
 
                 case "delete":
                     switch (input[1])
                     {
                         case "route":
-                            string newPoints = RouteVerwijderen(input[2]);
+                            string newPoints = RouteVerwijderen(originalUitstap, input[2]);
 
                             originalUitstap.Route.Points = newPoints;
 
@@ -157,7 +168,7 @@ namespace OmgevingsboekMVC.Controllers
                         case "poi":
                             originalUitstap.POI.Remove(us.GetPOIById(int.Parse(input[2])));
 
-                            string newPoints2 = RouteVerwijderen(input[2]);
+                            string newPoints2 = RouteVerwijderen(originalUitstap, input[2]);
 
                             originalUitstap.Route.Points = newPoints2;
 
@@ -169,7 +180,7 @@ namespace OmgevingsboekMVC.Controllers
                             us.UpdateUitstap(originalUitstap);
                             return RedirectToAction("Edit", new { id = originalUitstap.Id });
 
-                        default: return RedirectToAction("Index", new { filter = "my" });
+                        default: return RedirectToAction("Index", new { filter = "all" });
                     }
 
 
@@ -182,7 +193,6 @@ namespace OmgevingsboekMVC.Controllers
                             else
                                 originalUitstap.Route.Points += input[2];
 
-                            ViewBag.Points = GetPoisInRoute(originalUitstap);
                             us.UpdateUitstap(originalUitstap);
                             return RedirectToAction("Edit", new { id = originalUitstap.Id });
                         
@@ -196,21 +206,54 @@ namespace OmgevingsboekMVC.Controllers
                             us.UpdateUitstap(originalUitstap);
                             return RedirectToAction("Edit", new { id = originalUitstap.Id });
 
-                        default: return RedirectToAction("Index", new { filter = "my" });
+                        default: return RedirectToAction("Index", new { filter = "all" });
                     }
 
-                default: return RedirectToAction("Index", new { filter = "my" });
+                default: return RedirectToAction("Index", new { filter = "all" });
 
             }
         }
 
-        private string RouteVerwijderen(string input)
+        #region Custom Methods
+
+        private string ChangeDirection(Uitstap uitstap, string routelijst, string direction)
         {
-            List<POI> poisInRoute = ViewBag.Points;
+            POI movedPOI = us.GetPOIById(int.Parse(routelijst));
+            List<POI> listRoute = GetPoisInRoute(uitstap);
+
+            for (int i = 0; i < listRoute.Count; i++)
+                if (listRoute[i].Id == movedPOI.Id)
+                    switch(direction)
+                    {
+                        case "up":
+                            if (i > 0)
+                            {
+                                listRoute.RemoveAt(i);
+                                listRoute.Insert(i - 1, movedPOI);
+                            }
+                            break;
+
+                        case "down":
+                            if(i < listRoute.Count-1)
+                            {
+                                listRoute.RemoveAt(i);
+                                listRoute.Insert(i+1, movedPOI);
+                            }
+                            break;
+                    }
+            return ConvertListToString(listRoute);
+        }
+
+        private string RouteVerwijderen(Uitstap uitstap, string input)
+        {
+            List<POI> poisInRoute = GetPoisInRoute(uitstap);
             poisInRoute.Remove(us.GetPOIById(int.Parse(input)));
 
-            ViewBag.Points = poisInRoute;
+            return ConvertListToString(poisInRoute);
+        }
 
+        private static string ConvertListToString(List<POI> poisInRoute)
+        {
             string newPoints = null;
             if (poisInRoute.Count != 0)
             {
@@ -222,6 +265,7 @@ namespace OmgevingsboekMVC.Controllers
                 newPoints = null;
             return newPoints;
         }
+        #endregion
 
         private List<POI> GetPoisInRoute(Uitstap uitstap)
         {
@@ -249,11 +293,22 @@ namespace OmgevingsboekMVC.Controllers
 
         public ActionResult Delete(int? id)
         {
-            if (!id.HasValue)
-                return RedirectToAction("Index");
-            
-            Uitstap uitstap = us.GetUitstap(id.Value);
-            return View(uitstap);
+            if (id.HasValue)
+            {
+                Uitstap uitstap = us.GetUitstap(id.Value);
+
+                if (uitstap.Auteur_Id == User.Identity.GetUserId())
+                {
+                    uitstap.IsDeleted = true;
+                    us.UpdateUitstap(uitstap);
+                    return RedirectToAction("Index", new { filter = "all" });
+                }
+                else
+                {
+                    return View("Error: " + "U heeft geen toestemming op deze POI te verwijderen.");
+                }
+            }
+            return RedirectToAction("Index", new { filter = "all" });
         }
     }
 }

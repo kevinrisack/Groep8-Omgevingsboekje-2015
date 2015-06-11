@@ -1,4 +1,4 @@
-﻿@model DigitaalOmgevingsboek.Uitstap
+﻿@model OmgevingsboekMVC.ViewModel.UitstapVM
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm(new { id = "editUitstapForm"}))
         {
             @Html.AntiForgeryToken()
             <div class="row">
@@ -43,23 +43,23 @@
                                 <div class="panel-body">
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Naam)
+                                        @Html.LabelFor(model => model.Uitstap.Naam)
                                         <div>
-                                            @Html.EditorFor(model => model.Naam)
-                                            @Html.ValidationMessageFor(model => model.Naam, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.Uitstap.Naam)
+                                            @Html.ValidationMessageFor(model => model.Uitstap.Naam, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Beschrijving)
+                                        @Html.LabelFor(model => model.Uitstap.Beschrijving)
                                         <div>
-                                            @Html.TextAreaFor(model => model.Beschrijving)
-                                            @Html.ValidationMessageFor(model => model.Beschrijving, "", new { @class = "text-danger" })
+                                            @Html.TextAreaFor(model => model.Uitstap.Beschrijving)
+                                            @Html.ValidationMessageFor(model => model.Uitstap.Beschrijving, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.POI)
+                                        @Html.LabelFor(model => model.Uitstap.POI)
                                         <div class="dataTable_wrapper">
                                             <table class="table table-striped table-bordered table-hover dataTables-example">
                                                 <thead>
@@ -71,14 +71,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach (POI poi in Model.POI)
+                                                    @foreach (POI poi in Model.Uitstap.POI)
                                                     {
                                                         <tr>
                                                             <td>@poi.Naam</td>
                                                             <td>@poi.Adres</td>
                                                             <td>@poi.Gemeente</td>
                                                             <td>
-                                                                @if (Model.POI.Contains(poi))
+                                                                @if (Model.Uitstap.POI.Contains(poi))
                                                                 {
                                                                     <button type="submit" id="delete" name="submit" class="btn btn-sm btn-danger btn-block" value="delete:poi:@poi.Id">Verwijderen uit Uitstap</button>
                                                                 }
@@ -107,7 +107,7 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.POI)
+                                        @Html.LabelFor(model => model.Uitstap.POI)
                                         <div class="row">
                                             <div class="col-lg-7">
                                                 <div id="googleMapsRoute" style="height:300px;">
@@ -117,16 +117,12 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label>POI's in route</label>
-                                                    <select size="2" class="form-control" style="height:300px;">
-                                                        @foreach(POI poi in @ViewBag.Points)
-                                                        {
-                                                            <option>@poi.Naam</option>
-                                                        }
-                                                    </select>
+                                                    @Html.ListBoxFor(model => model.SelectedValues, Model.Points, new { id = "routeList", height = "300%" })
                                                 </div>
                                             </div>
                                             <div class="col-lg-1">
-                                                Icon
+                                                <button type="button" id="up" name="directionUp" class="btn btn-sm btn-block fa fa-arrow-up" value="direction:up"></button>
+                                                <button type="button" id="down" name="directionDown" class="btn btn-sm btn-block fa fa-arrow-down" value="direction:down"></button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -142,7 +138,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach (POI poi in Model.POI)
+                                                        @foreach (POI poi in Model.Uitstap.POI)
                                                         {
                                                             <tr>
                                                                 <td>@poi.Naam</td>
@@ -185,7 +181,7 @@
                                         {
                                             <tr>
                                                 <td>
-                                                    <a href="@Url.Action("POIView", "POI", new { id = poi.Id})">@poi.Naam</a>
+                                                    <a href="@Url.Action("POIView", "POI", new { id = poi.Id })">@poi.Naam</a>
                                                 </td>
                                                 <td>
                                                     @poi.Adres
@@ -194,7 +190,7 @@
                                                     @poi.Gemeente
                                                 </td>
                                                 <td>
-                                                    @if (Model.POI.Contains(poi))
+                                                    @if (Model.Uitstap.POI.Contains(poi))
                                                     {
                                                         <button type="submit" id="delete" name="submit" class="btn btn-sm btn-danger btn-block" value="delete:poi:@poi.Id">Verwijderen uit Uitstap</button>
                                                     }
@@ -213,7 +209,7 @@
                         <div id="view4">
                             <div class="panel">
                                     <div class="form-group">
-                                        Rechten toekennen aan:
+                                        <label>Rechten toekennen aan:</label>
                                         <div class="dataTable_wrapper">
                                             <table class="table table-striped table-bordered table-hover dataTables-example">
                                                 <thead>
@@ -227,9 +223,9 @@
                                                 <tbody>
                                                     @foreach (AspNetUsers anu in ViewBag.Users)
                                                     {
-                                                        if(!anu.Id.Equals(Model.Auteur_Id))
+                                                        if (!anu.Id.Equals(Model.Uitstap.Auteur_Id))
                                                         {
-                                                            foreach(AspNetRoles role in anu.AspNetRoles)
+                                                            foreach (AspNetRoles role in anu.AspNetRoles)
                                                             {
                                                                 if (role.Name != "Administrator")
                                                                 {
@@ -238,7 +234,7 @@
                                                             <td>@anu.Firstname</td>
                                                             <td>@anu.UserName</td>
                                                             <td>
-                                                                @if (Model.AspNetUsers1.Contains(anu))
+                                                                @if (Model.Uitstap.AspNetUsers1.Contains(anu))
                                                                 {
                                                                     <button type="submit" id="delete" name="submit" class="btn btn-sm btn-danger btn-block" value="delete:user:@anu.Id">Verwijderen uit Uitstap</button>
                                                                 }
@@ -266,12 +262,24 @@
                         </div>
                     </div>
                 </div>
-            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Uitstap.Id)
         }
 
         <!-- /.row -->
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#editUitstapForm").submit(function (e) {
+
+            $("#routeList option").prop("selected", "selected");
+
+        });
+
+    });
+</script>
+
 <script>
     $(document).ready(function () {
         $('.dataTables-example').DataTable({

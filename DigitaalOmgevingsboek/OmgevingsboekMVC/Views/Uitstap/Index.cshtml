@@ -104,15 +104,18 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Naam)
+                                                <a href="@Url.Action("Details", "Uitstap", new { id = item.Id, onclick = "setCookie()" })">@Html.DisplayFor(modelItem => item.Naam)</a>
                                             </td>
                                             <td>
                                                 @item.AspNetUsers.Name @item.AspNetUsers.Firstname
                                             </td>
                                             <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id  ,onclick="setCookie()"}) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.Id, onclick = "setCookie()" }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                                @Html.ActionLink("Wijzigen", "Edit", new { id = item.Id  ,onclick="setCookie()"})
+                                                @if (ViewBag.User == item.Auteur_Id)
+                                                {
+                                                    <span>|</span>
+                                                    @Html.ActionLink("Verwijderen", "Delete", new { id = item.Id }, new { onclick = "return confirm('Weet u zeker dat u deze uitstap wilt verwijderen?');" })
+                                                }
                                             </td>
                                         </tr>
                                     }
