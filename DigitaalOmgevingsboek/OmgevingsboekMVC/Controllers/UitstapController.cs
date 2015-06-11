@@ -50,10 +50,12 @@ namespace OmgevingsboekMVC.Controllers
             
             switch(filter)
             {
-                case "my": 
+                case "my":
+                            ViewBag.Filter = "Mijn";
                             return View(uitstappenMine);
 
-                case "all": 
+                case "all":
+                            ViewBag.Filter = "Alle";
                             return View(uitstappenMetRechten);
 
                 default: return RedirectToAction("Index", "Uitstap", new { filter = "all"});
