@@ -101,7 +101,11 @@ namespace OmgevingsboekMVC.Controllers
                     {
                         return View("Error");
 
-                    } 
+                    }
+                    if (aspuser.EmailConfirmed != true)
+                    {
+                        return View("BevestigEmail");
+                    }
             }
            
             if (!ModelState.IsValid)
@@ -205,11 +209,27 @@ namespace OmgevingsboekMVC.Controllers
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
-                    return RedirectToAction("Index", "Home");
+                    var Sendgebruikersnaam = "NielsDeryckere";
+                    var SendPass = "Rome2-Totalwar";
+                    SendGridMessage mail = new SendGridMessage();
+                    mail.From = new MailAddress("niels.deryckere@student.howest.be");
+                    mail.AddTo(model.Email);
+                    mail.Subject = "Account bevestigen";
+                    mail.Html = "Bevestig uw account door op volgende link te klikken: <a href=\"" + callbackUrl + "\">Bevestig account</a> <br> Wanneer dit gebeurd is en de administrator u toegang verleend heeft, kan uw gebruik maken van Surroundings";
+
+
+                    var credentials = new NetworkCredential(Sendgebruikersnaam, SendPass);
+                    var transportWeb = new Web(credentials);
+                    await transportWeb.DeliverAsync(mail);
+
+
+
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return View("Bevestiging");
                 }
                 AddErrors(result);
             }

@@ -1255,6 +1255,8 @@
     <Content Include="Views\POI\ActivityView.cshtml" />
     <Content Include="Views\POI\ActivityNew.cshtml" />
     <Content Include="Views\POI\ActivityModify.cshtml" />
+    <Content Include="Views\Account\Bevestiging.cshtml" />
+    <Content Include="Views\Account\BevestigEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

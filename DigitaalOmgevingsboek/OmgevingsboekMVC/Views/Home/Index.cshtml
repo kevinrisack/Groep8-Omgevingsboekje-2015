@@ -177,7 +177,7 @@
                                     @foreach (Uitstap uitstap in ViewBag.gebruiker.Uitstap)
                                     {
                                         <tr class="odd gradeX">
-                                            <td>@uitstap.Naam</td>
+                                            <td><a href="@Url.Action("Details", "Uitstap", new { id = uitstap.Id, onclick = "setCookie()" })">@uitstap.Naam</a></td>
                                             <td>@uitstap.Beschrijving</td>
                                             
 
@@ -209,7 +209,7 @@
                                 <tbody>
                                     @foreach (POI poi in ViewBag.gebruiker.POI) { 
                                     <tr class="odd gradeX">
-                                        <td>@poi.Naam</td>
+                                        <td><a href="@Url.Action("POIView", "POI", new { id = poi.Id, onclick = "setCookie()" })">@poi.Naam</a></td>
                                         <td>@poi.Adres</td>
                                         <td>@poi.Gemeente</td>
                                       
