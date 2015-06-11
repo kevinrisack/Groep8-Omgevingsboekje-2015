@@ -30,6 +30,7 @@
                                                 <th>Adres</th>
                                                 <th>@Html.DisplayNameFor(model => model.Gemeente)</th>
                                                 <th></th>
+                                                <th id="hidden">@Html.DisplayNameFor(model=> model.Doelgroep)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -52,7 +53,13 @@
                                                             <span>|</span>
                                                             @Html.ActionLink("Verwijder", "POIDelete", new { id = item.Id }, new { onclick = "return confirm('Weet u zeker dat u deze POI wilt verwijderen?');" })
                                                         }
-                                                        </td>
+                                                    </td>
+                                                    <td id="hidden">
+                                                        @foreach (Doelgroep dg in item.Doelgroep)
+                                                        {
+                                                            @dg.DoelgroepNaam
+                                                        }
+                                                    </td>
                                                 </tr>
                                             }
 
