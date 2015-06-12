@@ -210,7 +210,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult POIModify(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> themaIds)
+        public ActionResult POIModify(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> themaIds, List<int> deleteFotoIds)
         {
             if (ModelState.IsValid)
             {
@@ -245,6 +245,20 @@ namespace DigitaalOmgevingsboek.Controllers
                             poi.Thema.Add(th);
 
                             ps.UpdateThema(th);
+                        }
+                    }
+
+                    if (deleteFotoIds != null)
+                    {
+                        foreach (int deleteFotoId in deleteFotoIds)
+                        {
+                            foreach (Foto_POI fotoPOI in poi.Foto_POI)
+                            {
+                                if (fotoPOI.Id.Equals(deleteFotoId))
+                                {
+                                    //poi.Foto_POI.Remove(fotoPOI);
+                                }
+                            }
                         }
                     }
 

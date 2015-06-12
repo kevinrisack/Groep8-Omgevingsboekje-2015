@@ -148,11 +148,20 @@
                                     <!-- Voeg hier code voor het beheren van afbeeldingen-->
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <label>Voeg een afbeeldingen toe:</label>
+                                            <label>Voeg een afbeelding toe:</label>
                                             <br />
                                             <input type="hidden" value="@Model.Id" name="Id" />
                                             <input type="hidden" value="@Model.Auteur_Id" name="Auteur_Id" />
                                             <input type="file" name="pictures" id="url" multiple />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Selecteer de afbeeldingen die u wilt verwijderen:</label>
+                                            @foreach (Foto_POI foto in Model.Foto_POI)
+                                            {
+                                                <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.FotoURL" width="150px" />
+                                                <input type="checkbox" id="@foto.Id" name="deleteFotoIds" value="@foto.Id" />
+                                                <br />
+                                            }
                                         </div>
                                     </div>
                                 </div>
