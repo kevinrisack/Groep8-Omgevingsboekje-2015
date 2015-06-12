@@ -37,11 +37,13 @@ namespace DigitaalOmgevingsboek.Controllers
             if (themaId.HasValue) 
             {
                 pois = ps.GetPOIByThema(themaId.Value);
+                ViewBag.Filter = ps.GetThema(themaId.Value).ThemaNaam;
             }
             //get POI by doelgroep
             else if (doelgroepId.HasValue)
             {
                 pois = ps.GetPOIByDoelgroep(doelgroepId.Value);
+                ViewBag.Filter = ps.GetDoelgroep(doelgroepId.Value).DoelgroepNaam;
             }
             //get POI by user
             else if (filter != "" && filter != null)
@@ -51,16 +53,19 @@ namespace DigitaalOmgevingsboek.Controllers
                     //get all POIs
                     case "alle":
                         pois = ps.GetPOIs();
+                        ViewBag.Filter = "Alle POI's";
                         break;
                     //get POI by user
                     case "mijn":
                         pois = ps.GetPOIByUser(User.Identity.GetUserId());
+                        ViewBag.Filter = "Mijn POI's";
                         break;
                 }
             }
             else
             {
                 pois = ps.GetPOIs();
+                ViewBag.Filter = "Alle POI's";
             }
             
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
