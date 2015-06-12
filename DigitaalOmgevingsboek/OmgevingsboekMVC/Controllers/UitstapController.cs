@@ -304,7 +304,7 @@ namespace OmgevingsboekMVC.Controllers
             {
                 Uitstap uitstap = us.GetUitstap(id.Value);
 
-                if (uitstap.Auteur_Id == User.Identity.GetUserId())
+                if (uitstap.Auteur_Id == User.Identity.GetUserId() || User.IsInRole("Administrator"))
                 {
                     uitstap.IsDeleted = true;
                     us.UpdateUitstap(uitstap);
@@ -312,7 +312,7 @@ namespace OmgevingsboekMVC.Controllers
                 }
                 else
                 {
-                    return View("Error: " + "U heeft geen toestemming op deze POI te verwijderen.");
+                    return View("Error: " + "U heeft geen toestemming op deze uitstap te verwijderen.");
                 }
             }
             return RedirectToAction("Index", new { filter = "all" });
