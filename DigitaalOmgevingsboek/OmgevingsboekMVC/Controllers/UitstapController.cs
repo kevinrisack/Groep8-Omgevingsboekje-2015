@@ -82,10 +82,11 @@ namespace OmgevingsboekMVC.Controllers
             uitstap.POI = new List<POI>();
             uitstap.AspNetUsers1 = new List<AspNetUsers>();
 
-            foreach (AspNetUsers anu in us.GetUsers())
-                foreach (AspNetRoles role in anu.AspNetRoles)
-                    if (role.Name.Equals("Administrator"))
-                        uitstap.AspNetUsers1.Add(anu);
+            if(!User.IsInRole("Administrator"))
+                foreach (AspNetUsers anu in us.GetUsers())
+                    foreach (AspNetRoles role in anu.AspNetRoles)
+                        if (role.Name.Equals("Administrator"))
+                            uitstap.AspNetUsers1.Add(anu);
 
             uitstap = us.AddUitstap(uitstap);
 

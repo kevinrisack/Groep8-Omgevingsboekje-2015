@@ -213,7 +213,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                  
-                                                    @Html.ListBoxFor(model => model.SelectedValues, Model.Points, new { id = "routeList",@class = "form-control" })
+                                                    @Html.ListBoxFor(model => model.SelectedValues, Model.Points, new { @id = "routeList",@class = "form-control" })
                                                 </div>
                                             </div>
                                             <div class="col-lg-1">
@@ -375,7 +375,7 @@
 </script>
 
 <script type="text/javascript">
-    $('#routeList').selectReorder();
+    $("#routeList").selectReorder();
 </script>
 
 <script>
