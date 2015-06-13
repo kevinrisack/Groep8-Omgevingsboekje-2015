@@ -217,8 +217,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-1">
-                                                <button type="button" id="up" name="directionUp" class="btn btn-sm btn-block fa fa-arrow-up" value="direction:up"></button>
-                                                <button type="button" id="down" name="directionDown" class="btn btn-sm btn-block fa fa-arrow-down" value="direction:down"></button>
+                                                <button type="button" id="up" name="directionUp" onclick="moveOptionsUp('routeList')" class="btn btn-sm btn-block fa fa-arrow-up" value="direction:up"></button>
+                                                <button type="button" id="down" name="directionDown" onclick="moveOptionsDown('routeList')" class="btn btn-sm btn-block fa fa-arrow-down" value="direction:down"></button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -364,6 +364,7 @@
         <!-- /.row -->
     </div>
 </div>
+
 <script type="text/javascript">
     function selectAll() {
         selectBox = document.getElementById("routeList");
@@ -372,10 +373,32 @@
             selectBox.options[i].selected = true;
         }
     }
-</script>
 
-<script type="text/javascript">
-    $("#routeList").selectReorder();
+    function moveOptionsUp(selectId) {
+        var selectList = document.getElementById(selectId);
+        var selectOptions = selectList.getElementsByTagName('option');
+        for (var i = 1; i < selectOptions.length; i++) {
+            var opt = selectOptions[i];
+            if (opt.selected) {
+                selectList.removeChild(opt);
+                selectList.insertBefore(opt, selectOptions[i - 1]);
+            }
+        }
+    }
+
+    function moveOptionsDown(selectId) {
+        var selectList = document.getElementById(selectId);
+        var selectOptions = selectList.getElementsByTagName('option');
+        for (var i = selectOptions.length - 2; i >= 0; i--) {
+            var opt = selectOptions[i];
+            if (opt.selected) {
+                var nextOpt = selectOptions[i + 1];
+                opt = selectList.removeChild(opt);
+                nextOpt = selectList.replaceChild(opt, nextOpt);
+                selectList.insertBefore(nextOpt, opt);
+            }
+        }
+    }
 </script>
 
 <script>
