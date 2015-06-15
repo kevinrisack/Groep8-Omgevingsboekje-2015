@@ -20,23 +20,9 @@
 
     }
     google.maps.event.addDomListener(window, 'load', initialize);
-    google.maps.event.addDomListener(window, 'load', codeAddress);
     google.maps.event.addDomListener(window, 'load', displayRoute);
 
-    function codeAddress() {
-        var address = "Veldstraat 77 +' '+ Gent";
-        geocoder.geocode({ 'address': address }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                }); map.setZoom(14);
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
-        });
-    }
+    
 
     function displayRoute() {
 
@@ -450,6 +436,7 @@
                 selectList.insertBefore(opt, selectOptions[i - 1]);
             }
         }
+        displayRoute();
     }
 
     function moveOptionsDown(selectId) {
@@ -464,6 +451,7 @@
                 selectList.insertBefore(nextOpt, opt);
             }
         }
+        displayRoute();
     }
 </script>
 
