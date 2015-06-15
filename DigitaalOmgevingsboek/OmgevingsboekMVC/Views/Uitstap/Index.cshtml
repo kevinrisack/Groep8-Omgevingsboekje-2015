@@ -111,9 +111,9 @@
                                                 @item.AspNetUsers.Name @item.AspNetUsers.Firstname
                                             </td>
                                             <td>
-                                                @Html.ActionLink("Wijzigen", "Edit", new { id = item.Id  ,onclick="setCookie()"})
                                                 @if (ViewBag.User == item.Auteur_Id || User.IsInRole("Administrator"))
                                                 {
+                                                    @Html.ActionLink("Wijzigen", "Edit", new { id = item.Id, onclick = "setCookie()" })
                                                     <span>|</span>
                                                     @Html.ActionLink("Verwijderen", "Delete", new { id = item.Id }, new { onclick = "return confirm('Weet u zeker dat u deze uitstap wilt verwijderen?');" })
                                                 }

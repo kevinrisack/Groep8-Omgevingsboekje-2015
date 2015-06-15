@@ -99,25 +99,32 @@ namespace OmgevingsboekMVC.Controllers
         public ActionResult Edit(int? id)
         {
             if (!id.HasValue)
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { filter = "all" });
 
             UitstapVM uitstapVM = new UitstapVM();
             uitstapVM.Uitstap = us.GetUitstap(id.Value);
 
             if (uitstapVM.Uitstap.Naam != null)
             {
-                ViewBag.POI = us.GetPOIs();
-                ViewBag.Users = us.GetUsers();
-                ViewBag.Points = GetPoisInRoute(uitstapVM.Uitstap);
+                if (uitstapVM.Uitstap.Auteur_Id == User.Identity.GetUserId() || User.IsInRole("Administrator"))
+                {
 
-                uitstapVM.Points = new List<SelectListItem>();
-                foreach (POI poi in ViewBag.Points)
-                    uitstapVM.Points.Add(new SelectListItem { Value = poi.Id.ToString(), Text = poi.Naam });
 
-                return View(uitstapVM);
+                    ViewBag.POI = us.GetPOIs();
+                    ViewBag.Users = us.GetUsers();
+                    ViewBag.Points = GetPoisInRoute(uitstapVM.Uitstap);
+
+                    uitstapVM.Points = new List<SelectListItem>();
+                    foreach (POI poi in ViewBag.Points)
+                        uitstapVM.Points.Add(new SelectListItem { Value = poi.Id.ToString(), Text = poi.Naam });
+
+                    return View(uitstapVM);
+                }
+                else
+                    return RedirectToAction("Index", new { filter = "all" });
             }
             else
-                return RedirectToAction("New");
+                return RedirectToAction("Index", new { filter = "all" });
         }
 
         [HttpPost]
