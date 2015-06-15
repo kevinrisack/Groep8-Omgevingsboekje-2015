@@ -29,15 +29,15 @@ namespace DigitaalOmgevingsboek.Controllers
             return View();
         }
 
-        public ActionResult POIOverzicht(int? themaId, int? doelgroepId, string filter)
+        public ActionResult POIOverzicht(string leergebiedNaam, int? doelgroepId, string filter)
         {
             List<POI> pois = new List<POI>();
 
             //get POI by thema
-            if (themaId.HasValue) 
+            if (leergebiedNaam!="") 
             {
-                pois = ps.GetPOIByThema(themaId.Value);
-                ViewBag.Filter = ps.GetThema(themaId.Value).LeergebiedNaam;
+                pois = ps.GetPOIByThema(leergebiedNaam);
+                //ViewBag.Filter = ps.GetThema(leergebiedNaam);
             }
             //get POI by doelgroep
             else if (doelgroepId.HasValue)

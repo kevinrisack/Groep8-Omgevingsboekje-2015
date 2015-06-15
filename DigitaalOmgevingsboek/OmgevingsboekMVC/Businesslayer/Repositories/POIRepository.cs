@@ -48,7 +48,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             return query.Single<POI>();
         }
 
-        public List<POI> GetByThema(int themaId)
+        public List<POI> GetByThema(string leergebiedNaam)
         {
             var query = (from p in context.POI.Include(p => p.Activiteit)
                                               .Include(p => p.AspNetUsers)
@@ -57,7 +57,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
                                               .Include(p => p.Doelgroep)
                                               .Include(p => p.Thema)
                                               .Include(p => p.Uitstap)
-                         where p.IsDeleted == false && p.Thema.Any(t => t.Id == themaId)
+                         where p.IsDeleted == false && p.Thema.Any(t => t.LeergebiedNaam == leergebiedNaam)
                          select p);
             return query.ToList<POI>();
         }

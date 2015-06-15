@@ -29,15 +29,29 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                       Thema's:
+                       Leergebieden:
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <ul class="list-inline">
+                            @{
+                                List<string> lijst = new List<string>();
+                            }
                             @foreach (Thema th in ViewBag.Themas)
                             {
-                                <li>@Html.ActionLink(th.LeergebiedNaam, "POIOverzicht", new { themaId = th.Id })</li>
+                                if (!lijst.Contains(th.LeergebiedNaam))
+                                {
+                                    lijst.Add(th.LeergebiedNaam);
+                                }
+
+
+
                             }
+                            @foreach (string t in lijst)
+                            {
+                                <li>@Html.ActionLink(t, "POIOverzicht", new { leergebiedNaam = t })</li>
+                            }
+                            
                         </ul>
 
                     </div>

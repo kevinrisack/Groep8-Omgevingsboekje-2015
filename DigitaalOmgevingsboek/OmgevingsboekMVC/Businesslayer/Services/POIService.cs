@@ -40,9 +40,9 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         {
             return repoPOI.All().ToList<POI>();
         }  
-        public List<POI> GetPOIByThema(int themaId)
+        public List<POI> GetPOIByThema(string leergebiedNaam)
         {
-            return repoPOI.GetByThema(themaId);
+            return repoPOI.GetByThema(leergebiedNaam);
         }
         public List<POI> GetPOIByDoelgroep(int doelgroepId)
         {
