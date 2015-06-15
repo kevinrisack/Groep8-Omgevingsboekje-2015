@@ -79,12 +79,16 @@ namespace DigitaalOmgevingsboek.Controllers
         [HttpGet]
         public ActionResult POIView(int? id)
         {
-            if (!id.HasValue)
+            POI poi;
+            try
             {
+                poi = ps.GetPOI(id.Value);
+            }
+            catch (Exception)
+            {
+                
                 return RedirectToAction("POIOverzicht");
             }
-
-            POI poi = ps.GetPOI(id.Value);
 
             return View(poi);
         }
@@ -483,20 +487,19 @@ namespace DigitaalOmgevingsboek.Controllers
         //{
         //    if (id.HasValue)
         //    {
-        //        Activiteit poi = ps.GetPOI(id.Value);
+        //        Activiteit act = ps.GetActiviteit(id.Value);
 
-        //        if (poi.Auteur_Id == User.Identity.GetUserId())
+        //        if (act.POI.Auteur_Id == User.Identity.GetUserId())
         //        {
-        //            poi.IsDeleted = true;
-        //            ps.UpdatePOI(poi);
-        //            return RedirectToAction("POIOverzicht");
+        //            ps.DeleteActiviteit(act);
+        //            return RedirectToAction("POIView", new { id = act.POI_Id });
         //        }
         //        else
         //        {
-        //            return View("Error: " + "U heeft geen toestemming op deze POI te verwijderen.");
+        //            return View("Error: " + "U heeft geen toestemming op deze activiteit te verwijderen.");
         //        }
         //    }
-        //    return RedirectToAction("POIOverzicht");
+        //    return RedirectToAction("POIView", new { id = act.POI_Id });
         //}
         #endregion
     }
