@@ -279,7 +279,6 @@ namespace OmgevingsboekMVC.Controllers
                 newPoints = null;
             return newPoints;
         }
-        #endregion
 
         private List<POI> GetPoisInRoute(Uitstap uitstap)
         {
@@ -292,17 +291,23 @@ namespace OmgevingsboekMVC.Controllers
             catch (Exception) { }
             return poiInRoute;
         }
+        #endregion
 
         public ActionResult Details(int? id)
         {
             if (!id.HasValue)
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { filter = "all" });
+
             
             Uitstap uitstap = us.GetUitstap(id.Value);
-            if (!uitstap.IsDeleted)
-                return View(uitstap);
+
+            if (uitstap.Naam != null)
+            {
+                    ViewBag.Points = GetPoisInRoute(uitstap);
+                    return View(uitstap);
+            }
             else
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { filter = "all" });
         }
 
         public ActionResult Delete(int? id)

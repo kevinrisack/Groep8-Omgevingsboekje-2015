@@ -1,4 +1,4 @@
-﻿@model OmgevingsboekMVC.ViewModel.UitstapVM
+﻿@model DigitaalOmgevingsboek.Uitstap
 
 @section Scripts {
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUZf7MRVjw-VXzWpeicvuZ1WmsbpVjha0"></script>
@@ -38,13 +38,10 @@
             var waypts = [];
             var holder = [];
 
-            var selectList = document.getElementById("routeList");
-            var selectOptions = selectList.getElementsByTagName('option');
-
             if (selectOptions.length < 2) {
                 //Do Nothing
             } else {
-                @foreach (POI poi in Model.Uitstap.POI)
+                @foreach (POI poi in Model.POI)
                 {
 
                 if (ViewBag.Points.Contains(poi))
