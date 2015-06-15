@@ -45,7 +45,7 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
                                               .Include(p => p.Uitstap)
                          where p.IsDeleted == false && p.Id == (int) id
                          select p);
-            return query.Single<POI>();           
+            return query.Single<POI>();
         }
 
         public List<POI> GetByThema(string leergebiedNaam)
