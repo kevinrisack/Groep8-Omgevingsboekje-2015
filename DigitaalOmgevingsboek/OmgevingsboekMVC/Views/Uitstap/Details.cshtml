@@ -147,6 +147,10 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Beschrijving: </label> @Html.DisplayFor(model => model.Beschrijving)
+                        </div>
+
+                        <div class="form-group">
                             <label>Auteur: </label> @Model.AspNetUsers.Name @Model.AspNetUsers.Firstname
                         </div>
 
@@ -175,55 +179,42 @@
                     </div>
                     <div id="view2">
                          
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <div id="carousel-example-generic" onmouseover="showButtons()" onmouseout="hideButtons()" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
                                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                             </ol>
-
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
+                                @for (int i = 0; i < Model.POI.Count; i++)
+                                {
+                                    string itemClass = i == 0 ? "item active" : "item";
 
-                                @{
-                                    for (var i = 0; i < 5; i++)
-                                    {
-                                        var itemClass = i++ == 0 ? "item active" : "item";
+                                    
                                         <div class="@itemClass">
-                                            Tijd voor een carousel nee niet zo 1 die je op een kermis vind maar een echte
-                                            mvc carousel. eentje waar je een hoop meer plezier kunt aan beleven! PLEZIER! @i
-                                            Tijd voor nog meer plezier aangezien ik nog meer content nodig heb om dit klerevak te vullen.
+                                            <a href="@Url.Action("POIView", "POI", new { id = Model.POI.ElementAt(i).Id })">
+
+                                                @if (@Model.POI.ElementAt(i).Foto_POI.Count != 0)
+                                                {
+                                                    <img src="https://omgevingsboek.blob.core.windows.net/images/@Model.POI.ElementAt(i).Foto_POI.First().FotoURL" alt="Foto POI @Model.POI.ElementAt(i).Naam">
+                                                }
+                                                <h3>@Model.POI.ElementAt(i).Naam</h3>
+                                                <p>@Model.POI.ElementAt(i).Beschrijving</p>
+
+                                            </a>
                                         </div>
 
-
-                                    }
-
-    /*foreach (Foto_POI foto in Model.Foto_POI)
-    {
-        var itemClass = i++ == 0 ? "item active" : "item";
-        <div class="@itemClass">
-            <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.FotoURL" alt="Foto POI">
-
-
-        </div>}*/
-
                                 }
-                                @*<div class="item">
-                    <img src="..." alt="...">
-                    <div class="carousel-caption">
-                        ...
-                    </div>
-                </div>*@
-
                             </div>
 
                             <!-- Controls -->
-                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <a id="btnLeft" class="left carousel-control hidden" href="#carousel-example-generic" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <a id="btnRight" class="right carousel-control hidden" href="#carousel-example-generic" role="button" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
@@ -237,3 +228,21 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function showButtons(){
+        var btnLeft = document.getElementById("btnLeft");
+        var btnRight = document.getElementById("btnRight");
+
+        btnLeft.className = "left carousel-control";
+        btnRight.className = "right carousel-control";
+    }
+
+    function hideButtons(){
+        var btnLeft = document.getElementById("btnLeft");
+        var btnRight = document.getElementById("btnRight");
+
+        btnLeft.className = "left carousel-control hidden";
+        btnRight.className = "right carousel-control hidden";
+    }
+</script>
