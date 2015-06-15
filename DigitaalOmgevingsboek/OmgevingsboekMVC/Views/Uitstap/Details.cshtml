@@ -26,8 +26,8 @@
             //var start = new google.maps.LatLng(28.694004, 77.110291);
             //var end = new google.maps.LatLng(28.72082, 77.107241);
 
-            var start = "veldstraat 77,koekelare";
-            var end = "veldstraat 50, gent";
+            var start = "";
+            var end = "";
 
             var Volgorde = [];
             var Id = [];
@@ -38,66 +38,50 @@
             var waypts = [];
             var holder = [];
 
-            if (selectOptions.length < 2) {
-                //Do Nothing
-            } else {
-                @foreach (POI poi in Model.POI)
-                {
+
+            @foreach (POI poi in Model.POI)
+            {
 
                 if (ViewBag.Points.Contains(poi))
-                {
+            {
                    <text>Id.push('@poi.Id')</text>
                     <text>Gemeente.push('@poi.Gemeente')</text>
                     <text>Adres.push('@poi.Adres')</text>
-                }
+            }
 
-             }
+            }
 
-                if (selectOptions.length == 2) {
+            console.log(Id);
+            console.log(Gemeente);
+            console.log(Adres);
+
+            if (Id.length < 2) {
+                //Do Nothing en dummydata
+                 start = "veldstraat 77,koekelare";
+                 end = "veldstraat 50, gent";
+            } else {
+
+
+                if (Id.length == 2) {
 
                     //Route tussen 2 elementen
 
-                    for (var y = 0; y < 2; y++) {
-                        for (var i = 0, att, atts = selectOptions[y].attributes, n = atts.length; i < n; i++) {
-                            att = atts[i];
-                            Volgorde.push(att.nodeValue);
-                        }
-                    }
+                    start = Adres[0]+","+Gemeente[0];
+                    end = Adres[1]+","+Gemeente[1];
 
-                    for (var y = 0; y < 2; y++) {
-                        if (Volgorde[0] == Id[y]){
-                            start = Adres[y]+","+Gemeente[y];
-                        }else if(Volgorde[1] == Id[y]){
-                            end = Adres[y]+","+Gemeente[y];
-                        }
-                    }
-
-                } else if (selectOptions.length > 2) {
+                } else if (Id.length > 2) {
                     //Route tussen meerdere elementen
+              
 
-                    for (var y = 0; y < selectOptions.length; y++) {
-                        for (var i = 0, att, atts = selectOptions[y].attributes, n = atts.length; i < n; i++) {
-                            att = atts[i];
-                            Volgorde.push(att.nodeValue);
-                        }
-                    }
+                     start = Adres[0]+","+Gemeente[0];
+                    var indexEnd = Id.length;
+                     end = Adres[indexEnd-1]+","+Gemeente[indexEnd-1];
 
+                    console.log(start);
+                    console.log(end);
 
-                    for (var x = 0; x < selectOptions.length; x++){
-                        for (var z = 0; z < selectOptions.length; z++){
-                            if (Volgorde[x] == Id[z]){
-                                holder[x] = Adres[z]+","+Gemeente[z];
-                            }
-                        }
-                    }
-
-
-                    var start = holder[0];
-                    var indexEnd = holder.length-1;
-                    var end = holder[indexEnd];
-
-                    for (var i = 0; i < selectOptions.length -2; i++) {
-                        waypts[i] = holder[i+1];
+                    for (var i = 0; i < Id.length -2; i++) {
+                        waypts[i] = Adres[i+1]+","+Gemeente[i+1];
                     }
 
                 }
@@ -114,25 +98,27 @@
 
                 }
 
-                var request = {
-                    origin: start,
-                    destination: end,
-                    waypoints: waypoits,
-                    optimizeWaypoints: true,
-                    travelMode: google.maps.TravelMode.DRIVING
-                };
-
-                var directionsDisplay = new google.maps.DirectionsRenderer();// also, constructor can get "DirectionsRendererOptions" object
-                directionsDisplay.setMap(map); // map should be already initialized.
-
-
-                var directionsService = new google.maps.DirectionsService();
-                directionsService.route(request, function (response, status) {
-                    if (status == google.maps.DirectionsStatus.OK) {
-                        directionsDisplay.setDirections(response);
-                    }
-                });
+             
             }
+
+            var request = {
+                origin: start,
+                destination: end,
+                waypoints: waypoits,
+                optimizeWaypoints: true,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+
+            var directionsDisplay = new google.maps.DirectionsRenderer();// also, constructor can get "DirectionsRendererOptions" object
+            directionsDisplay.setMap(map); // map should be already initialized.
+
+
+            var directionsService = new google.maps.DirectionsService();
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+            });
 
 
         }
