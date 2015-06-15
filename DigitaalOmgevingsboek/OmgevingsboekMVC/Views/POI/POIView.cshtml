@@ -66,7 +66,8 @@
                 <ul class="tabs" data-persist="true">
                     <li><a href="#view1">Basis Informatie POI</a></li>
                     <li><a href="#view2">Activiteiten</a></li>
-                    <li><a href="#view3">Reacties</a></li>
+                    <li><a href="#view3">Leergebieden/domeinen</a></li>
+                    <li><a href="#view4">Reacties</a></li>
                 </ul>
                 <div class="tabcontents">
                     <div id="view1">
@@ -123,18 +124,7 @@
                                             }
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>Thema:</label>
-
-
-                                            @foreach (Thema t in Model.Thema)
-                                            {
-                                                <p>
-                                                    @t.LeergebiedNaam
-                                                </p>
-
-                                            }
-                                        </div>
+                                      
                                     </div>
                                     <div class="col-lg-6">
                                         <div id="sliderFrame">
@@ -223,7 +213,69 @@
                             </div>
                         </div>
                     </div>
+
                     <div id="view3">
+                        <div class="panel">
+
+                            <div class="panel-body">
+                                <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+
+
+                                            @{
+                                                List<string> lijst = new List<string>();
+
+                                                foreach (Thema th in Model.Thema)
+                                                {
+                                                    if (!lijst.Contains(th.LeergebiedNaam))
+                                                    {
+                                                        lijst.Add(th.LeergebiedNaam);
+                                                    }
+
+
+
+
+                                                }
+
+
+
+
+
+
+
+                                                foreach (string s in lijst)
+                                                {
+                                                    <h3>@s</h3>
+                                                <ul>
+                                                    @foreach (Thema th in Model.Thema)
+                                                    {
+                                                        if (th.LeergebiedNaam.Equals(s))
+                                                        {
+                                                        <li>@th.DomeinNaam</li> }
+
+
+                                                    }
+                                                </ul>
+
+
+                                                }
+                                            }
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view4">
                         <div class="panel">
 
                             <div class="panel-body">
