@@ -158,17 +158,10 @@
 
                         <div class="form-group">
                             <label>Naam: </label> @Html.DisplayFor(model => model.Naam)
-
-
-
                         </div>
 
                         <div class="form-group">
-                            <label>Route: </label> @Html.DisplayFor(model => model.Route.Points)
-                        </div>
-
-                        <div class="form-group">
-                            <label>Auteur: </label> @Html.DisplayFor(model => model.AspNetUsers.Firstname)
+                            <label>Auteur: </label> @Model.AspNetUsers.Name @Model.AspNetUsers.Firstname
                         </div>
 
                     </div>
