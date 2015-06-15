@@ -29,6 +29,18 @@ namespace DigitaalOmgevingsboek.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult ViewPdf(int? id)
+        {
+            POI poi = ps.GetPOI(id.Value);
+
+            return new Rotativa.ViewAsPdf("POIPdfView", poi) { FileName = poi.Naam+".pdf" };
+        }
+
+        public ActionResult POIPdfView(POI poiPDF)
+        {
+            return View(poiPDF);
+        }
         public ActionResult POIOverzicht(string leergebiedNaam, int? doelgroepId, string filter)
         {
             List<POI> pois = new List<POI>();
