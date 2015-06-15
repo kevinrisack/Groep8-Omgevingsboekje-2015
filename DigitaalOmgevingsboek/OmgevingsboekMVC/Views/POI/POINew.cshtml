@@ -25,8 +25,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="tabs" data-persist="true">
-                        <li><a href="#view1">Basis Informatie POI</a></li>
+                        <li><a href="#view1">Basisinformatie POI</a></li>
                         <li><a href="#view2">Afbeeldingen</a></li>
+                        <li><a href="#view3">Leergebieden/domeinen</a></li>
                     </ul>
                     <div class="tabcontents">
                         <div id="view1">
@@ -106,31 +107,7 @@
                                                 }
 
                                             </div>
-                                            <div class="form-group">
-                                                <label>Thema:</label><br />
-
-
-
-                                                @foreach (Thema th in ViewBag.Themas)
-                                                {
-                                                    var i = "";
-
-                                                    foreach (Thema thema in Model.Thema)
-                                                    {
-                                                        if (th.Id == thema.Id)
-                                                        {
-                                                            i = "checked";
-                                                        }
-                                                    }
-                                                    <div class="checkbox-inline">
-
-                                                        <input type="checkbox" id="@th.Id" name="themaIds" value="@th.Id" @i />
-                                                        <label for="@th.Id">@th.ThemaNaam</label>
-                                                    </div>
-
-                                                }
-
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -149,6 +126,61 @@
                                             <input type="hidden" value="@Model.Id" name="Id" />
                                             <input type="hidden" value="@Model.Auteur_Id" name="Auteur_Id" />
                                             <input type="file" name="pictures" id="url" multiple />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="view3">
+                            <div class="panel">
+
+                                <div class="panel-body">
+                                    <!-- Voeg hier code voor het beheren van afbeeldingen-->
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                
+
+                                                @{
+                                                    List<string> lijst = new List<string>();
+                                                    
+                                                    foreach(Thema th in ViewBag.Leergebieden)
+                                                    {
+                                                        if(!lijst.Contains(th.LeergebiedNaam))
+                                                        {
+                                                            lijst.Add(th.LeergebiedNaam);
+                                                        }
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    }
+                                                    
+                                                    foreach(string s in lijst)
+                                                    {
+                                                        <h3>@s</h3>
+                                                        foreach (Thema th in ViewBag.Leergebieden)
+                                                        {
+                                                            if (th.LeergebiedNaam.Equals(s))
+                                                            {
+                                                                <div class="checkbox-inline">
+
+                                                                    <input type="checkbox" id="@th.Id" name="LeergebiedenIds" value="@th.Id"  />
+                                                                    <label for="@th.Id">@th.DomeinNaam</label>
+                                                                </div>
+                                                            }
+
+                                                        }
+                                                    }
+}
+
+                                             
+                                                    
+
+                                                
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

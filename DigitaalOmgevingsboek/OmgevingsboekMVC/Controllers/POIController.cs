@@ -34,10 +34,10 @@ namespace DigitaalOmgevingsboek.Controllers
             List<POI> pois = new List<POI>();
 
             //get POI by thema
-            if (leergebiedNaam!="") 
+            if (leergebiedNaam!="" && leergebiedNaam!=null) 
             {
                 pois = ps.GetPOIByThema(leergebiedNaam);
-                //ViewBag.Filter = ps.GetThema(leergebiedNaam);
+                ViewBag.Filter = leergebiedNaam;
             }
             //get POI by doelgroep
             else if (doelgroepId.HasValue)
@@ -109,7 +109,7 @@ namespace DigitaalOmgevingsboek.Controllers
             poi.Auteur_Id = User.Identity.GetUserId();
 
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
-            ViewBag.Themas = ps.GetThemas();
+            ViewBag.Leergebieden = ps.GetThemas();
 
             return View(poi);
         }
@@ -185,7 +185,7 @@ namespace DigitaalOmgevingsboek.Controllers
                     }
                 }
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
-                ViewBag.Themas = ps.GetThemas();
+                ViewBag.Leergebieden = ps.GetThemas();
                 return View(poi);
             }
         }
@@ -198,7 +198,7 @@ namespace DigitaalOmgevingsboek.Controllers
                 POI poi = ps.GetPOI(id.Value);
 
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
-                ViewBag.Themas = ps.GetThemas();
+                ViewBag.Leergebieden = ps.GetThemas();
 
                 return View(poi);
             }
@@ -210,7 +210,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult POIModify(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> themaIds, List<string> deleteFotoURLs)
+        public ActionResult POIModify(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> LeergebiedenIds, List<string> deleteFotoURLs)
         {
             if (ModelState.IsValid)
             {
@@ -235,11 +235,11 @@ namespace DigitaalOmgevingsboek.Controllers
                     }
 
                     poi.Thema = new List<Thema>();
-                    if (themaIds != null)
+                    if (LeergebiedenIds != null)
                     {
-                        foreach (int themaId in themaIds)
+                        foreach (int LeergebiedId in LeergebiedenIds)
                         {
-                            Thema th = ps.GetThema(themaId);
+                            Thema th = ps.GetThema(LeergebiedId);
 
                             th.POI.Add(poi);
                             poi.Thema.Add(th);

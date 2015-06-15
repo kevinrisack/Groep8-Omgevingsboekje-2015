@@ -37,6 +37,8 @@ namespace DigitaalOmgevingsboek
 
         public string Materiaal { get; set; }
 
+        public string Leerdoelen { get; set; }
+
         [Required(ErrorMessage="Naam is verplicht in te vullen")]
         [StringLength(50,ErrorMessage="Naam mag maar 50 karakters bevatten")]
         public string Naam { get; set; }
