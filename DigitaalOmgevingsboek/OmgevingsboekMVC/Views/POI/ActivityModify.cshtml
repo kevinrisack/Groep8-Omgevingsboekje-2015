@@ -109,7 +109,7 @@
                                             <label>Selecteer de afbeeldingen die u wilt verwijderen:</label>
                                             @foreach (Foto_Activiteit foto in Model.Foto_Activiteit)
                                             {
-                                                <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.URL" width="150px" />
+                                                <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.URL" width="150" />
                                                 <input type="checkbox" id="@foto.URL" name="deleteFotoURLs" value="@foto.URL" />
                                                 <br />
                                             }
@@ -127,24 +127,7 @@
                                             <label>Leergebied</label>
                                             <br />
                                             <div class="form-group">
-                                                @foreach (Leerdoel ld in ViewBag.Leerdoelen)
-                                                {
-                                                    var i = "";
-
-                                                    foreach (Leerdoel leerdoel in Model.Leerdoel)
-                                                    {
-
-                                                        if (ld.Id == leerdoel.Id)
-                                                        {
-                                                            i = "checked";
-                                                        }
-                                                    }
-                                                    <div class="checkbox-inline">
-
-                                                        <input type="checkbox" id="@ld.Id" name="leerdoelIds" value="@ld.Id" @i />
-                                                        <label for="@ld.Id">@ld.LeerdoelNaam</label>
-                                                    </div>
-                                                }
+                                                
                                             </div>
                                         </div>
                                     </div>

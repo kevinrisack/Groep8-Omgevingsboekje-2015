@@ -37,7 +37,7 @@ namespace DigitaalOmgevingsboek.Controllers
             if (themaId.HasValue) 
             {
                 pois = ps.GetPOIByThema(themaId.Value);
-                ViewBag.Filter = ps.GetThema(themaId.Value).ThemaNaam;
+                ViewBag.Filter = ps.GetThema(themaId.Value).LeergebiedNaam;
             }
             //get POI by doelgroep
             else if (doelgroepId.HasValue)
@@ -69,7 +69,7 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             
             ViewBag.Doelgroepen = ps.GetDoelgroepen();
-            ViewBag.Leerdoelen = ps.GetLeerdoelen();
+            
 
             ViewBag.UserId = User.Identity.GetUserId();
 
@@ -328,7 +328,7 @@ namespace DigitaalOmgevingsboek.Controllers
                 activiteit.POI_Id = id.Value;
 
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
-                ViewBag.Leerdoelen = ps.GetLeerdoelen();
+               
 
                 return View(activiteit);
             }
@@ -340,7 +340,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ActivityNew(Activiteit activiteit, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> leerdoelIds)
+        public ActionResult ActivityNew(Activiteit activiteit, List<HttpPostedFileBase> pictures, List<int> doelgroepIds)
         {
             if (ModelState.IsValid)
             {
@@ -361,18 +361,7 @@ namespace DigitaalOmgevingsboek.Controllers
                         }
                     }
 
-                    if (leerdoelIds != null)
-                    {
-                        foreach (int leerdoelId in leerdoelIds)
-                        {
-                            Leerdoel ld = ps.GetLeerdoel(leerdoelId);
-
-                            ld.Activiteit.Add(activiteit);
-                            activiteit.Leerdoel.Add(ld);
-
-                            ps.UpdateLeerdoel(ld);
-                        }
-                    }
+                   
                     
                     ps.UpdateActiviteit(activiteit);
 
@@ -400,16 +389,9 @@ namespace DigitaalOmgevingsboek.Controllers
                         activiteit.Doelgroep.Add(dg);
                     }
                 }
-                if (leerdoelIds != null)
-                {
-                    foreach (int leerdoelId in leerdoelIds)
-                    {
-                        Leerdoel ld = ps.GetLeerdoel(leerdoelId);
-                        activiteit.Leerdoel.Add(ld);
-                    }
-                }
+                
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
-                ViewBag.Leerdoelen = ps.GetLeerdoelen();
+             
                 return View(activiteit);
             }
         }
@@ -422,7 +404,7 @@ namespace DigitaalOmgevingsboek.Controllers
                 Activiteit activiteit = ps.GetActiviteit(id.Value);
 
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
-                ViewBag.Leerdoelen = ps.GetLeerdoelen();
+                
 
                 return View(activiteit);
             }
@@ -434,7 +416,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ActivityModify(Activiteit activiteit, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> leerdoelIds, List<string> deleteFotoURLs)
+        public ActionResult ActivityModify(Activiteit activiteit, List<HttpPostedFileBase> pictures, List<int> doelgroepIds,List<string> deleteFotoURLs)
         {
             if (ModelState.IsValid)
             {
@@ -458,19 +440,7 @@ namespace DigitaalOmgevingsboek.Controllers
                         }
                     }
 
-                    activiteit.Leerdoel = new List<Leerdoel>();
-                    if (leerdoelIds != null)
-                    {
-                        foreach (int leerdoelId in leerdoelIds)
-                        {
-                            Leerdoel ld = ps.GetLeerdoel(leerdoelId);
-
-                            ld.Activiteit.Add(activiteit);
-                            activiteit.Leerdoel.Add(ld);
-
-                            ps.UpdateLeerdoel(ld);
-                        }
-                    }
+                   
 
                     if (deleteFotoURLs != null)
                     {
@@ -504,7 +474,7 @@ namespace DigitaalOmgevingsboek.Controllers
             else
             {
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
-                ViewBag.Leerdoelen = ps.GetLeerdoelen();
+               
                 return View(activiteit);
             }
         }

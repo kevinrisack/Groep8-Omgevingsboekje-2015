@@ -18,7 +18,9 @@ namespace DigitaalOmgevingsboek
 
         [Required]
         [StringLength(50)]
-        public string ThemaNaam { get; set; }
+        public string LeergebiedNaam { get; set; }
+
+        public string DomeinNaam { get; set; }
 
         public bool IsDeleted { get; set; }
 

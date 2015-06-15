@@ -21,7 +21,7 @@ namespace DigitaalOmgevingsboek
         public virtual DbSet<Doelgroep> Doelgroep { get; set; }
         public virtual DbSet<Foto_Activiteit> Foto_Activiteit { get; set; }
         public virtual DbSet<Foto_POI> Foto_POI { get; set; }
-        public virtual DbSet<Leerdoel> Leerdoel { get; set; }
+        //public virtual DbSet<Leerdoel> Leerdoel { get; set; }
         public virtual DbSet<Link> Link { get; set; }
         public virtual DbSet<POI> POI { get; set; }
         public virtual DbSet<POI_Log> POI_Log { get; set; }
@@ -44,10 +44,10 @@ namespace DigitaalOmgevingsboek
                 .HasForeignKey(e => e.Activiteit_Id)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Activiteit>()
-                .HasMany(e => e.Leerdoel)
-                .WithMany(e => e.Activiteit)
-                .Map(m => m.ToTable("Activiteit_Leerdoel"));
+            //modelBuilder.Entity<Activiteit>()
+            //    .HasMany(e => e.Leerdoel)
+            //    .WithMany(e => e.Activiteit)
+            //    .Map(m => m.ToTable("Activiteit_Leerdoel"));
 
             modelBuilder.Entity<Activiteit>()
                 .HasMany(e => e.Doelgroep)

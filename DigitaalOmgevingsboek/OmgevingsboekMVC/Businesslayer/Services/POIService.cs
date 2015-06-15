@@ -14,7 +14,7 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         private DoelgroepRepository repoDoelgroep = null;
         private ThemaRepository repoThema = null;
         private ActiviteitRepository repoActiviteit = null;     
-        private LeerdoelRepository repoLeerdoel = null;
+        
 
         private GenericRepository<Foto_POI> repoFotoPOI = null;
         private GenericRepository<Foto_Activiteit> repoFotoActiviteit = null;
@@ -29,7 +29,7 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             this.repoDoelgroep = new DoelgroepRepository(context);
             this.repoThema = new ThemaRepository(context);
             this.repoActiviteit = new ActiviteitRepository(context);        
-            this.repoLeerdoel = new LeerdoelRepository(context);
+           
 
             this.repoFotoPOI = new GenericRepository<Foto_POI>(context);
             this.repoFotoActiviteit = new GenericRepository<Foto_Activiteit>(context);
@@ -105,14 +105,7 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             return repoDoelgroep.GetByID(doelgroepId);
         }
 
-        public List<Leerdoel> GetLeerdoelen()
-        {
-            return repoLeerdoel.All().ToList<Leerdoel>();
-        }
-        public Leerdoel GetLeerdoel(int leerdoelId)
-        {
-            return repoLeerdoel.GetByID(leerdoelId);
-        }
+       
 
         public List<Thema> GetThemas()
         {
@@ -128,11 +121,7 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             repoDoelgroep.Update(dg);
             repoDoelgroep.SaveChanges();
         }
-        public void UpdateLeerdoel(Leerdoel ld)
-        {
-            repoLeerdoel.Update(ld);
-            repoLeerdoel.SaveChanges();
-        }
+        
         public void UpdateThema(Thema th)
         {
             repoThema.Update(th);

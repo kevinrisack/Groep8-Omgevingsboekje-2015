@@ -13,7 +13,7 @@ namespace DigitaalOmgevingsboek
         {
             Foto_Activiteit = new HashSet<Foto_Activiteit>();
             Link = new HashSet<Link>();
-            Leerdoel = new HashSet<Leerdoel>();
+           
             Doelgroep = new HashSet<Doelgroep>();
         }
 
@@ -24,7 +24,7 @@ namespace DigitaalOmgevingsboek
         [Required(ErrorMessage="Beschrijving is verplicht in te vullen")]
         public string Beschrijving { get; set; }
 
-        public int Leerdoel_Id { get; set; }
+       
 
         [StringLength(50,ErrorMessage="Duur mag maar 50 karakters bevatten")]
         public string Duur { get; set; }
@@ -47,7 +47,7 @@ namespace DigitaalOmgevingsboek
 
         public ICollection<Link> Link { get; set; }
 
-        public ICollection<Leerdoel> Leerdoel { get; set; }
+       
 
         public ICollection<Doelgroep> Doelgroep { get; set; }
     }

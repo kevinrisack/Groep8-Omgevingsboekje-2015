@@ -25,7 +25,6 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             var query = (from a in context.Activiteit.Include(a => a.POI)
                                                      .Include(a => a.Foto_Activiteit)
                                                      .Include(a => a.Link)
-                                                     .Include(a => a.Leerdoel)
                                                      .Include(a => a.Doelgroep)
                          where a.Id == (int)id
                          select a);

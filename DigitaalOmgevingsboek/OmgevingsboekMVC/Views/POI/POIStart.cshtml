@@ -36,7 +36,7 @@
                         <ul class="list-inline">
                             @foreach (Thema th in ViewBag.Themas)
                             {
-                                <li>@Html.ActionLink(th.ThemaNaam, "POIOverzicht", new { themaId = th.Id })</li>
+                                <li>@Html.ActionLink(th.LeergebiedNaam, "POIOverzicht", new { themaId = th.Id })</li>
                             }
                         </ul>
 
