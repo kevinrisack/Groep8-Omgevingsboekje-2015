@@ -50,5 +50,23 @@ namespace OmgevingsboekMVC.Businesslayer.Repositories
             //create or overwrite the 'picture.FileName" blob with contents from a local file
             blockBlob.UploadFromStream(picture.InputStream);
         }
+
+        public void DeletePicture(Foto_Activiteit fotoAct)
+        {
+            // Retrieve storage account from connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            // Create the blob client.
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+            // Retrieve reference to a previously created container.
+            CloudBlobContainer container = blobClient.GetContainerReference("images");
+
+            // Retrieve reference to a blob named "myblob.txt".
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(fotoAct.URL);
+
+            // Delete the blob.
+            blockBlob.Delete();
+        }
     }
 }

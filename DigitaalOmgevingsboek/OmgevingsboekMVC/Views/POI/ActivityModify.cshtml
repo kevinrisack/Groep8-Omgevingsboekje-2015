@@ -100,16 +100,19 @@
                                     <!-- Voeg hier code voor het beheren van afbeeldingen-->
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <label>Afbeeldingen</label>
+                                            <label>Voeg een afbeelding toe:</label>
                                             <br />
                                             <input type="file" name="pictures" id="url" multiple />
-                                            <br />
+                                        </div>
 
-                                            <div class="POINewAfbeeldingen">
-
-                                                Afbeelding
-                                            </div>
-
+                                        <div class="col-lg-6">
+                                            <label>Selecteer de afbeeldingen die u wilt verwijderen:</label>
+                                            @foreach (Foto_Activiteit foto in Model.Foto_Activiteit)
+                                            {
+                                                <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.URL" width="150px" />
+                                                <input type="checkbox" id="@foto.URL" name="deleteFotoURLs" value="@foto.URL" />
+                                                <br />
+                                            }
                                         </div>
                                     </div>
                                 </div>

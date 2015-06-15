@@ -16,6 +16,9 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         private ActiviteitRepository repoActiviteit = null;     
         private LeerdoelRepository repoLeerdoel = null;
 
+        private GenericRepository<Foto_POI> repoFotoPOI = null;
+        private GenericRepository<Foto_Activiteit> repoFotoActiviteit = null;
+
         OmgevingsboekContext context;
 
         public POIService()
@@ -27,6 +30,9 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             this.repoThema = new ThemaRepository(context);
             this.repoActiviteit = new ActiviteitRepository(context);        
             this.repoLeerdoel = new LeerdoelRepository(context);
+
+            this.repoFotoPOI = new GenericRepository<Foto_POI>(context);
+            this.repoFotoActiviteit = new GenericRepository<Foto_Activiteit>(context);
         }
 
         #region POI
@@ -77,6 +83,15 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             repoPOI.UploadPicture(fotoPOI, picture);
 
             repoPOI.SaveChanges();   
+        }
+
+        public void DeleteFotoPOI(POI poi, Foto_POI fotoPOI)
+        {
+            poi.Foto_POI.Remove(fotoPOI);
+            repoFotoPOI.Delete(fotoPOI);
+
+            repoPOI.DeletePicture(fotoPOI);
+            repoPOI.SaveChanges();
         }
         #endregion
 
@@ -155,6 +170,15 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             activiteit.Foto_Activiteit.Add(fotoActiviteit);
             repoActiviteit.UploadPicture(fotoActiviteit, picture);
 
+            repoActiviteit.SaveChanges();
+        }
+
+        public void DeleteFotoActiviteit(Activiteit act, Foto_Activiteit fotoAct)
+        {
+            act.Foto_Activiteit.Remove(fotoAct);
+            repoFotoActiviteit.Delete(fotoAct);
+
+            repoActiviteit.DeletePicture(fotoAct);
             repoActiviteit.SaveChanges();
         }
         #endregion

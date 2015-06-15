@@ -14,6 +14,18 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
+        <div class="row">
+            <div class="col-lg-8">
+
+            </div>
+            <div class="col-lg-2 col-xs-12">
+                <input type="button" value="Activiteit Wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("ActivityModify", "POI", new { id = Model.Id })'" /><br />
+            </div>
+            <div class="col-lg-2 col-xs-12">
+
+                <input type="button" value="Activiteit Verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deleteActiviteit()" /><br />
+            </div>
+        </div>
         <div class="panel">
 
             <div class="panel-body">
@@ -113,3 +125,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    function deleteActiviteit() {
+        if (confirm("Weet u zeker dat u deze activiteit wilt verwijderen?")) {
+            location.href = '@Url.Action("ActivityDelete", "POI", new { id = Model.Id })'
+        } else {
+            return false;
+        }
+    }
+</script>

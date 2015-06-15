@@ -210,7 +210,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult POIModify(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> themaIds, List<int> deleteFotoIds)
+        public ActionResult POIModify(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> themaIds, List<string> deleteFotoURLs)
         {
             if (ModelState.IsValid)
             {
@@ -248,16 +248,14 @@ namespace DigitaalOmgevingsboek.Controllers
                         }
                     }
 
-                    if (deleteFotoIds != null)
+                    if (deleteFotoURLs != null)
                     {
-                        foreach (int deleteFotoId in deleteFotoIds)
+                        foreach (string deleteFotoURL in deleteFotoURLs)
                         {
-                            foreach (Foto_POI fotoPOI in poi.Foto_POI)
+                            if(poi.Foto_POI.Any(fp => fp.FotoURL == deleteFotoURL))
                             {
-                                if (fotoPOI.Id.Equals(deleteFotoId))
-                                {
-                                    //poi.Foto_POI.Remove(fotoPOI);
-                                }
+                                Foto_POI fotoPOI = poi.Foto_POI.First(fp => fp.FotoURL == deleteFotoURL);
+                                ps.DeleteFotoPOI(poi, fotoPOI);
                             }
                         }
                     }
@@ -378,7 +376,7 @@ namespace DigitaalOmgevingsboek.Controllers
                     
                     ps.UpdateActiviteit(activiteit);
 
-                    if (pictures != null)
+                    if (!pictures.Contains(null))
                     {
                         foreach (HttpPostedFileBase picture in pictures)
                         {
@@ -436,7 +434,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ActivityModify(Activiteit activiteit, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> leerdoelIds)
+        public ActionResult ActivityModify(Activiteit activiteit, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> leerdoelIds, List<string> deleteFotoURLs)
         {
             if (ModelState.IsValid)
             {
@@ -474,9 +472,21 @@ namespace DigitaalOmgevingsboek.Controllers
                         }
                     }
 
+                    if (deleteFotoURLs != null)
+                    {
+                        foreach (string deleteFotoURL in deleteFotoURLs)
+                        {
+                            if (activiteit.Foto_Activiteit.Any(fa => fa.URL == deleteFotoURL))
+                            {
+                                Foto_Activiteit fotoActiviteit = activiteit.Foto_Activiteit.First(fa => fa.URL == deleteFotoURL);
+                                ps.DeleteFotoActiviteit(activiteit, fotoActiviteit);
+                            }
+                        }
+                    }
+
                     ps.UpdateActiviteit(activiteit);
 
-                    if (pictures != null)
+                    if (!pictures.Contains(null))
                     {
                         foreach (HttpPostedFileBase picture in pictures)
                         {
@@ -498,6 +508,26 @@ namespace DigitaalOmgevingsboek.Controllers
                 return View(activiteit);
             }
         }
+
+        //public ActionResult ActivityDelete(int? id)
+        //{
+        //    if (id.HasValue)
+        //    {
+        //        Activiteit poi = ps.GetPOI(id.Value);
+
+        //        if (poi.Auteur_Id == User.Identity.GetUserId())
+        //        {
+        //            poi.IsDeleted = true;
+        //            ps.UpdatePOI(poi);
+        //            return RedirectToAction("POIOverzicht");
+        //        }
+        //        else
+        //        {
+        //            return View("Error: " + "U heeft geen toestemming op deze POI te verwijderen.");
+        //        }
+        //    }
+        //    return RedirectToAction("POIOverzicht");
+        //}
         #endregion
     }
 }
