@@ -324,8 +324,22 @@ namespace OmgevingsboekMVC.Controllers
 
             if (uitstap.Naam != null)
             {
-                    ViewBag.Points = GetPoisInRoute(uitstap);
-                    return View(uitstap);
+                List<POI> routeList = GetPoisInRoute(uitstap);
+                string routeToGoogle = "dir";
+                foreach (POI poi in routeList)
+                {
+                    routeToGoogle += "/";
+                    string[] cutAdres = poi.Adres.Split(' ');
+
+                    for (int i = 0; i < cutAdres.Length; i++)
+                        routeToGoogle += i == 0 ? cutAdres[i] : ('+' + cutAdres[i]);
+
+                    routeToGoogle += ",+" + poi.Gemeente;
+                }
+
+                ViewBag.Points = routeList;
+                ViewBag.routeToGoogle = routeToGoogle;
+                return View(uitstap);
             }
             else
                 return RedirectToAction("Index", new { filter = "all" });

@@ -157,10 +157,10 @@
 
         <div class="row">
             <div class="col-lg-3 col-xs-12">
-                <input type="button" value="Uitstap Wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("Edit", "Uitstap", new { id = Model.Id })'" /><br />
+                <input type="button" value="Uitstap wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("Edit", "Uitstap", new { id = Model.Id })'" /><br />
             </div>
             <div class="col-lg-3 col-xs-12">
-                <input type="button" value="Uitstap Verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deleteUitstap()" /><br />
+                <input type="button" value="Uitstap verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deleteUitstap()" /><br />
             </div>
         </div>
 
@@ -202,7 +202,7 @@
                             <br />
                             <div class="col-lg-9"></div>
                             <div class="col-lg-3 col-xs-12">
-                                <button type="button" id="btnGoogle" class="btn btn-lg btn-success btn-block" onclick="window.open('https://www.google.be/maps/dir/Kortrijk/Kluisbergen/Ronse/' , '_blank')">Route 98</button>
+                                <button type="button" id="btnGoogle" class="btn btn-lg btn-success btn-block" onclick="window.open('https://www.google.be/maps/@ViewBag.routeToGoogle' , '_blank')">Route tonen</button>
                             </div>
                         </div>
 
