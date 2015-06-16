@@ -50,18 +50,18 @@
             <!-- /.col-lg-12 -->
         </div>
         <div class="row">
-            <div class="col-lg-2 col-xs-12">
+            <div class="col-lg-3 col-xs-12">
                 <input type="button" value="Exporteer naar pdf" name="btnExport" class="btn btn-lg btn-success btn-block" onclick="return exportToPdf()" /><br />
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-3">
 
             </div>
             @if (ViewBag.UserId == Model.Auteur_Id || User.IsInRole("Administrator"))
             {
-                <div class="col-lg-2 col-xs-12">
+                <div class="col-lg-3  col-xs-12">
                     <input type="button" value="POI Wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("POIModify", "POI", new { id = Model.Id })'" /><br/>
                 </div>
-                <div class="col-lg-2 col-xs-12">
+                <div class="col-lg-3 col-xs-12">
                     <input type="button" value="POI Verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deletePOI()" /><br />
                 </div>
             }
