@@ -62,14 +62,15 @@
                         <div class="form-group">
                             <label>Doelgroep:</label>
 
+                            <ul class="list-inline">
+                                @foreach (Doelgroep dg in Model.Doelgroep)
+                                {
+                                    <li>
+                                        @dg.DoelgroepNaam
+                                    </li>
 
-                            @foreach (Doelgroep dg in Model.Doelgroep)
-                            {
-                                <p>
-                                    @dg.DoelgroepNaam
-                                </p>
-
-                            }
+                                }
+                            </ul>
                         </div>
                         <div class="form-group">
                             <label>Leerdoel:</label>
@@ -79,42 +80,31 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            </ol>
 
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner" role="listbox">
+                        <div id="sliderFrame">
+                            <div id="slider">
 
                                 @{
                                     var i = 0;
 
                                     foreach (Foto_Activiteit foto in Model.Foto_Activiteit)
                                     {
-                                        var itemClass = i++ == 0 ? "item active" : "item";
-                                        <div class="@itemClass">
-                                            <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.URL" alt="Foto POI">
 
+                                        <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.URL" id="imagesize">
+                                        i = i + 1;
 
-                                        </div>}
+                                    }
+
+                                    if (i == 0)
+                                    {
+                                        <img src="http://dummyimage.com/300x150/aaa/fff.png&text=Geen+afbeeldingen">
+                                    }
 
                                 }
                             </div>
-
-                            <!-- Controls -->
-                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
                         </div>
+
+
                     </div>
                 </div>
                 <!-- /.container-fluid -->
