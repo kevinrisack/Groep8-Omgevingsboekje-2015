@@ -177,14 +177,12 @@
                                                                 @Html.DisplayFor(modelItem => activiteit.Duur)
                                                             </td>
                                                             <td>
-                                                                @Html.ActionLink("Wijzig", "ActivityModify", new { id = activiteit.Id })
-                                                                @*
-                                            @if (ViewBag.UserId == Model.Auteur_Id)
-                                            {
-                                                <span>|</span>
-                                                @Html.ActionLink("Verwijder", "ActivityDelete", new { id = activiteit.Id }, new { onclick = "return confirm('Weet u zeker dat u deze activiteit wilt verwijderen?');" })
-                                            }
-                                                                *@
+                                                                @if (ViewBag.UserId == Model.Auteur_Id || User.IsInRole("Administrator"))
+                                                                {
+                                                                    @Html.ActionLink("Wijzig", "ActivityModify", new { id = activiteit.Id })
+                                                                    <span>|</span>
+                                                                    @Html.ActionLink("Verwijder", "ActivityDelete", new { id = activiteit.Id }, new { onclick = "return confirm('Weet u zeker dat u deze activiteit wilt verwijderen?');" })
+                                                                }
                                                             </td>
                                                         </tr>
                                                     }

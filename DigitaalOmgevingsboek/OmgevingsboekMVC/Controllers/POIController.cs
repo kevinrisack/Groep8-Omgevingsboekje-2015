@@ -254,7 +254,6 @@ namespace DigitaalOmgevingsboek.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 try
                 {
                     ps.UpdatePOI(poi);
@@ -318,8 +317,9 @@ namespace DigitaalOmgevingsboek.Controllers
             }
             else
             {
+                poi = ps.GetPOI(poi.Id);
                 ViewBag.Doelgroepen = ps.GetDoelgroepen();
-                ViewBag.Themas = ps.GetThemas();
+                ViewBag.Leergebieden = ps.GetThemas();
                 return View(poi);
             }
         }
