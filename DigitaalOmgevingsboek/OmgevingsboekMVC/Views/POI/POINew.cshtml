@@ -162,11 +162,22 @@
                                                         <h3>@s</h3>
                                                         foreach (Thema th in ViewBag.Leergebieden)
                                                         {
+                                                            var local = "";
                                                             if (th.LeergebiedNaam.Equals(s))
                                                             {
+                                                              
+                                                                foreach (Thema poithem in Model.Thema)
+                                                                {
+                                                                   
+                                                                  
+                                                                    if (th.Id == poithem.Id)
+                                                                    {
+                                                                        local = "checked";
+                                                                    }
+                                                                }
                                                                 <div class="checkbox-inline">
 
-                                                                    <input type="checkbox" id="@th.Id" name="LeergebiedenIds" value="@th.Id"  />
+                                                                    <input type="checkbox" id="@th.Id" name="LeergebiedenIds" value="@th.Id" @local />
                                                                     <label for="@th.Id">@th.DomeinNaam</label>
                                                                 </div>
                                                             }
