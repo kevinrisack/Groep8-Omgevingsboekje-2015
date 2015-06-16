@@ -161,78 +161,95 @@
 
 
         <div class="row">
-            <div class="col-xs-12 col-lg-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Mijn Uitstappen
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="dataTable_wrapper">
-                            <table class="table table-striped table-bordered table-hover dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Naam</th>
-                                        <th>Beschrijving</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (Uitstap uitstap in ViewBag.gebruiker.Uitstap)
-                                    {
-                                        if(uitstap.IsDeleted==false)
-                                        { 
-                                        <tr class="odd gradeX">
-                                            <td><a href="@Url.Action("Details", "Uitstap", new { id = uitstap.Id, onclick = "setCookie()" })">@uitstap.Naam</a></td>
-                                            <td>@uitstap.Beschrijving</td>
-                                            
+            @{
+             if(User.IsInRole("Administrator")){<text><div class="col-xs-12 col-lg-8"></text>}
+             else
+             {<text><div class="col-xs-12 col-lg-12">
+            </text>
+             }
+}
 
-                                        </tr>
-                                    }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Mijn POI's
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="dataTable_wrapper">
-                            <table class="table table-striped table-bordered table-hover dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Naam</th>
-                                        <th>Adres</th>
-                                        <th>Gemeente</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (POI poi in ViewBag.gebruiker.POI) {
-                                        if (poi.IsDeleted == false) {
-                                    <tr class="odd gradeX">
-                                        <td><a href="@Url.Action("POIView", "POI", new { id = poi.Id, onclick = "setCookie()" })">@poi.Naam</a></td>
-                                        <td>@poi.Adres</td>
-                                        <td>@poi.Gemeente</td>
-                                      
-                                    </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <!-- /.panel -->
-            </div>
+
+
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Mijn Uitstappen
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <div class="dataTable_wrapper">
+            <table class="table table-striped table-bordered table-hover dataTables-example">
+                <thead>
+                    <tr>
+                        <th>Naam</th>
+                        <th>Beschrijving</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Uitstap uitstap in ViewBag.gebruiker.Uitstap)
+                    {
+                        if (uitstap.IsDeleted == false)
+                        {
+                            <tr class="odd gradeX">
+                                <td><a href="@Url.Action("Details", "Uitstap", new { id = uitstap.Id, onclick = "setCookie()" })">@uitstap.Naam</a></td>
+                                <td>@uitstap.Beschrijving</td>
+
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.panel-body -->
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Mijn POI's
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <div class="dataTable_wrapper">
+            <table class="table table-striped table-bordered table-hover dataTables-example">
+                <thead>
+                    <tr>
+                        <th>Naam</th>
+                        <th>Adres</th>
+                        <th>Gemeente</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (POI poi in ViewBag.gebruiker.POI)
+                    {
+                        if (poi.IsDeleted == false)
+                        {
+                            <tr class="odd gradeX">
+                                <td><a href="@Url.Action("POIView", "POI", new { id = poi.Id, onclick = "setCookie()" })">@poi.Naam</a></td>
+                                <td>@poi.Adres</td>
+                                <td>@poi.Gemeente</td>
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+</div>
+
+
 
             @if(User.IsInRole("Administrator"))
             { 
