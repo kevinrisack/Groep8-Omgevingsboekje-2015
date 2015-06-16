@@ -59,7 +59,7 @@
             @if (ViewBag.UserId == Model.Auteur_Id || User.IsInRole("Administrator"))
             {
                 <div class="col-lg-2 col-xs-12">
-                    <input type="button" value="POI Wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("POIModify", "POI", new { id = Model.Id })'" />
+                    <input type="button" value="POI Wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("POIModify", "POI", new { id = Model.Id })'" /><br/>
                 </div>
                 <div class="col-lg-2 col-xs-12">
                     <input type="button" value="POI Verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deletePOI()" /><br />
@@ -98,12 +98,12 @@
 </div>
 
                                         <div class="form-group">
-                                            <label>Beschrijving: </label> @Html.DisplayFor(model => model.Beschrijving)
+                                            <label>Beschrijving: </label><br/> @Html.DisplayFor(model => model.Beschrijving)
                                         </div>
 
 
                                         <div class="form-group">
-                                            <label for="openingsuren">Openingsuren: </label>@Html.DisplayFor(model => model.Openingsuur)
+                                            <label for="openingsuren">Openingsuren: </label><br/>@Html.DisplayFor(model => model.Openingsuur)
                                         </div>
 
 
