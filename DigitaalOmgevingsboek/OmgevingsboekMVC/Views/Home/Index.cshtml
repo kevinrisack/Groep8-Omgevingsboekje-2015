@@ -302,6 +302,16 @@
                                             </em>
                                         </span>
                                     </a>break;
+                                    case "Nieuwe aanvraag gebruiker":
+                                    <a href="@Url.Action("Index", "Gebruiker", new { id = log.POI_Id, onclick = "setCookie()" }) ;" class="list-group-item">
+                                        <i class="fa fa-comment fa-fw"></i>@log.Event
+                                        <span class="pull-right text-muted small">
+                                            <em>
+                                                @DateTime.ParseExact(@log.Time.ToString(), "yyyy-MM-dd HH:mm:ss",
+                                                                                   System.Globalization.CultureInfo.InvariantCulture)
+                                            </em>
+                                        </span>
+                                    </a>break;
 
 
                                     default:
