@@ -285,17 +285,23 @@
                             <div class="panel-body">
 
                                 <div class="row">
-                                    <form>
+                                    <form method="post" action="/POI/POIView" enctype="multipart/form-data">
+                                        @Html.AntiForgeryToken()
                                         <label>Plaats Reactie:</label>
                                         <div class="POIViewPlaatsReactie">
-                                            <!-- Voeg hier code voor het weergeven van het plaatsreactie venster-->
-                                            Plaats Reactie
+                                            <input type="hidden" value="@Model.Id" name="Id" />
+                                            <textarea rows="4" cols="50" name="reactie" id="reactie" placeholder="Schrijf hier uw reactie..." autofocus></textarea>
+                                            <input type="submit" value="Reactie plaatsen" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
                                         </div>
                                         <br />
                                         <label>Reacties:</label>
                                         <div class="POIViewReacties">
-                                            <!-- Voeg hier code voor het weergeven van reacties-->
-                                            Reacties
+                                            @foreach (Rating rating in Model.Rating)
+                                            {
+                                                @rating.Gebruiker_Id
+                                                <br />
+                                                @rating.Comment
+                                            }
                                         </div>
                                     </form>
                                 </div>

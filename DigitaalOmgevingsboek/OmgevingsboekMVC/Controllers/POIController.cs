@@ -117,14 +117,25 @@ namespace DigitaalOmgevingsboek.Controllers
         {            
             try
             {
-                POI poi;
-                poi = ps.GetPOI(id.Value);
+                POI poi = ps.GetPOI(id.Value);
+                Rating poiRating = new Rating
+                {
+                    Gebruiker_Id = User.Identity.Name,
+                    Comment = reactie,
+                    POI = poi
+                };
+                ps.AddRating(poiRating);
+
+                poi.Rating.Add(poiRating);
+                ps.UpdatePOI(poi);
+
                 return View(poi);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                return View("Error" + e);
 
-                return RedirectToAction("POIStart");
+                //return RedirectToAction("POIStart");
             }        
         }
 
@@ -328,7 +339,7 @@ namespace DigitaalOmgevingsboek.Controllers
                             ps.UploadPicturePOI(poi, picture);
                         }
                     }
-                    return RedirectToAction("POIOverzicht");
+                    return RedirectToAction("POIView", new { id = poi.Id });
                 }
                 catch (Exception e)
                 {

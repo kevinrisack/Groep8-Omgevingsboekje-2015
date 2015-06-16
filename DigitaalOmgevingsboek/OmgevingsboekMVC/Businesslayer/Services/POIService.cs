@@ -18,6 +18,7 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
 
         private GenericRepository<Foto_POI> repoFotoPOI = null;
         private GenericRepository<Foto_Activiteit> repoFotoActiviteit = null;
+        private GenericRepository<Rating> repoRating = null;
 
         OmgevingsboekContext context;
 
@@ -33,6 +34,7 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
 
             this.repoFotoPOI = new GenericRepository<Foto_POI>(context);
             this.repoFotoActiviteit = new GenericRepository<Foto_Activiteit>(context);
+            this.repoRating = new GenericRepository<Rating>(context);
         }
 
         #region POI
@@ -175,6 +177,14 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
         {
             repoActiviteit.Delete(act);
             repoActiviteit.SaveChanges();
+        }
+        #endregion
+
+        #region Rating
+        public void AddRating(Rating rating)
+        {
+            repoRating.Insert(rating);
+            repoRating.SaveChanges();
         }
         #endregion
     }

@@ -11,7 +11,6 @@ namespace DigitaalOmgevingsboek
     {
         public int Id { get; set; }
 
-        [Required]
         public int? Score { get; set; }
 
         [Required]
@@ -20,7 +19,7 @@ namespace DigitaalOmgevingsboek
 
         public int? POI_Id { get; set; }
 
-        public int Gebruiker_Id { get; set; }
+        public string Gebruiker_Id { get; set; }
 
         public POI POI { get; set; }
     }

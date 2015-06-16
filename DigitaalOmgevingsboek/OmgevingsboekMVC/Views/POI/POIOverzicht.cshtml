@@ -15,6 +15,17 @@
                 <h1 class="page-header">POI overzicht: @ViewBag.Filter</h1>
             </div>
             <!-- /.col-lg-12 -->
+            <div class="col-lg-3 col-xs-12">
+                <div class="form-group">
+                    <input type="button" class="btn btn-lg btn-success btn-block" name="btnSearchAll" value="Bekijk alle POI's" onclick="location.href='@Url.Action("POIOverzicht", "POI", new { filter = "alle"})'" />
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-12">
+                <input type="button" class="btn btn-lg btn-success btn-block" name="btnSearchMine" value="Bekijk mijn POI's" onclick="location.href='@Url.Action("POIOverzicht", "POI", new { filter = "mijn" })'" /><br />
+            </div>
+            <div class="col-lg-3 col-xs-12">
+                <input type="button" class="btn btn-lg btn-success btn-block" name="btnNew" value="Maak een nieuwe POI" onclick="location.href='@Url.Action("POINew", "POI")'" /><br />
+            </div>
         </div>
                 <div class="row">
                     <div class="col-lg-12 col-xs-12">
