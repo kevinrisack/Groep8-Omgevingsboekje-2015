@@ -1257,7 +1257,6 @@
     <Content Include="Views\Uitstap\Index.cshtml" />
     <Content Include="Views\Uitstap\Edit.cshtml" />
     <Content Include="Views\Uitstap\Details.cshtml" />
-    <Content Include="Views\Uitstap\Delete.cshtml" />
     <Content Include="Views\Uitstap\New.cshtml" />
     <Content Include="Views\POI\POIModify.cshtml" />
     <Content Include="Views\Gebruiker\GebruikersOverzicht.cshtml" />
