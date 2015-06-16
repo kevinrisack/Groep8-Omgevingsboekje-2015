@@ -59,7 +59,7 @@ text-align:justify;
 #Howest{
     position:fixed;
     float:left;
-    bottom: 0;
+    bottom: 20px;
     left: 0;
 }
 

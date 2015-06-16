@@ -289,6 +289,9 @@
     <Compile Include="ViewModel\UitstapVM.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Backgrounds\Howest_Logo.png" />
+    <Content Include="Backgrounds\howest_rgb.jpg" />
+    <Content Include="Backgrounds\placeholder.png" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\DataAnnotationsExtensions.dll" />
