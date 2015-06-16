@@ -319,30 +319,36 @@ namespace OmgevingsboekMVC.Controllers
             if (!id.HasValue)
                 return RedirectToAction("Index", new { filter = "all" });
 
-            
             Uitstap uitstap = us.GetUitstap(id.Value);
 
             if (uitstap.Naam != null)
             {
-                List<POI> routeList = GetPoisInRoute(uitstap);
-                string routeToGoogle = "dir";
-                foreach (POI poi in routeList)
-                {
-                    routeToGoogle += "/";
-                    string[] cutAdres = poi.Adres.Split(' ');
+                foreach(AspNetUsers anu in uitstap.AspNetUsers1)
+                    if (anu.Id == User.Identity.GetUserId() || uitstap.AspNetUsers.Id == User.Identity.GetUserId())
+                    {
 
-                    for (int i = 0; i < cutAdres.Length; i++)
-                        routeToGoogle += i == 0 ? cutAdres[i] : ('+' + cutAdres[i]);
+                        List<POI> routeList = GetPoisInRoute(uitstap);
+                        string routeToGoogle = "dir";
+                        foreach (POI poi in routeList)
+                        {
+                            routeToGoogle += "/";
+                            string[] cutAdres = poi.Adres.Split(' ');
 
-                    routeToGoogle += ",+" + poi.Gemeente;
-                }
+                            for (int i = 0; i < cutAdres.Length; i++)
+                                routeToGoogle += i == 0 ? cutAdres[i] : ('+' + cutAdres[i]);
 
-                ViewBag.Points = routeList;
-                ViewBag.routeToGoogle = routeToGoogle;
-                return View(uitstap);
+                            routeToGoogle += ",+" + poi.Gemeente;
+                        }
+
+                        if (routeToGoogle == "dir") routeToGoogle += "/";
+
+                        ViewBag.Points = routeList;
+                        ViewBag.routeToGoogle = routeToGoogle;
+                        return View(uitstap);
+                    }
+
             }
-            else
-                return RedirectToAction("Index", new { filter = "all" });
+            return RedirectToAction("Index", new { filter = "all" });
         }
 
         public ActionResult Delete(int? id)
@@ -368,10 +374,6 @@ namespace OmgevingsboekMVC.Controllers
                     }
                     
                     return RedirectToAction("Index", new { filter = "all" });
-                }
-                else
-                {
-                    return View("Error: " + "U heeft geen toestemming op deze uitstap te verwijderen.");
                 }
             }
             return RedirectToAction("Index", new { filter = "all" });
