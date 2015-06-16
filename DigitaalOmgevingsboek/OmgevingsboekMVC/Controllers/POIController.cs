@@ -103,6 +103,7 @@ namespace DigitaalOmgevingsboek.Controllers
             {   
                 POI poi;
                 poi = ps.GetPOI(id.Value);
+                ViewBag.UserId = User.Identity.GetUserId();
                 return View(poi);
             }
             catch (Exception)
@@ -553,9 +554,8 @@ namespace DigitaalOmgevingsboek.Controllers
 
                 if (act.POI.Auteur_Id == User.Identity.GetUserId())
                 {
-                    poi.IsDeleted = true;
-                    ps.UpdatePOI(poi);
-                    return RedirectToAction("POIOverzicht");
+                    ps.DeleteActiviteit(act);
+                    return RedirectToAction("POIView", new { id = act.POI.Id });
                 }
                 else
                 {
@@ -566,7 +566,6 @@ namespace DigitaalOmgevingsboek.Controllers
             {
                 return RedirectToAction("POIStart");
             }
-            return RedirectToAction("POIStart");
         }
         #endregion
     }

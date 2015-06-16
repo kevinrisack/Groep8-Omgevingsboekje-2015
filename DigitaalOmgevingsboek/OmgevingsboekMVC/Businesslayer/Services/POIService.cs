@@ -170,6 +170,12 @@ namespace DigitaalOmgevingsboek.Businesslayer.Services
             repoActiviteit.DeletePicture(fotoAct);
             repoActiviteit.SaveChanges();
         }
+
+        public void DeleteActiviteit(Activiteit act)
+        {
+            repoActiviteit.Delete(act);
+            repoActiviteit.SaveChanges();
+        }
         #endregion
     }
 }
