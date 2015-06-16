@@ -149,6 +149,16 @@ namespace DigitaalOmgevingsboek.Controllers
                 try
                 {   
                     ps.AddPOI(poi);
+                    using (OmgevingsboekContext context = new OmgevingsboekContext())
+                    {
+                        GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
+                        POI_Log log = new POI_Log();
+                        log.Event = "Nieuwe POI aangemaakt";
+                        log.POI_Id = poi.Id;
+                        log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        repo.Insert(log);
+                        repo.SaveChanges();
+                    }
 
                     if (doelgroepIds != null)
                     {
@@ -257,6 +267,16 @@ namespace DigitaalOmgevingsboek.Controllers
                 try
                 {
                     ps.UpdatePOI(poi);
+                    using (OmgevingsboekContext context = new OmgevingsboekContext())
+                    {
+                        GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
+                        POI_Log log = new POI_Log();
+                        log.Event = "POI gewijzigd";
+                        log.POI_Id = poi.Id;
+                        log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        repo.Insert(log);
+                        repo.SaveChanges();
+                    }
                     poi = ps.GetPOI(poi.Id);
 
                     poi.Doelgroep = new List<Doelgroep>();
@@ -336,6 +356,16 @@ namespace DigitaalOmgevingsboek.Controllers
                     {
                         poi.IsDeleted = true;
                         ps.UpdatePOI(poi);
+                        using (OmgevingsboekContext context = new OmgevingsboekContext())
+                        {
+                            GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
+                            POI_Log log = new POI_Log();
+                            log.Event = "POI verwijderd";
+                            log.POI_Id = poi.Id;
+                            log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                            repo.Insert(log);
+                            repo.SaveChanges();
+                        }
                         return RedirectToAction("POIStart");
                     }
                     else

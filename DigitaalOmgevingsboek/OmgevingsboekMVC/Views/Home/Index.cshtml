@@ -264,7 +264,8 @@
 
 
                                         break;
-                                    case "Uitstap verwijderd":
+                                    
+                                    case "Uitstap gewijzigd":
                                     <a href="@Url.Action("Details", "Uitstap", new { id = log.POI_Id, onclick = "setCookie()" }) ;" class="list-group-item">
                                         <i class="fa fa-comment fa-fw"></i>@log.Event
                                         <span class="pull-right text-muted small">
@@ -275,7 +276,33 @@
                                         </span>
                                     </a>
 
+
                                         break;
+
+
+                                    case "Nieuwe POI aangemaakt":
+                                    <a href="@Url.Action("POIView", "POI", new { id = log.POI_Id, onclick = "setCookie()" }) ;" class="list-group-item">
+                                        <i class="fa fa-comment fa-fw"></i>@log.Event
+                                        <span class="pull-right text-muted small">
+                                            <em>
+                                                @DateTime.ParseExact(@log.Time.ToString(), "yyyy-MM-dd HH:mm:ss",
+                                                                                   System.Globalization.CultureInfo.InvariantCulture)
+                                            </em>
+                                        </span>
+                                    </a>break;
+
+                                    case "POI gewijzigd":
+                                    <a href="@Url.Action("POIView", "POI", new { id = log.POI_Id, onclick = "setCookie()" }) ;" class="list-group-item">
+                                        <i class="fa fa-comment fa-fw"></i>@log.Event
+                                        <span class="pull-right text-muted small">
+                                            <em>
+                                                @DateTime.ParseExact(@log.Time.ToString(), "yyyy-MM-dd HH:mm:ss",
+                                                                                   System.Globalization.CultureInfo.InvariantCulture)
+                                            </em>
+                                        </span>
+                                    </a>break;
+
+
                                     default:
                                     <a href="#" class="list-group-item">
                                         <i class="fa fa-comment fa-fw"></i>@log.Event
