@@ -21,6 +21,11 @@
 
 }
 
+#imagesize{
+    width:100px;
+    height:100px;
+}
+
 #Weergave{
 text-align:justify;
    

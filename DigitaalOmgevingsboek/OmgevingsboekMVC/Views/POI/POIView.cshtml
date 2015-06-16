@@ -142,14 +142,14 @@
                                                     foreach (Foto_POI foto in Model.Foto_POI)
                                                     {
 
-                                                        <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.FotoURL" id="imagesize">
+                                                        <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.FotoURL" >
                                                         i = i + 1;
 
                                                     }
 
                                                     if (i == 0)
                                                     {
-                                                        <img src="http://dummyimage.com/300x150/aaa/fff.png&text=Geen+afbeeldingen">
+                                                        <img src="~/Backgrounds/placeholder.png" id="imagesize">
                                                     }
 
 }
