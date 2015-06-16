@@ -234,7 +234,8 @@
                 <!-- /.panel -->
             </div>
 
-
+            @if(User.IsInRole("Administrator"))
+            { 
             <div class="col-lg-4 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -327,7 +328,7 @@
                     <!-- /.panel-body -->
                 </div>
 
-            </div>
+            </div>}
         </div>
         <div class="row">
             <div id="Howest">

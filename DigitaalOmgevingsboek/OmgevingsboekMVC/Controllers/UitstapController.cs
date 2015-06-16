@@ -95,7 +95,7 @@ namespace OmgevingsboekMVC.Controllers
                 GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
                 POI_Log log = new POI_Log();
                 log.Event = "Nieuwe uitstap aangemaakt";
-                log.POI_Id = uitstap.Id;
+                log.POI_Id = uitstap.Id.ToString();
                 log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 repo.Insert(log);
                 repo.SaveChanges();
@@ -176,7 +176,7 @@ namespace OmgevingsboekMVC.Controllers
                         GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
                         POI_Log log = new POI_Log();
                         log.Event = "Uitstap gewijzigd";
-                        log.POI_Id = uitstapVM.Uitstap.Id;
+                        log.POI_Id = uitstapVM.Uitstap.Id.ToString();
                         log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         repo.Insert(log);
                         repo.SaveChanges();
@@ -361,7 +361,7 @@ namespace OmgevingsboekMVC.Controllers
                         GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
                         POI_Log log = new POI_Log();
                         log.Event = "Uitstap verwijderd";
-                        log.POI_Id = uitstap.Id;
+                        log.POI_Id = uitstap.Id.ToString();
                         log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         repo.Insert(log);
                         repo.SaveChanges();

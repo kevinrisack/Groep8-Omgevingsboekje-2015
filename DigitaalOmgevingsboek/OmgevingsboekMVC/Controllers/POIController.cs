@@ -154,7 +154,7 @@ namespace DigitaalOmgevingsboek.Controllers
                         GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
                         POI_Log log = new POI_Log();
                         log.Event = "Nieuwe POI aangemaakt";
-                        log.POI_Id = poi.Id;
+                        log.POI_Id = poi.Id.ToString();
                         log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         repo.Insert(log);
                         repo.SaveChanges();
@@ -272,7 +272,7 @@ namespace DigitaalOmgevingsboek.Controllers
                         GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
                         POI_Log log = new POI_Log();
                         log.Event = "POI gewijzigd";
-                        log.POI_Id = poi.Id;
+                        log.POI_Id = poi.Id.ToString();
                         log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         repo.Insert(log);
                         repo.SaveChanges();

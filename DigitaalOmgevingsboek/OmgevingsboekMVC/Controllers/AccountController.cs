@@ -204,6 +204,17 @@ namespace OmgevingsboekMVC.Controllers
                 {
                     var currentUser = UserManager.FindByName(user.UserName);
                     UserManager.AddToRole(currentUser.Id, "User");
+
+                    using (OmgevingsboekContext context = new OmgevingsboekContext())
+                    {
+                        GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
+                        POI_Log log = new POI_Log();
+                        log.Event = "Nieuwe aanvraag gebruiker";
+                        log.POI_Id = currentUser.Id;
+                        log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        repo.Insert(log);
+                        repo.SaveChanges();
+                    }
                    
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

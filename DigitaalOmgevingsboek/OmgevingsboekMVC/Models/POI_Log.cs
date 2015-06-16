@@ -16,7 +16,7 @@ namespace DigitaalOmgevingsboek
       
         public string Time { get; set; }
  
-        public int POI_Id { get; set; }
+        public string POI_Id { get; set; }
 
         //public POI POI { get; set; }
     }
