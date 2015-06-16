@@ -554,8 +554,9 @@ namespace DigitaalOmgevingsboek.Controllers
 
                 if (act.POI.Auteur_Id == User.Identity.GetUserId())
                 {
+                    int poiId = act.POI.Id;
                     ps.DeleteActiviteit(act);
-                    return RedirectToAction("POIView", new { id = act.POI.Id });
+                    return RedirectToAction("POIView", new { id = poiId });
                 }
                 else
                 {
