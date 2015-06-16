@@ -17,54 +17,55 @@
             <!-- /.col-lg-12 -->
         </div>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 col-xs-12">
                         <div class="panel panel-default">
                         
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                <div class="dataTable_wrapper">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                            <tr>
-                                                <th>@Html.DisplayNameFor(model => model.Naam)</th>
-                                                <th>Adres</th>
-                                                <th>@Html.DisplayNameFor(model => model.Gemeente)</th>
-                                                <th></th>
-                                                <th id="hidden">@Html.DisplayNameFor(model=> model.Doelgroep)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model)
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        @Html.ActionLink(item.Naam, "POIView", new { id = item.Id })
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Adres)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Gemeente)
-                                                    </td>
-                                                    <td>
-                                                        @Html.ActionLink("Wijzig", "POIModify", new { id = item.Id, onclick = "setCookie()" })
-                                                        @if (ViewBag.UserId == item.Auteur_Id)
-                                                        {
-                                                            <span>|</span>
-                                                            @Html.ActionLink("Verwijder", "POIDelete", new { id = item.Id }, new { onclick = "return confirm('Weet u zeker dat u deze POI wilt verwijderen?');" })
-                                                        }
-                                                    </td>
-                                                    <td id="hidden">
-                                                        @foreach (Doelgroep dg in item.Doelgroep)
-                                                        {
-                                                            @dg.DoelgroepNaam
-                                                        }
-                                                    </td>
-                                                </tr>
-                                            }
+                                   <table class="table table-striped table-bordered table-hover dataTables-example">
+                                       <thead>
+                                           <tr>
+                                               <th>@Html.DisplayNameFor(model => model.Naam)</th>
+                                               <th>Adres</th>
+                                               <th>@Html.DisplayNameFor(model => model.Gemeente)</th>
+                                               <th></th>
+                                               <th id="hidden">@Html.DisplayNameFor(model => model.Doelgroep)</th>
+                                           </tr>
+                                       </thead>
+                                       <tbody>
+                                           @foreach (var item in Model)
+                                           {
+                                               <tr>
+                                                   <td>
+                                                       @Html.ActionLink(item.Naam, "POIView", new { id = item.Id })
+                                                   </td>
+                                                   <td>
+                                                       @Html.DisplayFor(modelItem => item.Adres)
+                                                   </td>
+                                                   <td>
+                                                       @Html.DisplayFor(modelItem => item.Gemeente)
+                                                   </td>
+                                                   <td>
+                                                       @Html.ActionLink("Wijzig", "POIModify", new { id = item.Id, onclick = "setCookie()" })
+                                                       @if (ViewBag.UserId == item.Auteur_Id)
+                                                       {
+                                                           <span>|</span>
+                                                           @Html.ActionLink("Verwijder", "POIDelete", new { id = item.Id }, new { onclick = "return confirm('Weet u zeker dat u deze POI wilt verwijderen?');" })
+                                                       }
+                                                   </td>
+                                                   <td id="hidden">
+                                                       @foreach (Doelgroep dg in item.Doelgroep)
+                                                       {
+                                                           @dg.DoelgroepNaam
+                                                       }
+                                                   </td>
+                                               </tr>
+                                           }
 
-                                        </tbody>
-                                    </table>
+                                       </tbody>
+                                   </table>
+
                                 </div>
 
                             </div>
@@ -73,13 +74,18 @@
                         <!-- /.container-fluid -->
                     </div>
                 </div>
+        <div class="row">
+            <div id="Howest">
+                <img src="/Backgrounds/Howest_Logo.png" />
+            </div>
+        </div>
         </div>
 </div>
 
 
 <script>
     $(document).ready(function () {
-        $('#dataTables-example').DataTable({
+        $('.dataTables-example').DataTable({
             responsive: true
         });
     });

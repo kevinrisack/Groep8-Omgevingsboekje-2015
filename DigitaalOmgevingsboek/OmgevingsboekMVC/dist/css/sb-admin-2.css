@@ -14,13 +14,26 @@
     text-decoration: none;
 }
 
+#checker{
+    margin-right:5px;
+}
+
+#p-inline{
+    display:inline;
+}
+
 #Howest{
 
+}
+
+#Logout{
+    padding-left:0.001px;
 }
 
 #Howest img{
     width:125px;
     height:85px;
+        margin-top:50px;
 }
 
 @media(min-width:768px) {
@@ -32,8 +45,11 @@
 }
 
 #Howest img{
-    width:250px;
-    height:170px;
+    width:160px;
+    height:100px;
+    margin-left:30px;
+
+
 }
 }
 
