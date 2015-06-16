@@ -4,6 +4,16 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+.UitstapOverzichtCarousel{
+    color: black;
+    text-decoration: none;
+}
+
+.UitstapOverzichtCarousel:hover{
+    color: black;
+    text-decoration: none;
+}
+
 #Howest{
     position:absolute;
     bottom: 0;
