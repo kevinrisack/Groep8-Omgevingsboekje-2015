@@ -29,8 +29,8 @@
         //var start = new google.maps.LatLng(28.694004, 77.110291);
         //var end = new google.maps.LatLng(28.72082, 77.107241);
 
-        var start = "veldstraat 77,koekelare";
-        var end = "veldstraat 50, gent";
+        var start = "";
+        var end = "";
 
         var Volgorde = [];
         var Id = [];
@@ -436,6 +436,7 @@
                 selectList.insertBefore(opt, selectOptions[i - 1]);
             }
         }
+        initialize();
         displayRoute();
     }
 
@@ -451,6 +452,7 @@
                 selectList.insertBefore(nextOpt, opt);
             }
         }
+        initialize();
         displayRoute();
     }
 </script>
