@@ -6,20 +6,16 @@ namespace DigitaalOmgevingsboek
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("POI_Log")]
     public partial class POI_Log
     {
-        [StringLength(50)]
+        public int Id { get; set; }
+       
         public string Event { get; set; }
 
-        [Key]
-        [Column(Order = 0, TypeName = "timestamp")]
-        [MaxLength(8)]
-        [Timestamp]
-        public byte[] Time { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+      
+        public string Time { get; set; }
+ 
         public int POI_Id { get; set; }
 
         //public POI POI { get; set; }

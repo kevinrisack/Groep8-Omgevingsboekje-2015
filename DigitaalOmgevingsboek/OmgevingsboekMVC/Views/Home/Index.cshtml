@@ -243,12 +243,55 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="list-group">
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small">
-                                    <em>4 minutes ago</em>
-                                </span>
-                            </a>
+                            @if(ViewBag.lijstLogs!=null)
+                            {
+                            foreach (POI_Log log in ViewBag.lijstLogs)
+                            {
+
+                                switch(log.Event)
+                                {
+                                    case "Nieuwe uitstap aangemaakt":
+
+                                        <a href="@Url.Action("Details", "Uitstap", new { id = log.POI_Id, onclick = "setCookie()" }) ;" class="list-group-item">
+                                            <i class="fa fa-comment fa-fw"></i>@log.Event
+                                            <span class="pull-right text-muted small">
+                                                <em>
+                                                    @DateTime.ParseExact(@log.Time.ToString(), "yyyy-MM-dd HH:mm:ss",
+                                                                                   System.Globalization.CultureInfo.InvariantCulture)
+                                                </em>
+                                            </span>
+                                        </a>
+
+
+                                        break;
+                                    case "Uitstap verwijderd":
+                                    <a href="@Url.Action("Details", "Uitstap", new { id = log.POI_Id, onclick = "setCookie()" }) ;" class="list-group-item">
+                                        <i class="fa fa-comment fa-fw"></i>@log.Event
+                                        <span class="pull-right text-muted small">
+                                            <em>
+                                                @DateTime.ParseExact(@log.Time.ToString(), "yyyy-MM-dd HH:mm:ss",
+                                                                                   System.Globalization.CultureInfo.InvariantCulture)
+                                            </em>
+                                        </span>
+                                    </a>
+
+                                        break;
+                                    default:
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-comment fa-fw"></i>@log.Event
+                                        <span class="pull-right text-muted small">
+                                            <em>
+                                                @DateTime.ParseExact(@log.Time.ToString(), "yyyy-MM-dd HH:mm:ss",
+                                                                                   System.Globalization.CultureInfo.InvariantCulture)
+                                            </em>
+                                        </span>
+                                    </a>
+                                        break;
+
+                                }
+
+                            }
+                            }
                            
                         </div>
                         <!-- /.list-group -->

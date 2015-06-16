@@ -26,11 +26,15 @@ namespace OmgevingsboekMVC.Controllers
                 {
                     GenericRepository<AspNetUsers> repo = new GenericRepository<AspNetUsers>();
                     POIRepository POIrepo = new POIRepository(context);
+                    GenericRepository<POI_Log> logrepo = new GenericRepository<POI_Log>();
                     UitstapRepository Uitstaprep = new UitstapRepository(context);
                     GebruikerRepository gebruikersrepo=new GebruikerRepository(context);
 
                     currentUser=gebruikersrepo.GetByEmail(user);
-                    
+                    List<POI_Log> logLijst = new List<POI_Log>();
+                    logLijst = logrepo.All().ToList();
+
+                   
                    
                     
 
@@ -63,6 +67,7 @@ namespace OmgevingsboekMVC.Controllers
                     ViewBag.lijstPOI = allPOI;
                     ViewBag.lijstUitstappen = allUistappen;
                     ViewBag.lijstGebruikers = allGebruikers;
+                    ViewBag.lijstLogs = logLijst;
 
 
                 }

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using OmgevingsboekMVC.ViewModel;
 
+
 namespace OmgevingsboekMVC.Controllers
 {
     [Authorize]
@@ -89,6 +90,16 @@ namespace OmgevingsboekMVC.Controllers
                             uitstap.AspNetUsers1.Add(anu);
 
             uitstap = us.AddUitstap(uitstap);
+            using (OmgevingsboekContext context = new OmgevingsboekContext())
+            {
+                GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
+                POI_Log log = new POI_Log();
+                log.Event = "Nieuwe uitstap aangemaakt";
+                log.POI_Id = uitstap.Id;
+                log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                repo.Insert(log);
+                repo.SaveChanges();
+            }
 
             return RedirectToAction("Edit", new { id = uitstap.Id});
         }
@@ -160,6 +171,16 @@ namespace OmgevingsboekMVC.Controllers
                     }
 
                     us.UpdateUitstap(originalUitstap);
+                    using (OmgevingsboekContext context = new OmgevingsboekContext())
+                    {
+                        GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
+                        POI_Log log = new POI_Log();
+                        log.Event = "Uitstap gewijzigd";
+                        log.POI_Id = uitstapVM.Uitstap.Id;
+                        log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        repo.Insert(log);
+                        repo.SaveChanges();
+                    }
                     return RedirectToAction("Details", uitstapVM.Uitstap.Id);
 
                 //case "direction":
@@ -320,6 +341,18 @@ namespace OmgevingsboekMVC.Controllers
                 {
                     uitstap.IsDeleted = true;
                     us.UpdateUitstap(uitstap);
+
+                    using (OmgevingsboekContext context = new OmgevingsboekContext())
+                    {
+                        GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
+                        POI_Log log = new POI_Log();
+                        log.Event = "Uitstap verwijderd";
+                        log.POI_Id = uitstap.Id;
+                        log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        repo.Insert(log);
+                        repo.SaveChanges();
+                    }
+                    
                     return RedirectToAction("Index", new { filter = "all" });
                 }
                 else

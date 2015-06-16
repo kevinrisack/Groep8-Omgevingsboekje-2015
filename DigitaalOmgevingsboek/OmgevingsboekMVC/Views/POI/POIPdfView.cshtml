@@ -17,39 +17,39 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <div class="form-group"> <label><strong>Naam:</strong> </label> @Html.DisplayFor(model => model.Naam)</div>
-                    <div class="form-group"> <label><strong>Adres: </strong></label> @Html.DisplayFor(model => model.Adres)</div>
-                    <div class="form-group"><label><strong>Gemeente:</strong> </label> @Html.DisplayFor(model => model.Gemeente)</div>
+                    <div class="form-group"> <label><strong>Naam:</strong> </label> @Html.DisplayFor(model => model.Naam)</div><br>
+                    <div class="form-group"> <label><strong>Adres: </strong></label> @Html.DisplayFor(model => model.Adres)</div><br>
+                    <div class="form-group"><label><strong>Gemeente:</strong> </label> @Html.DisplayFor(model => model.Gemeente)</div><br>
 
                     <div class="form-group">
                         <label><strong>Telefoonnummer:</strong> </label> @Html.DisplayFor(model => model.Telefoon)
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         <label><strong>Email:</strong> </label> @Html.DisplayFor(model => model.Email)
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         <label><strong>Website:</strong> </label> @Html.DisplayFor(model => model.WebsiteUrl)
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         <label><strong>Beschrijving</strong> </label> @Html.DisplayFor(model => model.Beschrijving)
-                    </div>
+                    </div><br>
 
 
                     <div class="form-group">
                         <label for="openingsuren"><strong>Openingsuren:</strong> </label>@Html.DisplayFor(model => model.Openingsuur)
-                    </div>
+                    </div><br>
 
 
                     <div class="form-group">
                         <label><strong>Tijdsduur: </strong></label>@Html.DisplayFor(model => model.Duurtijd)
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
-                        <label><strong>Toegangsprijs: </strong></label>@Html.DisplayFor(model => model.Toegangsprijs)
-                    </div>
+                        <label><strong>Toegangsprijs: </strong></label>€ @Html.DisplayFor(model => model.Toegangsprijs) 
+                    </div><br>
 
 
                     <div class="form-group">
@@ -94,7 +94,7 @@
 
 
 
-                <br />
+                <br>
 
 
             </div>*@
@@ -136,11 +136,11 @@
 
 
                             }
-                        </ul>
+                        </ul><br>
 
 
                     }
-                }
+}
 
 
 

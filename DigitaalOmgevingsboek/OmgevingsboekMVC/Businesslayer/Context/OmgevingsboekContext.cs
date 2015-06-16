@@ -127,9 +127,9 @@ namespace DigitaalOmgevingsboek
                 .WithMany(e => e.POI)
                 .Map(m => m.ToTable("Uitstap_POI"));
 
-            modelBuilder.Entity<POI_Log>()
-                .Property(e => e.Time)
-                .IsFixedLength();
+            //modelBuilder.Entity<POI_Log>()
+            //    .Property(e => e.Time);
+            //    //.IsFixedLength();
 
             modelBuilder.Entity<Route>()
                 .HasMany(e => e.Uitstap)
