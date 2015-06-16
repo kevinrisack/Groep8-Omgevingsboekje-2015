@@ -41,7 +41,7 @@
                                                <th>Adres</th>
                                                <th>@Html.DisplayNameFor(model => model.Gemeente)</th>
                                                <th></th>
-                                               <th id="hidden">@Html.DisplayNameFor(model => model.Doelgroep)</th>
+                                               <th id="hidden"></th>
                                            </tr>
                                        </thead>
                                        <tbody>
@@ -69,6 +69,16 @@
                                                        @foreach (Doelgroep dg in item.Doelgroep)
                                                        {
                                                            @dg.DoelgroepNaam
+                                                       }
+                                                       @item.Beschrijving
+                                                       @item.Duurtijd
+                                                       @item.Openingsuur
+                                                       @item.Telefoon
+                                                       @item.Toegangsprijs
+                                                       @item.WebsiteUrl
+                                                       @foreach (Thema th in item.Thema)
+                                                       {
+                                                           @th.LeergebiedNaam
                                                        }
                                                    </td>
                                                </tr>

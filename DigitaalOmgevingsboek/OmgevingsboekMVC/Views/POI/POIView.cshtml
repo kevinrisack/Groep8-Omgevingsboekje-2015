@@ -184,6 +184,7 @@
                                                     <th>Adres</th>
                                                     <th>Duur</th>
                                                     <th></th>
+                                                    <th id="hidden"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -206,6 +207,17 @@
                                                                 <span>|</span>
                                                                 @Html.ActionLink("Verwijder", "ActivityDelete", new { id = activiteit.Id }, new { onclick = "return confirm('Weet u zeker dat u deze activiteit wilt verwijderen?');" })
                                                             }
+                                                        </td>
+                                                        <td id="hidden">
+                                                            @foreach (Doelgroep dg in activiteit.Doelgroep)
+                                                            {
+                                                                @dg.DoelgroepNaam
+                                                            }
+                                                            @activiteit.Beschrijving
+                                                            @activiteit.Leerdoelen
+                                                            @activiteit.Materiaal
+                                                            @activiteit.Opmerkingen
+                                                            @activiteit.Terugkoppeling
                                                         </td>
                                                     </tr>
                                                 }
@@ -290,7 +302,7 @@
                                         <label>Plaats Reactie:</label>
                                         <div class="POIViewPlaatsReactie">
                                             <input type="hidden" value="@Model.Id" name="Id" />
-                                            <textarea rows="4" cols="50" name="reactie" id="reactie" placeholder="Schrijf hier uw reactie..." autofocus></textarea>
+                                            <textarea rows="4" cols="50" name="reactie" id="reactie" placeholder="Schrijf hier uw reactie..." autofocus maxlength="512"></textarea>
                                             <input type="submit" value="Reactie plaatsen" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
                                         </div>
                                         <br />
@@ -298,9 +310,17 @@
                                         <div class="POIViewReacties">
                                             @foreach (Rating rating in Model.Rating)
                                             {
-                                                @rating.Gebruiker_Id
-                                                <br />
-                                                @rating.Comment
+                                                foreach (AspNetUsers ratingUser in ViewBag.AllUsers)
+                                                {
+                                                    if (ratingUser.Id.Equals(rating.Gebruiker_Id))
+                                                    {
+                                                        <p>@ratingUser.Firstname @ratingUser.Name</p>
+                                                    }
+                                                }
+                                                <p>
+                                                    @rating.Comment<br />
+                                                    ----------
+                                                </p> 
                                             }
                                         </div>
                                     </form>

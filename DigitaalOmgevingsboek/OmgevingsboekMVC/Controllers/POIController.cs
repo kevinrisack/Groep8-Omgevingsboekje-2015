@@ -104,6 +104,7 @@ namespace DigitaalOmgevingsboek.Controllers
                 POI poi;
                 poi = ps.GetPOI(id.Value);
                 ViewBag.UserId = User.Identity.GetUserId();
+                ViewBag.AllUsers = ps.GetAllUsers();
                 return View(poi);
             }
             catch (Exception)
@@ -120,7 +121,7 @@ namespace DigitaalOmgevingsboek.Controllers
                 POI poi = ps.GetPOI(id.Value);
                 Rating poiRating = new Rating
                 {
-                    Gebruiker_Id = User.Identity.Name,
+                    Gebruiker_Id = User.Identity.GetUserId(),
                     Comment = reactie,
                     POI = poi
                 };
@@ -129,13 +130,11 @@ namespace DigitaalOmgevingsboek.Controllers
                 poi.Rating.Add(poiRating);
                 ps.UpdatePOI(poi);
 
-                return View(poi);
+                return RedirectToAction("POIView", new { id = poi.Id });
             }
             catch (Exception e)
             {
-                return View("Error" + e);
-
-                //return RedirectToAction("POIStart");
+                return RedirectToAction("POIStart");
             }        
         }
 
