@@ -1167,10 +1167,8 @@
     <Content Include="less\sb-admin-2.less" />
     <Content Include="less\variables.less" />
     <Content Include="bin\OmgevingsboekMVC.dll.config" />
-    <Content Include="bower_components\datatables\media\js\jquery.dataTables.min.js.map">
-      <DependentUpon>jquery.dataTables.min.js</DependentUpon>
-    </Content>
     <Content Include="App_Browsers\qt.browser" />
+    <Content Include="bower_components\datatables\media\js\jquery.dataTables.min.js.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="pages\blank.html" />
@@ -1251,7 +1249,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Scripts\Home.cshtml" />
     <Content Include="Views\POI\POIActivity.cshtml" />
     <Content Include="Views\POI\POINew.cshtml" />
     <Content Include="Views\POI\POIOverzicht.cshtml" />
