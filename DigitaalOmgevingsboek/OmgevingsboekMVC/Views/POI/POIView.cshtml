@@ -171,7 +171,10 @@
                         </div>
                     </div>
                     <div id="view2">
-                        Voeg een <a href="@Url.Action("ActivityNew", "POI", new { id = Model.Id })">nieuwe activiteit</a> toe.
+                        @if (ViewBag.UserId == Model.Auteur_Id || User.IsInRole("Administrator"))
+                        {
+                            <span>Voeg een <a href="@Url.Action("ActivityNew", "POI", new { id = Model.Id })">nieuwe activiteit</a> toe.</span>
+                        }
                         <div class="panel">
 
                             <div class="panel-body">
