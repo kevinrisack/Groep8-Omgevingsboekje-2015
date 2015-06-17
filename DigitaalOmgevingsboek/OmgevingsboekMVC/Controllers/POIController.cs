@@ -152,7 +152,7 @@ namespace DigitaalOmgevingsboek.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult POINew(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> themaIds)
+        public ActionResult POINew(POI poi, List<HttpPostedFileBase> pictures, List<int> doelgroepIds, List<int> leergebiedenIds)
         {
             if (ModelState.IsValid)
             {
@@ -183,9 +183,9 @@ namespace DigitaalOmgevingsboek.Controllers
                         }
                     }
 
-                    if (themaIds != null)
+                    if (leergebiedenIds != null)
                     {
-                        foreach (int themaId in themaIds)
+                        foreach (int themaId in leergebiedenIds)
                         {
                             Thema th = ps.GetThema(themaId);
 
@@ -222,9 +222,9 @@ namespace DigitaalOmgevingsboek.Controllers
                         poi.Doelgroep.Add(dg);
                     }
                 }
-                if (themaIds != null)
+                if (leergebiedenIds != null)
                 {
-                    foreach (int themaId in themaIds)
+                    foreach (int themaId in leergebiedenIds)
                     {
                         Thema th = ps.GetThema(themaId);
                         poi.Thema.Add(th);
