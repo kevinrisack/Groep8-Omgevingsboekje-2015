@@ -63,7 +63,7 @@
         <ul class="nav navbar-top-links navbar-right">
             
             <!-- /.dropdown -->
-            <li>@User.Identity.Name</li>
+            <li>@Html.ActionLink(@User.Identity.Name,"GebruikersProfiel","Home")</li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>

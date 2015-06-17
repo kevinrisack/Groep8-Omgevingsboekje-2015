@@ -1267,6 +1267,7 @@
     <Content Include="Views\Account\Bevestiging.cshtml" />
     <Content Include="Views\Account\BevestigEmail.cshtml" />
     <Content Include="Views\POI\POIPdfView.cshtml" />
+    <Content Include="Views\Home\GebruikersProfiel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace OmgevingsboekMVC.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -79,6 +80,36 @@ namespace OmgevingsboekMVC.Controllers
                 return View(currentUser);}
             return RedirectToAction("Login", "Account");
           
+        }
+
+        public ActionResult GebruikersProfiel()
+        {
+            AspNetUsers currentUser = new AspNetUsers();
+            string user = User.Identity.Name;
+            using (OmgevingsboekContext context = new OmgevingsboekContext())
+            {
+                GebruikerRepository gebruikersrepo = new GebruikerRepository(context);
+
+                currentUser = gebruikersrepo.GetByEmail(user);
+ 
+            }
+
+            return View(currentUser);
+        }
+
+        [HttpPost]
+        public ActionResult GebruikersProfiel(AspNetUsers user)
+        {
+            using (OmgevingsboekContext context = new OmgevingsboekContext())
+            {
+                GebruikerRepository gebruikersrepo = new GebruikerRepository(context);
+
+                gebruikersrepo.Update(user);
+                gebruikersrepo.SaveChanges();
+
+            }
+            return View("GebruikersProfiel");
+
         }
 
         public ActionResult About()
