@@ -45,19 +45,8 @@
 
                         <div class="form-group"><label>Terugkoppeling: </label> @Html.DisplayFor(model => model.Terugkoppeling)</div>
                         <div class="form-group"><label>Opmerkingen: </label> @Html.DisplayFor(model => model.Opmerkingen)</div>
+                        <div class="form-group"><label>Leerdoelen: </label> @Html.DisplayFor(model => model.Leerdoelen)</div>
 
-                        <div class="form-group">
-                            <label>Links:</label>
-
-
-                            @foreach (Link link in Model.Link)
-                            {
-                                <p>
-                                    @link.URL
-                                </p>
-
-                            }
-                        </div>
 
                         <div class="form-group">
                             <label>Doelgroep:</label>
@@ -71,12 +60,6 @@
 
                                 }
                             </ul>
-                        </div>
-                        <div class="form-group">
-                            <label>Leerdoel:</label>
-
-
-                            
                         </div>
                     </div>
                     <div class="col-lg-6">
