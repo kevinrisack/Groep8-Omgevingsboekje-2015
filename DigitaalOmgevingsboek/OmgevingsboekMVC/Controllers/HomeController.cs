@@ -63,6 +63,10 @@ namespace OmgevingsboekMVC.Controllers
                         }
                     }
 
+
+                    logLijst.Reverse();
+                    
+
                     ViewBag.gebruiker = currentUser;
                     ViewBag.lijstPOI = allPOI;
                     ViewBag.lijstUitstappen = allUistappen;

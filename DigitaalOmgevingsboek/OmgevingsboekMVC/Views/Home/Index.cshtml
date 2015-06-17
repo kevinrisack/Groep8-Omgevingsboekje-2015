@@ -114,7 +114,16 @@
                                     }
                                     else
                                     {
-                                        @ViewBag.gebruiker.Uitstap1.Count
+                                        int iUitstap=0;
+                                        foreach (Uitstap u in ViewBag.gebruiker.Uitstap1)
+                                        {
+                                            if(u.IsDeleted==false)
+                                            {
+                                                iUitstap++;
+                                            }
+                                            
+                                        }
+                                        @iUitstap;
                                     }
 
                                 </div>
@@ -263,8 +272,10 @@
                         <div class="list-group">
                             @if(ViewBag.lijstLogs!=null)
                             {
+                                int i=0;
                             foreach (POI_Log log in ViewBag.lijstLogs)
                             {
+                                if (i >= 20) { break; }
 
                                 switch(log.Event)
                                 {
@@ -344,6 +355,7 @@
                                         break;
 
                                 }
+                                i++;
 
                             }
                             }
