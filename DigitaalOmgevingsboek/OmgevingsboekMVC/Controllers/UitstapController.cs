@@ -29,25 +29,8 @@ namespace OmgevingsboekMVC.Controllers
             if (filter == null)
                 return RedirectToAction("Index", "Uitstap", new { filter = "all" });
 
-            List<Uitstap> uitstappen = us.GetUitstappen();
             List<Uitstap> uitstappenMine = us.GetUitstappen(User.Identity.GetUserId());
 
-            ViewBag.nMine = uitstappenMine.Count;
-
-            List<Uitstap> uitstappenMetRechten = new List<Uitstap>();
-            foreach (Uitstap u in uitstappen)
-            {
-                foreach (AspNetUsers user in u.AspNetUsers1)
-                {
-                    if (user.Id == User.Identity.GetUserId())
-                        uitstappenMetRechten.Add(u);
-                }
-            }
-
-            foreach (Uitstap u in uitstappenMine)
-                uitstappenMetRechten.Add(u);
-
-            ViewBag.nAll = uitstappenMetRechten.Count;
             ViewBag.User = User.Identity.GetUserId();
             
             switch(filter)
@@ -58,7 +41,20 @@ namespace OmgevingsboekMVC.Controllers
 
                 case "all":
                             ViewBag.Filter = "Alle";
-                            return View(uitstappenMetRechten);
+                            List<Uitstap> uitstappen = us.GetUitstappen();
+                            List<Uitstap> uitstappenMetRechten = new List<Uitstap>();
+                            foreach (Uitstap u in uitstappen)
+                                {
+                                    foreach (AspNetUsers user in u.AspNetUsers1)
+                                    {
+                                        if (user.Id == User.Identity.GetUserId())
+                                        uitstappenMetRechten.Add(u);
+                                    }
+                                }
+
+                           foreach (Uitstap u in uitstappenMine)
+                                uitstappenMetRechten.Add(u);
+                           return View(uitstappenMetRechten);
 
                 default: return RedirectToAction("Index", "Uitstap", new { filter = "all"});
             }
