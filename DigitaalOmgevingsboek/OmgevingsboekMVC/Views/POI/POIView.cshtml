@@ -296,36 +296,72 @@
                         <div class="panel">
 
                             <div class="panel-body">
+                                <form method="post" action="/POI/POIView" enctype="multipart/form-data">
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+                                        <div class="col-lg-12 col-xs-12">
 
-                                <div class="row">
-                                    <form method="post" action="/POI/POIView" enctype="multipart/form-data">
-                                        @Html.AntiForgeryToken()
-                                        <label>Plaats Reactie:</label>
-                                        <div class="POIViewPlaatsReactie">
-                                            <input type="hidden" value="@Model.Id" name="Id" />
-                                            <textarea rows="4" cols="50" name="reactie" id="reactie" placeholder="Schrijf hier uw reactie..." autofocus maxlength="512"></textarea>
-                                            <input type="submit" value="Reactie plaatsen" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
+
+                                            <div class="col-lg-9 col-xs-12">
+                                                <label>Plaats Reactie:</label>
+                                                <div class="POIViewPlaatsReactie">
+                                                    <input type="hidden" value="@Model.Id" name="Id" />
+                                                    <textarea class="form-control" cols="50" name="reactie" id="reactie" placeholder="Schrijf hier uw reactie..." autofocus maxlength="512"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-xs-12">
+                                                <br/>
+                                                <input type="submit" value="Reactie plaatsen" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
+                                            </div>
+
+                                            
                                         </div>
-                                        <br />
-                                        <label>Reacties:</label>
-                                        <div class="POIViewReacties">
-                                            @foreach (Rating rating in Model.Rating)
-                                            {
-                                                foreach (AspNetUsers ratingUser in ViewBag.AllUsers)
-                                                {
-                                                    if (ratingUser.Id.Equals(rating.Gebruiker_Id))
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-xs-12">
+                                            <div class="col-lg-9 col-xs-12">
+                                                <br />
+                                                <br />
+                                                <label>Reacties:</label>
+                                                <br />
+                                                <br />
+                                                <div class="POIViewReacties">
+                                                    @foreach (Rating rating in Model.Rating)
                                                     {
-                                                        <p>@ratingUser.Firstname @ratingUser.Name</p>
+
+                                                        foreach (AspNetUsers ratingUser in ViewBag.AllUsers)
+                                                        {
+
+                                                            if (ratingUser.Id.Equals(rating.Gebruiker_Id))
+                                                            {
+                                                                <div class="panel panel-yellow">
+                                                                    <div class="panel-heading">
+                                                                       @ratingUser.Name  @ratingUser.Firstname :
+                                                                    </div>
+                                                                    <div class="panel-body">
+
+                                                                        <p>@rating.Comment</p>
+
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        }
+
+
+
                                                     }
-                                                }
-                                                <p>
-                                                    @rating.Comment<br />
-                                                    ----------
-                                                </p> 
-                                            }
+
+                                                </div>
+
+                                            </div>
+                                            </div>
                                         </div>
-                                    </form>
-                                </div>
+
+                                </form>
+
+                                    </div>
+                            </div>
+                              
                                 <!-- /.container-fluid -->
                             </div>
                         </div>
