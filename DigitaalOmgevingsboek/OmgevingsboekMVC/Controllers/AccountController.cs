@@ -94,12 +94,12 @@ namespace OmgevingsboekMVC.Controllers
             if (aspuser != null) {  
                     if(aspuser.IsPending==true)
                     {
-                        return View("Error");
+                        return View("CustomError");
 
                     }
                     if (aspuser.IsDeleted == true)
                     {
-                        return View("Error");
+                        return View("CustomError");
 
                     }
                     if (aspuser.EmailConfirmed != true)
@@ -129,7 +129,7 @@ namespace OmgevingsboekMVC.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Ongeldige login poging");
                     return View(model);
             }
         }
