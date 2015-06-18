@@ -338,6 +338,7 @@ namespace OmgevingsboekMVC.Controllers
 
                         if (routeToGoogle == "dir") routeToGoogle += "/";
 
+                        ViewBag.UserId = User.Identity.GetUserId();
                         ViewBag.Points = routeList;
                         ViewBag.routeToGoogle = routeToGoogle;
                         return View(uitstap);
