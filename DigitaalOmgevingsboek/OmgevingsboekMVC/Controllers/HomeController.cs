@@ -125,5 +125,10 @@ namespace OmgevingsboekMVC.Controllers
 
             return View();
         }
+
+        public ActionResult Manual()
+        {
+            return View();
+        }
     }
 }
