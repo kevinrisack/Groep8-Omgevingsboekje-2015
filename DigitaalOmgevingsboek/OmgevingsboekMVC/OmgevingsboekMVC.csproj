@@ -1271,11 +1271,11 @@
     <Content Include="Views\POI\POIPdfView.cshtml" />
     <Content Include="Views\Home\GebruikersProfiel.cshtml" />
     <Content Include="Views\Home\Manual.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Home\Error.cshtml" />
-=======
+
     <Content Include="Views\Shared\CustomError.cshtml" />
->>>>>>> origin/master
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
