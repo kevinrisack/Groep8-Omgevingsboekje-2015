@@ -163,7 +163,7 @@ namespace DigitaalOmgevingsboek.Controllers
                     {
                         GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
                         POI_Log log = new POI_Log();
-                        log.Event = "Nieuwe POI aangemaakt";
+                        log.Event = "POI aangemaakt";
                         log.POI_Id = poi.Id.ToString();
                         log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         repo.Insert(log);
@@ -343,7 +343,7 @@ namespace DigitaalOmgevingsboek.Controllers
                 }
                 catch (Exception e)
                 {
-                    return View("Error: " + e);
+                    return View("Error");
                 }
             }
             else

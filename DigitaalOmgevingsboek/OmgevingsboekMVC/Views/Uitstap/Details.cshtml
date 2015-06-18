@@ -37,7 +37,7 @@
             var waypoits = [];
             var waypts = [];
             var holder = [];
-            
+
 
 
             @foreach (POI poi in Model.POI)
@@ -94,7 +94,7 @@
                     var indexEnd = holder.length-1;
                     end = holder[indexEnd];
 
-      
+
 
                     for (var i = 0; i < Id.length -2; i++) {
                         waypts[i] = holder[i+1];
@@ -153,13 +153,19 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-6"></div>
-            <div class="col-lg-3 col-xs-12">
-                <input type="button" value="Uitstap wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("Edit", "Uitstap", new { id = Model.Id })'" /><br />
-            </div>
-            <div class="col-lg-3 col-xs-12">
-                <input type="button" value="Uitstap verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deleteUitstap()" /><br />
-            </div>
+            <!--CODE VOOR CONTROLE USER HIER-->
+            @if (ViewBag.UserId == Model.Auteur_Id || User.IsInRole("Administrator"))
+            {
+                <div class="col-lg-6"></div>
+                <div class="col-lg-3 col-xs-12">
+                    <input type="button" value="Uitstap wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("Edit", "Uitstap", new { id = Model.Id })'" /><br />
+                </div>
+                <div class="col-lg-3 col-xs-12">
+                    <input type="button" value="Uitstap verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deleteUitstap()" /><br />
+                </div>
+            }
+            
+
         </div>
 
         <div class="row">
@@ -240,8 +246,8 @@
                                                             <h3>@Model.POI.ElementAt(i).Naam</h3>
                                                             <p>@Model.POI.ElementAt(i).Beschrijving</p>
                                                         </div>
-                                                        </div>
-</a>                                                
+                                                    </div>
+                                                </a>
                                             </div>
 
                                         }

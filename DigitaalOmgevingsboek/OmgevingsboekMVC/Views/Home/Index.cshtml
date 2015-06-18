@@ -39,7 +39,7 @@
                                     }
                                     else
                                     {
-                                   <p>Uw aangemaakte uitstappen</p>
+                                   <p>Uw uitstappen</p>
                                     }
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                                     }
                                     else
                                     {
-                                        <p>Uw aangemaakte POI's</p>
+                                        <p>Uw POI's</p>
                                     }
                                 </div>
                             </div>
@@ -130,11 +130,11 @@
                                 <div>
                                     @if (User.IsInRole("Administrator"))
                                     {
-                                       <p>Totaal aantal Gebruikers</p>
+                                       <p>Totaal aantal gebruikers</p>
                                     }
                                     else
                                     {
-                                       <p>Uitstappen waar u toegang tot hebt</p>
+                                       <p>Alle uitstappen</p>
                                     }
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        Mijn Uitstappen
+        Mijn uitstappen
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
@@ -265,7 +265,7 @@
             <div class="col-lg-4 col-xs-12">
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Recente Gebeurtenissen
+                        <i class="fa fa-bell fa-fw"></i> Recente gebeurtenissen
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -279,7 +279,7 @@
 
                                 switch(log.Event)
                                 {
-                                    case "Nieuwe uitstap aangemaakt":
+                                    case "Uitstap aangemaakt":
 
                                         <a href="@Url.Action("Details", "Uitstap", new { id = log.POI_Id, onclick = "setCookie()" }) ;" class="list-group-item">
                                             <i class="fa fa-comment fa-fw"></i>@log.Event
@@ -309,7 +309,7 @@
                                         break;
 
 
-                                    case "Nieuwe POI aangemaakt":
+                                    case "POI aangemaakt":
                                     <a href="@Url.Action("POIView", "POI", new { id = log.POI_Id, onclick = "setCookie()" }) ;" class="list-group-item">
                                         <i class="fa fa-comment fa-fw"></i>@log.Event
                                         <span class="pull-right text-muted small">
@@ -330,7 +330,7 @@
                                             </em>
                                         </span>
                                     </a>break;
-                                    case "Nieuwe aanvraag gebruiker":
+                                    case "Aanvraag gebruiker":
                                     <a href="@Url.Action("Index", "Gebruiker", new { id = log.POI_Id, onclick = "setCookie()" }) ;" class="list-group-item">
                                         <i class="fa fa-comment fa-fw"></i>@log.Event
                                         <span class="pull-right text-muted small">

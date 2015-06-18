@@ -90,7 +90,7 @@ namespace OmgevingsboekMVC.Controllers
             {
                 GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
                 POI_Log log = new POI_Log();
-                log.Event = "Nieuwe uitstap aangemaakt";
+                log.Event = "Uitstap aangemaakt";
                 log.POI_Id = uitstap.Id.ToString();
                 log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 repo.Insert(log);
@@ -320,7 +320,7 @@ namespace OmgevingsboekMVC.Controllers
             if (uitstap.Naam != null)
             {
                 foreach(AspNetUsers anu in uitstap.AspNetUsers1)
-                    if (anu.Id == User.Identity.GetUserId() || uitstap.AspNetUsers.Id == User.Identity.GetUserId())
+                    if (anu.Id == User.Identity.GetUserId() || uitstap.AspNetUsers.Id == User.Identity.GetUserId()||User.IsInRole("Administrator"))
                     {
 
                         List<POI> routeList = GetPoisInRoute(uitstap);

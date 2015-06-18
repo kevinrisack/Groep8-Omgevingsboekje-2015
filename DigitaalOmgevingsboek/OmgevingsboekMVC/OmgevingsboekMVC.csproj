@@ -1215,7 +1215,9 @@
     <Content Include="tab-content\template5\tabcontent.css" />
     <Content Include="tab-content\template6\tabbg.gif" />
     <Content Include="tab-content\template6\tabcontent.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1269,6 +1271,7 @@
     <Content Include="Views\POI\POIPdfView.cshtml" />
     <Content Include="Views\Home\GebruikersProfiel.cshtml" />
     <Content Include="Views\Home\Manual.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

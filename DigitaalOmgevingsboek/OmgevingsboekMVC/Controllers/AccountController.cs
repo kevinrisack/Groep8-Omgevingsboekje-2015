@@ -209,7 +209,7 @@ namespace OmgevingsboekMVC.Controllers
                     {
                         GenericRepository<POI_Log> repo = new GenericRepository<POI_Log>();
                         POI_Log log = new POI_Log();
-                        log.Event = "Nieuwe aanvraag gebruiker";
+                        log.Event = "Aanvraag gebruiker";
                         log.POI_Id = currentUser.Id;
                         log.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         repo.Insert(log);
