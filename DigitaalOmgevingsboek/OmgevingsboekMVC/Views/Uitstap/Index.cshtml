@@ -15,13 +15,14 @@
             <!-- /.col-lg-12 -->
         </div>
         <div class="row">
-            <div class="col-lg-3 col-xs-12">
+         
+            <div class="col-lg-4 col-xs-12">
                 <div class="form-group">
                     <input type="button" class="btn btn-lg btn-success btn-block" name="btnSearchAll" value="Bekijk alle uitstappen" onclick="location.href='@Url.Action("Index", "Uitstap", new {filter = "all"})'" />
 
                 </div>
             </div>
-            <div class="col-lg-3 col-xs-12">
+            <div class="col-lg-4 col-xs-12">
                 <input type="button" class="btn btn-lg btn-success btn-block" name="btnSearchMine" value="Bekijk mijn uitstappen" onclick="location.href='@Url.Action("Index", "Uitstap", new {filter = "my"})'" /><br />
             </div>
             <div class="col-lg-4 col-xs-12">

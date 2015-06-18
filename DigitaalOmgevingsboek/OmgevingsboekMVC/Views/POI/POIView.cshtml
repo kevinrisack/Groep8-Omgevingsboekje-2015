@@ -51,19 +51,31 @@
             <!-- /.col-lg-12 -->
         </div>
         <div class="row">
-            <div class="col-lg-3 col-xs-12">
-                <input type="button" value="Exporteer naar pdf" name="btnExport" class="btn btn-lg btn-success btn-block" onclick="return exportToPdf()" /><br />
-            </div>
-            <div class="col-lg-3">
 
-            </div>
+
+
             @if (ViewBag.UserId == Model.Auteur_Id || User.IsInRole("Administrator"))
             {
+                <div class="col-lg-3">
+
+                </div>
+                <div class="col-lg-3 col-xs-12">
+                    <input type="button" value="Exporteer naar pdf" name="btnExport" class="btn btn-lg btn-success btn-block" onclick="return exportToPdf()" /><br />
+                </div>
                 <div class="col-lg-3  col-xs-12">
-                    <input type="button" value="POI Wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("POIModify", "POI", new { id = Model.Id })'" /><br/>
+                    <input type="button" value="POI Wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("POIModify", "POI", new { id = Model.Id })'" /><br />
                 </div>
                 <div class="col-lg-3 col-xs-12">
                     <input type="button" value="POI Verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deletePOI()" /><br />
+                </div>
+            }
+            else
+            {
+                <div class="col-lg-9">
+
+                </div>
+                <div class="col-lg-3 col-xs-12">
+                    <input type="button" value="Exporteer naar pdf" name="btnExport" class="btn btn-lg btn-success btn-block" onclick="return exportToPdf()" /><br />
                 </div>
             }
         </div>
@@ -96,15 +108,15 @@
 
                                         <div class="form-group">
                                             <label>Website:</label> <a href="@Html.DisplayFor(model => model.WebsiteUrl)">@Html.DisplayFor(model => model.WebsiteUrl)</a>
-</div>
+                                        </div>
 
                                         <div class="form-group">
-                                            <label>Beschrijving: </label><br/> @Html.DisplayFor(model => model.Beschrijving)
+                                            <label>Beschrijving: </label><br /> @Html.DisplayFor(model => model.Beschrijving)
                                         </div>
 
 
                                         <div class="form-group">
-                                            <label for="openingsuren">Openingsuren: </label><br/>@Html.DisplayFor(model => model.Openingsuur)
+                                            <label for="openingsuren">Openingsuren: </label><br />@Html.DisplayFor(model => model.Openingsuur)
                                         </div>
 
 
@@ -128,10 +140,10 @@
                                                     </li>
 
                                                 }
-                                                </ul>
-</div>
+                                            </ul>
+                                        </div>
 
-                                      
+
                                     </div>
                                     <div class="col-lg-6">
                                         <div id="sliderFrame">
@@ -143,7 +155,7 @@
                                                     foreach (Foto_POI foto in Model.Foto_POI)
                                                     {
 
-                                                        <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.FotoURL" >
+                                                        <img src="https://omgevingsboek.blob.core.windows.net/images/@foto.FotoURL">
                                                         i = i + 1;
 
                                                     }
@@ -153,7 +165,7 @@
                                                         <img src="~/Backgrounds/placeholder.png" id="imagesize">
                                                     }
 
-}
+                                                }
                                             </div>
                                         </div>
 
@@ -268,16 +280,16 @@
                                                 foreach (string s in lijst)
                                                 {
                                                     <h3>@s</h3>
-                                                <ul>
-                                                    @foreach (Thema th in Model.Thema)
-                                                    {
-                                                        if (th.LeergebiedNaam.Equals(s))
+                                                    <ul>
+                                                        @foreach (Thema th in Model.Thema)
                                                         {
-                                                        <li>@th.DomeinNaam</li> }
+                                                            if (th.LeergebiedNaam.Equals(s))
+                                                            {
+                                                                <li>@th.DomeinNaam</li> }
 
 
-                                                    }
-                                                </ul>
+                                                        }
+                                                    </ul>
 
 
                                                 }
@@ -313,11 +325,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 col-xs-12">
-                                                <br/>
+                                                <br />
                                                 <input type="submit" value="Reactie plaatsen" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
                                             </div>
 
-                                            
+
                                         </div>
                                     </div>
                                     <div class="row">
@@ -339,7 +351,7 @@
                                                             {
                                                                 <div class="panel panel-yellow">
                                                                     <div class="panel-heading">
-                                                                       @ratingUser.Name  @ratingUser.Firstname :
+                                                                        @ratingUser.Name  @ratingUser.Firstname :
                                                                     </div>
                                                                     <div class="panel-body">
 
@@ -357,26 +369,26 @@
                                                 </div>
 
                                             </div>
-                                            </div>
                                         </div>
+                                    </div>
 
                                 </form>
 
-                                    </div>
-                            </div>
-                              
-                                <!-- /.container-fluid -->
                             </div>
                         </div>
+
+                        <!-- /.container-fluid -->
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div id="Howest">
-                <img src="/Backgrounds/Howest_Logo.png" />
-            </div>
-        </div>
+    </div>
+</div>
+<div class="row">
+    <div id="Howest">
+        <img src="/Backgrounds/Howest_Logo.png" />
+    </div>
+</div>
     </div>
 </div>
 
@@ -397,8 +409,7 @@
 
     function exportToPdf() {
 
-        location.href='@Url.Action("ViewPdf", "POI", new { id=Model.Id})'
+        location.href = '@Url.Action("ViewPdf", "POI", new { id=Model.Id})'
     }
 </script>
-
 
