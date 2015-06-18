@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">POI Bewerken</h1>
+                <h1 class="page-header">POI bewerken</h1>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
 
                 </div>
                 <div class="col-lg-3 col-xs-12">
-                    <input type="submit" value="POI Opslaan" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
+                    <input type="submit" value="POI opslaan" name="btnSubmit" class="btn btn-lg btn-success btn-block" />
                     <br/>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                                                 <label>Toegangsprijs: </label> @Html.TextBoxFor(model => model.Toegangsprijs, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(model => model.Toegangsprijs, "", new { @class = "text-danger" })
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" id="checkers">
                                                 <label>Doelgroep:</label><br />
 
 
@@ -98,7 +98,7 @@
                                                             i = "checked";
                                                         }
                                                     }
-                                                    
+
                                                     <div class="checkbox-inline">
 
                                                         <input type="checkbox" id="@dg.Id" name="doelgroepIds" value="@dg.Id" @i />
@@ -204,7 +204,7 @@
                                     <!-- Voeg hier code voor het beheren van afbeeldingen-->
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <div class="form-group">
+                                            <div class="form-group" id="checkers">
 
 
                                                 @{
@@ -226,7 +226,7 @@
 
 
 
-                                                  
+
 
                                                     foreach (string s in lijst)
                                                     {
@@ -261,6 +261,7 @@
 
 
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

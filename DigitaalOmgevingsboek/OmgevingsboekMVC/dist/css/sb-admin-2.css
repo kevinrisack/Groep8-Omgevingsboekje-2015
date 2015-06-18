@@ -4,6 +4,11 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+
+#checkers{
+    text-align:start;
+}
+
 .UitstapOverzichtCarousel{
     color: black;
     text-decoration: none;

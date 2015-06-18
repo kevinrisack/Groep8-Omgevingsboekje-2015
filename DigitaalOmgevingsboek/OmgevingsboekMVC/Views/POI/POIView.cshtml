@@ -63,10 +63,10 @@
                     <input type="button" value="Exporteer naar pdf" name="btnExport" class="btn btn-lg btn-success btn-block" onclick="return exportToPdf()" /><br />
                 </div>
                 <div class="col-lg-3  col-xs-12">
-                    <input type="button" value="POI Wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("POIModify", "POI", new { id = Model.Id })'" /><br />
+                    <input type="button" value="POI wijzigen" name="btnEdit" class="btn btn-lg btn-success btn-block" onclick="location.href='@Url.Action("POIModify", "POI", new { id = Model.Id })'" /><br />
                 </div>
                 <div class="col-lg-3 col-xs-12">
-                    <input type="button" value="POI Verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deletePOI()" /><br />
+                    <input type="button" value="POI verwijderen" name="btnDelete" class="btn btn-lg btn-success btn-block" onclick="return deletePOI()" /><br />
                 </div>
             }
             else
@@ -82,7 +82,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="tabs" data-persist="true">
-                    <li><a href="#view1">Basis Informatie POI</a></li>
+                    <li><a href="#view1">Basis informatie POI</a></li>
                     <li><a href="#view2">Activiteiten</a></li>
                     <li><a href="#view3">Leergebieden/domeinen</a></li>
                     <li><a href="#view4">Reacties</a></li>
