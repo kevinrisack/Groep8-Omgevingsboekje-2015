@@ -40,7 +40,7 @@
                         <div class="form-group"><label>Gemeente: </label> @Html.DisplayFor(model => model.POI.Gemeente)</div>
 
                         <div class="form-group"><label>Beschrijving: </label> @Html.DisplayFor(model => model.Beschrijving)</div>
-                        <div class="form-group"><label>Website: </label> @Html.DisplayFor(model => model.Materiaal)</div>
+                        <div class="form-group"><label>Website: </label> <a href="@Html.DisplayFor(model => model.Materiaal)">@Html.DisplayFor(model => model.Materiaal)</a></div>
                         <div class="form-group"><label>Tijdsduur: </label> @Html.DisplayFor(model => model.Duur)</div>
 
                         <div class="form-group"><label>Terugkoppeling: </label> @Html.DisplayFor(model => model.Terugkoppeling)</div>
