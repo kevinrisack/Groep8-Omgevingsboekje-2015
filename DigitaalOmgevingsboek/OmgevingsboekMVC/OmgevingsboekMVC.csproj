@@ -1269,6 +1269,7 @@
     <Content Include="Views\POI\POIPdfView.cshtml" />
     <Content Include="Views\Home\GebruikersProfiel.cshtml" />
     <Content Include="Views\Home\Manual.cshtml" />
+    <Content Include="Views\Shared\CustomError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
