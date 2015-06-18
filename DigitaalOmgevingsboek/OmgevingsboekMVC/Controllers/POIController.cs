@@ -249,6 +249,7 @@ namespace DigitaalOmgevingsboek.Controllers
                     {
                         ViewBag.Doelgroepen = ps.GetDoelgroepen();
                         ViewBag.Leergebieden = ps.GetThemas();
+                        ViewBag.UserId = User.Identity.GetUserId();
 
                         return View(poi); 
                     }
